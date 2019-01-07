@@ -22,4 +22,26 @@ public class UserServiceImple implements UserService {
 		return userDao.loginCheck(user);
 	}
 	
+	@Override
+	public int insert(User user) {
+		logger.info("UserService insert() 호출");
+		
+		
+		return userDao.insert(user);
+	}
+	
+	@Override
+	public int update(User user) {
+		logger.info("UserService update() 호출");
+		
+		return userDao.update(user);
+	}
+	
+	@Override
+	public int delete(String userId) {
+		logger.info("UserService delete() 호출");
+		
+		return userDao.delete(userId);
+	}
+	
 }

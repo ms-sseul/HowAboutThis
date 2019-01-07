@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+  <mapper namespace="edu.spring.PresentMapper">
+
+
+	<select id="select" resultType="Present">
+		SELECT * FROM ${tbl_present}
+		ORDER BY ${present.pno} DESC	
+	</select>
+		
+		
+	<insert id="insert">
+		INSERT INTO ${tbl_present}
+		(${present.step} , ${present.component})
+		values (#{step}, #{component})			
+	</insert>
+	
+	<update id="update">
+		UPDATE ${tbl_present}
+		SET ${present.step} = #{set},
+			${present.component} = #{component}			
+		WHERE ${present.pno} = #{pno}	
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM ${tbl_present}
+		WHERE ${present.pno} = #{pno}	
+	</delete>
+	
+</mapper>	

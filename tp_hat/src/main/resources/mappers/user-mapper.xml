@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="edu.spring.UserMapper">
+
+	<!-- SQL 문장들을 정의 -->
+	<!-- User table -->
+	
+	<select id="loginCheck" resultType="User">
+		SELECT * from ${tbl_user} where ${user.userId} = #{userId} and ${user.userPwd} = #{userPwd}
+	</select>
+		
+	<select id="selectOne" resultType="User">
+		SELECT * FROM ${tbl_user}
+		WHERE ${user.userId} =#{userId}	
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ${tbl_user}
+		(${user.userId} , ${user.userPwd} , ${user.userEmail}, ${user.phone}, ${user.certification})
+		values (#{userId}, #{userPwd}, #{userEmail}, #{phone}, #{certification})	
+		
+	</insert>
+	
+	<update id="update">
+		UPDATE ${tbl_user}
+		SET ${user.userPwd} = #{userPwd},
+			${user.userEmail} = #{userEmail},
+			${user.phone} = #{phone}
+		WHERE ${user.userId} = #{userId}	
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM ${tbl_user}
+		WHERE ${user.userId} = #{userId}	
+	</delete>
+	
+	
+	
+</mapper>

@@ -148,7 +148,9 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [bno=" + bno + ", userId=" + userId + ", category=" + category + ", title=" + title + ", content="
-				+ content +", readCnt="+readCnt+", replyCnt="+replyCnt +", regDate=" + regDate + "]";
+				+ content +", readCnt="+readCnt+", replyCnt="+replyCnt +", regDate=" + regDate + "] \n";
 	}
+	
+	
 
 }

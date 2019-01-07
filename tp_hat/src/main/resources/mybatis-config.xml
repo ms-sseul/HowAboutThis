@@ -16,8 +16,61 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="board.readCnt" value="readCnt"/>
 		<property name="board.replyCnt" value="replyCnt"/>
 		<property name="board.regDate" value = "regDate" />	
+
+		<!-- Image table -->
+		<property name="tbl_image" value="TBL_IMAGE"/>
+		<property name="image.pno" value = "pno" />
+		<property name="image.ino" value = "ino" />
+		<property name="image.image" value = "image" />		
+	
+		<!-- Message table -->
+		<property name="tbl_message" value="TBL_MESSAGE"/>
+		<property name="message.mno" value = "mno" />
+		<property name="message.sender" value = "sender" />
+		<property name="message.reciever" value = "reciever" />
+		<property name="message.title" value = "title" />
+		<property name="message.content" value = "content" />
+		<property name="message.regDate" value = "regDate" />	
+		<property name="message.read" value="read"/>
+	
+		<!-- present table -->
+		<property name="tbl_present" value="TBL_PRESENT"/>
+		<property name="present.pno" value = "pno" />
+		<property name="present.step" value = "step" />
+		<property name="present.component" value = "component" />		
+	
+		<!-- Project table -->
+		<property name="tbl_project" value="TBL_PROJECT"/>
+		<property name="project.pno" value = "pno" />
+		<property name="project.title" value = "title" />
+		<property name="project.content" value = "content" />
+		<property name="project.recommendation" value = "recommendation" />
+		<property name="project.category" value="category"/>
+		<property name="project.targetAmount" value = "targetAmount" />
+		<property name="project.currentAmount" value = "currentAmount" />
+		<property name="project.userId" value = "userId" />
+		<property name="project.targetTime" value="targetTime"/>
+		<property name="project.regTime" value = "regTime" />
+		<property name="project.finished" value = "finished" />		
+	
+		<!-- Reply talbe -->
+		<property name="tbl_reply" value="TBL_REPLY"/>
+		<property name="reply.pno" value = "pno" />
+		<property name="reply.rno" value = "rno" />
+		<property name="reply.content" value = "content" />
+		<property name="reply.userId" value = "userId" />
+		<property name="reply.rrno" value = "rrno" />
+		<property name="reply.regDate" value = "regDate" />				
+	
+		<!-- User table -->	
+		<property name="tbl_user" value="TBL_USER"/>
+		<property name="user.userId" value = "userId" />
+		<property name="user.userPwd" value = "userPwd" />
+		<property name="user.userEmail" value = "userEmail" />
+		<property name="user.phone" value = "phone" />
+		<property name="user.point" value = "point" />
+		<property name="user.certification" value = "certification" />				
 		
-				
 	</properties>
 	
 	<typeAliases>

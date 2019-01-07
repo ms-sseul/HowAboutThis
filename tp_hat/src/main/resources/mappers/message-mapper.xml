@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="edu.spring.MessageMapper">
+	<!-- SQL 문장들을 정의 -->
+	<!-- Message SQL 문장  -->
+	<select id="selectAll" resultType="Message">
+		SELECT * FROM ${tbl_message}
+		ORDER BY ${message.mno} DESC
+	</select>
+	
+	<select id="selectOne" resultType="Message">
+		SELECT * FROM ${tbl_message}
+		WHERE ${message.mno} = #{mno}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO ${tbl_message} 
+		SET (${message.title}, ${message.content}, ${reply.userId})
+		VALUES (#{title}, #{content}, #{userId})
+	</insert>
+		
+	
+	<delete id="delete">
+		DELETE FROM ${tbl_message}
+		WHERE ${reply.mno} = #{mno}
+	</delete>
+	
+	
+	
+
+</mapper>
