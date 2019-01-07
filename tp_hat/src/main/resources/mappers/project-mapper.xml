@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="edu.spring.ProjectMapper">
+
+	<!-- SQL 문장들을 정의 -->
+	<!-- Project table -->
+	<select id="selectAll" resultType="Project">
+		SELECT * FROM ${tbl_project}
+		ORDER BY ${project.pno} DESC	
+	</select>
+	
+	<select id="selectOne" resultType="Project">
+		SELECT * FROM ${tbl_project}
+		WHERE ${project.pno} =#{pno}	
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ${tbl_project}
+		(${project.title} , ${project.content} , ${project.userId}, ${project.targetAmount}, ${project.targetTime})
+		values (#{title}, #{content}, #{userId}, #{targetAmount}, #{targetTime})	
+	</insert>
+	
+	<update id="update">
+		UPDATE ${tbl_project}
+		SET ${project.title} = #{title},
+			${project.content} = #{content}
+		WHERE ${project.pno} = #{pno}	
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM ${tbl_project}
+		WHERE ${project.pno} = #{pno}	
+	</delete>
+	
+	
+	
+</mapper>
