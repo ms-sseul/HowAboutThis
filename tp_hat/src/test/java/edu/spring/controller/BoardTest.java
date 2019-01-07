@@ -16,7 +16,7 @@ import edu.spring.service.BoardService;
 @ContextConfiguration(
 	locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"}
 )
-public class BoarsTest {
+public class BoardTest {
 	
 	@Autowired private BoardService boardService;
 	@Test
@@ -28,7 +28,7 @@ public class BoarsTest {
 	}
 	private int insertBoard() {
 		int result = 0;
-		Board board = new Board(0, "김기명", 1, "될까요?", "과연", 0, 0, null);
+		Board board = new Board(0, "김기명", 1, "시간이 제대로 나올까요?", "과연....", 0, 0, null);
 		result = boardService.insertBoard(board);
 		return result;
 	}

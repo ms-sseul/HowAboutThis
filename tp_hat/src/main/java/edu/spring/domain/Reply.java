@@ -10,8 +10,10 @@ public class Reply {
 	private String userId;			// 댓글 작성자 아이디
 	private int rrno;				// 대댓글 번호
 	private Date regDate;			// 댓글 작성 시간
-	private int type;
+	private int type;   			// 프로젝트 댓글 or 게시판 댓글
+	
 	public Reply() {}
+	
 	public Reply(int rno, int pno, String content, String userId, int rrno, Date regDate, int type) {
 		super();
 		this.rno = rno;
