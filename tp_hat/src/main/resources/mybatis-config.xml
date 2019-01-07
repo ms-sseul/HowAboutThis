@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="board.replyCnt" value="replyCnt"/>
 		<property name="board.regDate" value = "regDate" />	
 		
-		
+				
 	</properties>
 	
 	<typeAliases>
