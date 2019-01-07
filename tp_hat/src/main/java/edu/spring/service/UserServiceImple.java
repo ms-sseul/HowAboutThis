@@ -1,0 +1,25 @@
+package edu.spring.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import edu.spring.domain.User;
+import edu.spring.persistence.UserDao;
+
+@Service
+public class UserServiceImple implements UserService {
+	
+	private final Logger logger = LoggerFactory.getLogger(UserServiceImple.class);
+	
+	@Autowired private UserDao userDao;
+
+	@Override
+	public User loginCheck(User user) {
+		logger.info("loginCheck", user);
+		
+		return userDao.loginCheck(user);
+	}
+	
+}
