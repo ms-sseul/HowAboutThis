@@ -19,13 +19,13 @@
 
 	<insert id="insert">
 		INSERT INTO ${tbl_reply} 
-		SET (${reply.content}, ${reply.userId})
-		VALUES (#{content}, #{userId})
+		(${reply.pno} ,${reply.content}, ${reply.userId})
+		VALUES (#{parentNumber} ,#{content}, #{userId})
 	</insert>
 	
 	<insert id="insertrrno">
 		INSERT INTO ${tbl_reply}
-		SET (${reply.content}, ${reply.userId})
+		(${reply.content}, ${reply.userId})
 		VALUES (#{content}, #{userId})
 	</insert>
 

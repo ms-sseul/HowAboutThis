@@ -55,12 +55,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 		<!-- Reply talbe -->
 		<property name="tbl_reply" value="TBL_REPLY"/>
-		<property name="reply.pno" value = "pno" />
+		<property name="reply.pno" value = "parentNumber" />
 		<property name="reply.rno" value = "rno" />
 		<property name="reply.content" value = "content" />
 		<property name="reply.userId" value = "userId" />
 		<property name="reply.rrno" value = "rrno" />
-		<property name="reply.regDate" value = "regDate" />				
+		<property name="reply.regDate" value = "regDate" />
+		<property name="reply.type" value="type"/>				
 	
 		<!-- User table -->	
 		<property name="tbl_user" value="TBL_USER"/>

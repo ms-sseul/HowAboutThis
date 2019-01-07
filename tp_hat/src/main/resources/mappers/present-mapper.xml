@@ -8,7 +8,7 @@
 
 	<!-- SQL 문장들을 정의 -->
 	<!-- Present table -->
-	<select id="select" resultMap="Present">
+	<select id="select" resultType="Present">
 		SELECT * FROM ${tbl_present}
 		ORDER BY ${present.pno} DESC	
 	</select>
