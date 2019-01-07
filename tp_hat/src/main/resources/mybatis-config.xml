@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+
+<configuration>
+	<!-- MyBatis 프레임워크에서 사용할 환경 설정(Database와 관련된 설정) -->
+	<properties>
+		<!--Board table  -->
+		<property name="tbl_board" value="TBL_BOARD"/>
+		<property name="board.bno" value="bno" />
+		<property name="board.userId" value = "userId" />
+		<property name="board.category" value = "category" />
+		<property name="board.title" value = "title" />
+		<property name="board.content" value = "content" />
+		<property name="board.readCnt" value="readCnt"/>
+		<property name="board.replyCnt" value="replyCnt"/>
+		<property name="board.regDate" value = "regDate" />	
+		
+		
+	</properties>
+	
+	<typeAliases>
+		<package name="edu.spring.domain"/>
+	</typeAliases>
+
+</configuration>
