@@ -59,4 +59,32 @@ public class BoardDaoImple implements BoardDao {
 		return session.selectList(BOARD_MAPPER + ".selectBoardByCategory", params);
 	}
 
+	@Override
+	public int updateBoardReadCnt(int bno) {
+		logger.info("updateBoardReadCnt() call");
+		
+		return session.update(BOARD_MAPPER + ".updateBoardReadCnt" , bno);
+	}
+
+	@Override
+	public int updateBoardReplyCnt(int bno, int increment) {
+		logger.info("updateBoardReplyCnt() call");
+		
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		params.put("bno", bno);
+		params.put("increment", increment);
+		return session.update(BOARD_MAPPER + ".updateBoardReplyCnt", params);
+	}
+
+	@Override
+	public List<Board> searchByKeyword(int searchType, String keyword) {
+		logger.info("searchByKeyword() call");
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("searchType", searchType);
+		params.put("keyword", "%" + keyword + "%");
+		return session.selectList(BOARD_MAPPER + ".searchByKeyword" , params);
+	}
+	
+	
 }

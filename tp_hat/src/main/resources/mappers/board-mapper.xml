@@ -5,15 +5,82 @@
   
 <mapper namespace="edu.spring.BoardMapper">
   	<!-- SQL 문장들을 정의 -->
+  	<!-- 게시물 등록 -->
 	<insert id="insertBoard">
 		INSERT INTO ${tbl_board} 
 		(${board.category}, ${board.title}, ${board.content}, ${board.userId}) 
 		VALUES (#{category}, #{title}, #{content}, #{userId})
 	</insert>
 	
+	<!-- 게시물 전체 출력 -->
 	<select id = "selectAllBoard" resultType = "Board">
 		SELECT * 
 		FROM ${tbl_board}
 		ORDER BY ${board.bno} DESC 	
 	</select>
+	
+	<!-- 게시물 상세보기 -->
+	<select id= "selectOneBoard" resultType="Board">
+		SELECT * 
+		FROM ${tbl_board}
+		WHERE ${board.bno} = #{bno}
+	</select>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteBoard">
+		DELETE *
+		FROM ${tbl_board}
+		WHERE ${board.bno} = #{bno}
+	</delete>
+	
+	<!-- 게시물 수정 -->
+	<update id="updateBoard">
+		UPDATE ${tbl_board}
+		SET ${board.category} = #{category}
+			${board.title} = #{title}, 
+			${board.content} = #{content},
+			${board.regDate} = CURRENT_TIMESTAMP
+		WHERE ${board.bno} = #{bno}
+	</update>
+	
+	<!-- 게시물 조회수 증가 -->
+	<update id ="updateBoardReadCnt">
+		UPDATE ${tbl_board}
+		SET ${board.readCnt} = ${board.readCnt} + 1
+		WHERE ${board.bno} = #{bno}
+	</update>
+	
+	<!-- 게시물 댓글 수 변경 -->
+	<update id="updateBoardReplyCnt">
+		UPDATE ${tbl_board} 
+		SET ${board.replyCnt} = ${board.replyCnt} + #{increment}
+		WHERE ${board.bno} = #{bno}
+	</update>
+	
+	<!-- 카테고리별 게시물 출력 -->
+	<select id = "selectByCategory" resultType="Board">
+		SELECT *
+		FROM ${tbl_board}
+		WHERE ${board.catgory}  = #{category}
+		ORDER BY ${board.bno} DESC
+	</select>
+	
+	<!-- 게시물 검색 -->
+	<select id="searchByKeyword" resultType="Board">
+		SELECT * FROM ${tbl_board}
+		WHERE 
+		<if test="searchType == 1">
+			lower(${board.userId}) like lower(#{keyword})
+		</if>
+		<if test="searchType == 2">
+			lower(${board.title}) like lower(#{keyword})
+		</if>
+		<if test ="searchType == 3">
+			lower(${board.title}) like lower(#{keyword})
+			or 
+			lower(${board.content}) like lower(#{keyword})
+		</if>
+		ORDER BY ${board.bno} DESC	
+	</select>
+	
 </mapper>
