@@ -19,7 +19,7 @@
 
 	<insert id="insert">
 		INSERT INTO ${tbl_message} 
-		SET (${message.title}, ${message.content}, ${reply.userId})
+		(${message.title}, ${message.content}, ${reply.userId})
 		VALUES (#{title}, #{content}, #{userId})
 	</insert>
 		

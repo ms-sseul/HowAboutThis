@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="board.readCnt" value="readCnt"/>
 		<property name="board.replyCnt" value="replyCnt"/>
 		<property name="board.regDate" value = "regDate" />	
-		
+
 		<!-- Image table -->
 		<property name="tbl_image" value="TBL_IMAGE"/>
 		<property name="image.pno" value = "pno" />
@@ -71,7 +71,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="user.phone" value = "phone" />
 		<property name="user.point" value = "point" />
 		<property name="user.certification" value = "certification" />				
-	
 		
 	</properties>
 	
