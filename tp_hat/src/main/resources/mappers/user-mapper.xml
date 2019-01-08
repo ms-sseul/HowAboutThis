@@ -9,6 +9,7 @@
 	<!-- SQL 문장들을 정의 -->
 	<!-- User table -->
 	
+	<!-- 로그인 아이디/ 비밀번호  -->
 	<select id="loginCheck" resultType="User">
 		SELECT * from ${tbl_user} where ${user.userId} = #{userId} and ${user.userPwd} = #{userPwd}
 	</select>

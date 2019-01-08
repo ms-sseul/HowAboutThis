@@ -8,19 +8,22 @@
 
 	<!-- SQL 문장들을 정의 -->
 	<!-- Present table -->
+	
+	<!-- 해당 프로젝트 리워드를 단계별로 출력 -->
 	<select id="select" resultType="Present">
 		SELECT * FROM ${tbl_present}
 		WHERE ${present.pno} = #{pno}
 		ORDER BY ${present.step}
 	</select>
 		
-		
+	<!-- 프로젝트 리워드 생성 -->
 	<insert id="insert">
 		INSERT INTO ${tbl_present}
 		(${present.pno}, ${present.step} , ${present.component}, ${present.amount})
 		values (#{pno}, #{step}, #{component}, #{amount})			
 	</insert>
 	
+	<!-- 리워드 단계 , 구성품 및 가격 변경 -->
 	<update id="update">
 		UPDATE ${tbl_present}
 		SET ${present.step} = #{step},
@@ -29,6 +32,7 @@
 		WHERE ${present.pno} = #{pno}	
 	</update>
 	
+	<!-- 리워드 삭제 -->
 	<delete id="delete">
 		DELETE FROM ${tbl_present}
 		WHERE ${present.pno} = #{pno}	

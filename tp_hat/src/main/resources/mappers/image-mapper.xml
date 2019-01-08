@@ -28,6 +28,14 @@
 		WHERE ${image.pno} = #{pno}
 		ORDER BY ${image.ino} 	
 	</select>
+	
+	<!-- 메인화면에 보여질 프로젝트의 이미지 한개만 출력 -->
+	<select id="selectOneImage" resultType="Image">
+		SELECT * FROM ${tbl_image}
+		WHERE ${image.pno} = #{pno}
+		ORDER BY ${image.ino}
+		LIMIT 1
+	</select>
 		
 	<!-- 해당 프로젝트 Image 업데이트 -->
 	<update id="update">
