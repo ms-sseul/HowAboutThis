@@ -10,20 +10,22 @@
 	<!-- Present table -->
 	<select id="select" resultType="Present">
 		SELECT * FROM ${tbl_present}
-		ORDER BY ${present.pno} DESC	
+		WHERE ${present.pno} = #{pno}
+		ORDER BY ${present.step} 	
 	</select>
 		
 		
 	<insert id="insert">
 		INSERT INTO ${tbl_present}
-		(${present.step} , ${present.component})
-		values (#{step}, #{component})			
+		(${present.pno}, ${present.step} , ${present.component}, ${present.amount})
+		values (#{pno}, #{step}, #{component}, #{amount})			
 	</insert>
 	
 	<update id="update">
 		UPDATE ${tbl_present}
-		SET ${present.step} = #{set},
-			${present.component} = #{component}			
+		SET ${present.step} = #{step},
+			${present.component} = #{component}
+			${present.amount} = #{amount}			
 		WHERE ${present.pno} = #{pno}	
 	</update>
 	
