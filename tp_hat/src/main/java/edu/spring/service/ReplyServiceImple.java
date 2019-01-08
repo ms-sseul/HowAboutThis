@@ -1,5 +1,7 @@
 package edu.spring.service;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -34,21 +36,49 @@ public class ReplyServiceImple implements ReplyService {
 	}
 
 	@Override
-	public List<Reply> select(int bno) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reply> select(int pno) {
+		logger.info("select(pno={}) 호출",pno);
+		return replyDao.read(pno);
 	}
 
 	@Override
 	public int update(Reply reply) {
-		// TODO Auto-generated method stub
-		return 0;
+		logger.info("update({}) 호출",reply.toString());
+		return replyDao.update(reply);
 	}
 
 	@Override
 	public int delete(int rno) {
-		// TODO Auto-generated method stub
-		return 0;
+		logger.info("delete({}) 호출",rno);
+		return replyDao.delete(rno);
+	}
+
+	@Override
+	public int insertrrno(Reply reply) {
+		logger.info("insert({}) 호출",reply);
+		
+		int result = replyDao.createrrno(reply);
+			
+		
+		return result;
+	}
+
+	@Override
+	public List<Reply> selectrrno(int pno) {
+		logger.info("select(pno={}) 호출",pno);
+		return replyDao.readrrno(pno);
+	}
+
+	@Override
+	public int updaterrno(Reply reply) {
+		logger.info("updaterrno({}) 호출",reply.toString());
+		return replyDao.updaterrno(reply);
+	}
+
+	@Override
+	public int deleterrno(int rrno) {
+		logger.info("deleterrno({}) 호출",rrno);
+		return replyDao.deleterrno(rrno);
 	}
 
 }

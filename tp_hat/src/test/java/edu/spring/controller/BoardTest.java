@@ -34,7 +34,7 @@ public class BoardTest {
 	}
 	
 	private List<Board> selectAllBoard(){
-		List<Board> list = new ArrayList<>();
+		List<Board> list = new ArrayList<Board>();
 		list = boardService.selectAllBoard();
 		return list;
 	}

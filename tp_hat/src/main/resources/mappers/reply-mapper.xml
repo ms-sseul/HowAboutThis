@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -9,12 +8,17 @@
 	<!-- Reply SQL 문장 -->
 	<select id="selectAll" resultType="Reply">
 		SELECT * FROM ${tbl_reply}
+		WHERE ${reply.rrno} IS NOT NULL
+		AND ${reply.type} = #{type}
+		AND ${reply.pno} = #{parentNumber}
 		ORDER BY ${reply.rno} DESC
 	</select>
 	
-	<select id="selectOne" resultType="Reply">
-		SELECT * FROM ${tbl_reply}
-		WHERE ${reply.rno} = #{rno}
+	<select id="selectAllrrno" resultType="Reply">
+		SELECT 
+		*FROM ${tbl_reply}
+		 WHERE ${reply.rrno} = #{rno}
+		ORDER BY ${reply.regDate} DESC
 	</select>
 
 	<insert id="insert">
@@ -25,22 +29,22 @@
 	
 	<insert id="insertrrno">
 		INSERT INTO ${tbl_reply}
-		(${reply.content}, ${reply.userId})
-		VALUES (#{content}, #{userId})
+		(${reply.pno}, ${reply.content}, ${reply.userId}, ${reply.rrno})
+		VALUES (#{parentNumber}, #{content}, #{userId}, #{rno})
 	</insert>
 
 	<update id="update">
 		UPDATE ${tbl_reply}
 		SET ${reply.content} = #{content},
-			${reply.regdate} = sysdate
+			${reply.regDate} = CURRENT_TIMESTAMP
 		WHERE ${reply.rno} = #{rno}
 	</update>
 	
 	<update id="updaterrno">
 		UPDATE ${tbl_reply}
 		SET ${reply.content} = #{content},
-			${reply.regdate} = sysdate
-		WHERE ${reply.rrno} = #{rrno}
+			${reply.regDate} = CURRENT_TIMESTAMP
+		WHERE ${reply.rno} = #{rno}
 	</update>
 
 	<delete id="delete">
@@ -49,8 +53,8 @@
 	</delete>
 	
 	<delete id="deleterrno">
-		DELETE FORM ${tbl_reply}
-		WHERE ${reply.rrno} = #{rrno}	
+		DELETE FROM ${tbl_reply}
+		WHERE ${reply.rrno} = #{rno}	
 	</delete>
 	
 
