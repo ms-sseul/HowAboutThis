@@ -7,29 +7,38 @@
   <mapper namespace="edu.spring.MessageMapper">
 	<!-- SQL 문장들을 정의 -->
 	<!-- Message SQL 문장  -->
-	<select id="selectAll" resultType="Message">
-		SELECT * FROM ${tbl_message}
-		ORDER BY ${message.mno} DESC
-	</select>
-	
-	<select id="selectOne" resultType="Message">
-		SELECT * FROM ${tbl_message}
-		WHERE ${message.mno} = #{mno}
-	</select>
 
+	<!-- 쪽지를 보낼 때 데이터 삽입 -->
 	<insert id="insert">
 		INSERT INTO ${tbl_message} 
-		(${message.title}, ${message.content}, ${reply.userId})
-		VALUES (#{title}, #{content}, #{userId})
+		(${message.title}, ${message.content}, ${message.sender}, ${message.reciever})
+		VALUES (#{title}, #{content}, #{sender}, #{reciever})
 	</insert>
 		
-	
+	<!-- 쪽지 삭제 -->
 	<delete id="delete">
 		DELETE FROM ${tbl_message}
 		WHERE ${reply.mno} = #{mno}
 	</delete>
 	
+	<!-- 쪽지를 받은 유저가 해당 쪽지를 읽었을때 값 변경  -> 글씨체를 얇게 만들어주기 위해  -->
+	<update id="updateRead">
+		UPDATE ${tbl_message}
+		SET ${message.read} = 1
+		WHERE ${message.mno} = #{mno}
+	</update>
 	
+	<!-- User가 받은 쪽지를 역순으로 출력 -->
+	<select id="selectAll" resultType="Message">
+		SELECT * FROM ${tbl_message}
+		WHERE ${message.reciever} = ${reciever} 
+		ORDER BY ${message.mno} DESC
+	</select>
 	
+	<!-- 쪽지 상세보기  -->
+	<select id="selectOne" resultType="Message">
+		SELECT * FROM ${tbl_message}
+		WHERE ${message.mno} = #{mno}
+	</select>
 
 </mapper>

@@ -54,7 +54,7 @@ public class BoardDaoImple implements BoardDao {
 	@Override
 	public List<Board> readBoardByCategory(int category) {
 		logger.info("readBoardByCategory() call"); 
-		Map<String, Object> params = new HashMap<>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("category", category);
 		return session.selectList(BOARD_MAPPER + ".selectBoardByCategory", params);
 	}

@@ -40,6 +40,7 @@
 			${board.title} = #{title}, 
 			${board.content} = #{content},
 			${board.regDate} = CURRENT_TIMESTAMP
+			
 		WHERE ${board.bno} = #{bno}
 	</update>
 	
@@ -65,7 +66,7 @@
 		ORDER BY ${board.bno} DESC
 	</select>
 	
-	<!-- 게시물 검색 -->
+	<!-- 게시물 검색 사용자 / 제목 / 제목 및 내용 -->
 	<select id="searchByKeyword" resultType="Board">
 		SELECT * FROM ${tbl_board}
 		WHERE 

@@ -11,7 +11,7 @@
 	<select id="select" resultType="Present">
 		SELECT * FROM ${tbl_present}
 		WHERE ${present.pno} = #{pno}
-		ORDER BY ${present.step} 	
+		ORDER BY ${present.step}
 	</select>
 		
 		

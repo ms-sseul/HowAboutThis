@@ -8,31 +8,31 @@
   	
   	<!-- SQL 문장들을 정의 -->
 	<!-- Image table -->
-	<select id="selectAll" resultType="Image">
-		SELECT * FROM ${tbl_image}
-		ORDER BY ${image.ino} DESC	
-	</select>
 	
-	<select id="selectOne" resultType="Image">
-		SELECT * FROM ${tbl_image}
-		WHERE ${image.ino} =#{ino}	
-	</select>
-	
+	<!-- Image 생성 -->
 	<insert id="insert">
 		INSERT INTO ${tbl_image}
 		(${image.image})
 		values (#{image})	
 	</insert>
 	
+	<!-- 해당 프로젝트  Image 삭제  -->
+	<delete id="delete">
+		DELETE FROM ${tbl_board}
+		WHERE ${image.ino} = #{ino}	
+	</delete>  
+	
+	<!-- 해당 프로젝트 Image 출력 -->
+	<select id="selectAll" resultType="Image">
+		SELECT * FROM ${tbl_image}
+		WHERE ${image.pno} = #{pno}
+		ORDER BY ${image.ino} 	
+	</select>
+		
+	<!-- 해당 프로젝트 Image 업데이트 -->
 	<update id="update">
 		UPDATE ${tbl_image}
 		SET ${image.image} = #{image}			
 		WHERE ${image.ino} = #{ino}	
 	</update>
-	
-	<delete id="delete">
-		DELETE FROM ${tbl_board}
-		WHERE ${image.ino} = #{ino}	
-	</delete>  
-  
   </mapper>

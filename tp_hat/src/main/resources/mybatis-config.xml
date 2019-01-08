@@ -37,7 +37,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="tbl_present" value="TBL_PRESENT"/>
 		<property name="present.pno" value = "pno" />
 		<property name="present.step" value = "step" />
-		<property name="present.component" value = "component" />		
+		<property name="present.component" value = "component" />	
+		<property name="present.amount" value="amount"/>	
 	
 		<!-- Project table -->
 		<property name="tbl_project" value="TBL_PROJECT"/>

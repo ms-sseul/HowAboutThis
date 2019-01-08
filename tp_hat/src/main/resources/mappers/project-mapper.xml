@@ -8,33 +8,71 @@
 
 	<!-- SQL 문장들을 정의 -->
 	<!-- Project table -->
+	<!-- project 생성 -->
+	<insert id="insert">
+		INSERT INTO ${tbl_project}
+		(${project.title} , ${project.content} , ${project.category} , ${project.userId}, ${project.targetAmount}, ${project.targetTime})
+		values (#{title}, #{content}, #{category} , #{userId}, #{targetAmount}, #{targetTime})	
+	</insert>
+	
+	<!-- 프로젝트 삭제 -->
+	<delete id="delete">
+		DELETE FROM ${tbl_project}
+		WHERE ${project.pno} = #{pno}	
+	</delete>	
+	
+	<!-- Project pno 역순으로 출력 -->
 	<select id="selectAll" resultType="Project">
 		SELECT * FROM ${tbl_project}
 		ORDER BY ${project.pno} DESC	
 	</select>
 	
+	<!-- Project 상세보기 -->
 	<select id="selectOne" resultType="Project">
 		SELECT * FROM ${tbl_project}
 		WHERE ${project.pno} =#{pno}	
 	</select>
 	
-	<insert id="insert">
-		INSERT INTO ${tbl_project}
-		(${project.title} , ${project.content} , ${project.userId}, ${project.targetAmount}, ${project.targetTime})
-		values (#{title}, #{content}, #{userId}, #{targetAmount}, #{targetTime})	
-	</insert>
+	<!-- Project 인기순으로 5개 출력 -->
+	<select id = "selectByPopularity">
+		SELECT *
+		FROM ${tbl_project}
+		ORDER BY ${project.readCnt} + ${project.replyCnt} DESC
+		LIMIT 5
+	</select>
 	
+	<!-- Project 가테고리별 출력  -->
+	<select id = "selectByCategory">
+		SELECT *
+		FROM ${tbl_project}
+		WHERE ${project.category} = #{category}
+		ORDER BY ${project.pno} DESC
+	</select>
+	
+	<!-- Project 추천순으로 보기 5개 값만  -->
+	<select id = "selectByRecommendation">
+		SELECT *
+		FROM ${tbl_project}
+		ORDER BY ${project.recommendation} DESC
+		LIMIT 5
+	</select>
+	
+	<!-- project 추천수 업데이트 -->
+	<update id="updateProjectRecommendation">
+		UPDATE 	${tbl_project}
+		SET ${project.recommendation} = ${project.recommendation} + #{increment};
+	</update>
+	
+	<!-- Project 제목, 내용, 목표금액 , 목표시간 변경 -->
 	<update id="update">
 		UPDATE ${tbl_project}
 		SET ${project.title} = #{title},
 			${project.content} = #{content}
+			${project.targetAmount} = #{targetAmount}
+			${project.targetTime} = #{targetTime}
 		WHERE ${project.pno} = #{pno}	
 	</update>
-	
-	<delete id="delete">
-		DELETE FROM ${tbl_project}
-		WHERE ${project.pno} = #{pno}	
-	</delete>
+
 	
 	
 	
