@@ -36,8 +36,8 @@ public class ReplyTest {
 //		delete();
 //		insertrrno();
 //		rrnoList();
-		updaterrno();
-//		deleterrno();
+//		updaterrno();
+		deleterrno();
 	}
 
 	private void insertTest() {
@@ -86,7 +86,7 @@ public class ReplyTest {
 	}
 	
 	private void insertrrno() {
-		Reply r = new Reply(6,1,"rrno댓글","bbb",3,null,0);
+		Reply r = new Reply(7,1,"rrno댓글2","bbb",3,null,0);
 		int result = replyDao.createrrno(r);
 		
 		logger.info("대댓글 insert = {}",result);	
@@ -120,7 +120,7 @@ public class ReplyTest {
 	}
 	
 	private void deleterrno() {
-		int result = replyService.deleterrno(5);
+		int result = replyService.deleterrno(7);
 		
 		logger.info("deleterrno 결과 = {}",result);		
 		

@@ -48,9 +48,10 @@ public class ReplyController {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, value = "{rno}")
 	public ResponseEntity<Integer> createReplyrrno(
-			@RequestBody Reply reply){
+			@RequestBody Reply reply,
+			@PathVariable (name = "rno") int rno){
 		
 		logger.info("createReplyrrno{()} 호출",reply.toString());
 		
