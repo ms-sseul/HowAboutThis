@@ -1,5 +1,8 @@
 package edu.spring.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +30,10 @@ public class UserDaoImple implements UserDao{
 	@Override
 	public int insert(User user) {
 		logger.info("UserDaoImple insert() 호출");
-		
+		user.setCertification("n");
 		return session.insert(USER_MAPPERS+ ".insert", user);
 	}
+	
 
 	@Override
 	public int update(User user) {
@@ -42,6 +46,15 @@ public class UserDaoImple implements UserDao{
 		logger.info("UserDaoImple delete() 호출");
 		
 		return session.delete(USER_MAPPERS + ".delete", userId);
+	}
+	
+	@Override
+	public int certiUpdate(String userId) {
+		logger.info("UserDaoImple certiUpdate() 호출");
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("userId", userId);
+		return session.update(USER_MAPPERS+".certiUpdate", params);
 	}
 	
 	

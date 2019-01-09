@@ -7,11 +7,11 @@ public class User {
 	private String userEmail;	// 유저 이메일
 	private String phone;		// 유저 폰
 	private int point;			// 유저 포인트
-	private int certification;	// 이메일 인증 여부 0(false) 아니면 1(true)
+	private String certification;	// 이메일 인증 여부 0(false) 아니면 1(true)
 	
 	public User () {}
 
-	public User(String userId, String userPwd, String userEmail, String phone, int point, int certification) {
+	public User(String userId, String userPwd, String userEmail, String phone, int point, String certification) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -61,11 +61,11 @@ public class User {
 		this.point = point;
 	}
 
-	public int getCertification() {
+	public String getCertification() {
 		return certification;
 	}
 
-	public void setCertification(int certification) {
+	public void setCertification(String certification) {
 		this.certification = certification;
 	}
 

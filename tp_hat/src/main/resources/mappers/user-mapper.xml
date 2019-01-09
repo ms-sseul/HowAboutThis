@@ -9,14 +9,21 @@
 	<!-- SQL 문장들을 정의 -->
 	<!-- User table -->
 	
-	<!-- 로그인 아이디/ 비밀번호  -->
 	<select id="loginCheck" resultType="User">
-		SELECT * from ${tbl_user} where ${user.userId} = #{userId} and ${user.userPwd} = #{userPwd}
+		SELECT * FROM ${tbl_user} where ${user.userId} = #{userId} and ${user.userPwd} = #{userPwd}
 	</select>
 		
 	<select id="selectOne" resultType="User">
 		SELECT * FROM ${tbl_user}
 		WHERE ${user.userId} =#{userId}	
+	</select>
+	
+	<select id="emailCheck" resultType="User">
+		SELECT * FROM ${tbl_user} where ${user.userEmail} = #{userEmail} 
+	</select>
+	
+	<select id="certiCheck" resultType="User">
+		SELECT * FROM ${tbl_user} where ${user.certification} = #{certification}
 	</select>
 	
 	<insert id="insert">
@@ -32,6 +39,12 @@
 			${user.userEmail} = #{userEmail},
 			${user.phone} = #{phone}
 		WHERE ${user.userId} = #{userId}	
+	</update>
+	
+	<update id="certiUpdate">
+		UPDATE ${tbl_user}
+		SET ${user.certification} = 'y'
+		WHERE ${user.userId} = #{userId}
 	</update>
 	
 	<delete id="delete">

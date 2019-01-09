@@ -1,6 +1,7 @@
 package edu.spring.controller;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,13 +28,18 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		String formattedDate = dateFormat.format(date);
+		String now = sdf.format(date);
 		
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("serverTime", now);
 		
 		return "home";
+	}
+	
+	@RequestMapping(value = "/user/register")
+	public String loginPost() {
+		return "/user/register";
 	}
 	
 }

@@ -1,14 +1,41 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>Home</title>
+	<title>test</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h1>
-	Hello world!  
+	메인 페이지 
 </h1>
+<P>  현재 시간 : ${serverTime}. </P>
 
-<P>  The time on the server is ${serverTime}. </P>
+<ul>
+	<li><a href="user/register">회원가입</a></li>
+</ul>
+
+<c:if test="${empty loginId}">
+<form action="member/login-post" method="post">
+	<input type="text" name="userId" placeholder="아이디" required />
+	<input type="password" name="userPwd" placeholder="비밀번호 입력" required />
+	<input type="submit" value="로그인" />
+	<input type="hidden" name="queryString" value="http://localhost:8181/test/"/>
+</form>
+</c:if>
+<c:if test="${not empty loginId}">
+	${loginId}님, 안녕하세요!
+	<button id="btn-logout">로그아웃</button>
+</c:if>
+
+<hr/>
+
+
+
 </body>
 </html>

@@ -33,7 +33,7 @@ public class UserTest {
 	
 	private int insert() {
 		int result = 0;
-		User Test = new User("김상현", "aaa", "aaa@aaa.com", "010-1111-1111", 1, 0);
+		User Test = new User("김상현", "aaa", "aaa@aaa.com", "010-1111-1111", 1, null);
 		
 		result = userDao.insert(Test);
 		logger.info("result = ", result);
