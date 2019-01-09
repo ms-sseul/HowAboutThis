@@ -18,6 +18,7 @@
 
 <ul>
 	<li><a href="user/register">회원가입</a></li>
+	<li><a href="web/main">홈페이지</a></li>
 </ul>
 
 <c:if test="${empty loginId}">

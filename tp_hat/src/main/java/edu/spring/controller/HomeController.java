@@ -42,4 +42,8 @@ public class HomeController {
 		return "/user/register";
 	}
 	
+	@RequestMapping(value = "/web/main")
+	public String main() {
+		return "/web/main";
+	}
 }
