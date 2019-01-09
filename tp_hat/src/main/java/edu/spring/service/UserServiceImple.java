@@ -46,7 +46,7 @@ public class UserServiceImple implements UserService {
 		MailHandler sendMail = new MailHandler(mailsender);
 		sendMail.setSubject("이거어때 서비스 이메일 인증!");
 		sendMail.setText(new StringBuffer().append("<h1>메일 인증</h1>")
-				.append("<a href='http://localhost:8181/test/user/emailConfirm?userId=").append(user.getUserId())
+				.append("<a href='https://localhost:8443/controller/user/emailConfirm?userId=").append(user.getUserId())
 				.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 		sendMail.setFrom("myulchi0522@gmail.com", "김상현");
 		sendMail.setTo(user.getUserEmail());
