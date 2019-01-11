@@ -102,11 +102,8 @@ public class UserController {
 	
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> idcheck(User user, Model model) {
+	public ResponseEntity<String> idcheck(User user) {
 		
-		/*String userId = request.getParameter("userId");
-		
-		logger.info("userId =({})", userId);*/
 		User result  = userService.loginCheck(user);
 		
 		logger.info("result({})", result);
