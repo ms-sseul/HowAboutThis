@@ -1,17 +1,28 @@
 package edu.spring.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.lang.UsesSunHttpServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.spring.domain.User;
@@ -38,8 +49,8 @@ public class UserController {
 		logger.info("loginPost({}) 호출", user);
 		
 		// preHandle 위치
-		User result = userService.loginCheck(user);
-		model.addAttribute("loginResult", result);
+		// User result = userService.loginCheck(user);
+		// model.addAttribute("loginResult", result);
 		// postHandle 위치
 	}
 	
@@ -89,5 +100,25 @@ public class UserController {
 		return "redirect:/"; // 메인 페이지로 이동
 	}
 	
+	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> idcheck(User user, Model model) {
+		
+		/*String userId = request.getParameter("userId");
+		
+		logger.info("userId =({})", userId);*/
+		User result  = userService.loginCheck(user);
+		
+		logger.info("result({})", result);
+
+		ResponseEntity<String> entity = null;
+		if (result != null) {
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<String>("fail", HttpStatus.OK);
+		}
+		
+		return entity;
+	}
 
 } // end class UserController

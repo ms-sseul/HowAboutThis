@@ -10,7 +10,7 @@
 	<!-- User table -->
 	
 	<select id="loginCheck" resultType="User">
-		SELECT * FROM ${tbl_user} where ${user.userId} = #{userId} and ${user.userPwd} = #{userPwd}
+		SELECT * FROM ${tbl_user} WHERE ${user.userId} = #{userId}
 	</select>
 		
 	<select id="selectOne" resultType="User">
