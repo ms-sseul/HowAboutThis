@@ -101,7 +101,8 @@ $(document).ready(function () {
 			$('#idResult').html('아이디는 3자리~12자리 이하로 입력');
 			$('#idResult').css('color', 'red');
 			checkId = false;
-			
+			btnResult.attr("disabled", "disabled");
+			check(checkId, checkPwd, checkPhone);
 		} else {
 			$.ajax({
 				type: 'post',
@@ -112,11 +113,13 @@ $(document).ready(function () {
 				if (res == 'success') {
 					alert("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
 					checkId = false;
-					
+					btnResult.attr("disabled", "disabled");
+					check(checkId, checkPwd, checkPhone);
 				} else {
 					alert("사용가능한 아이디 입니다.");
 					checkId = true;
 					check(checkId, checkPwd, checkPhone);
+					
 				}
 			}
 		});
@@ -132,6 +135,8 @@ $(document).ready(function () {
 			$('#pwdResult').html('아이디는 8자리~24자리 이하로 입력');
 			$('#pwdResult').css('color', 'red');
 			checkPwd = false;
+			btnResult.attr("disabled", "disabled");
+			check(checkId, checkPwd, checkPhone);
 		} else {
 			checkPwd = true;
 			check(checkId, checkPwd, checkPhone);
@@ -148,6 +153,8 @@ $(document).ready(function () {
 			$('#phoneResult').html('ex : 010-1111-1111 (-입력해주세요)');
 			$('#phoneResult').css('color', 'red');
 			checkPhone = false;
+			btnResult.attr("disabled", "disabled");
+			check(checkId, checkPwd, checkPhone);
 		} else {
 			checkPhone = true;
 			check(checkId, checkPwd, checkPhone);
