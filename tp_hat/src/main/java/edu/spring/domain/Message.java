@@ -73,7 +73,6 @@ public class Message {
 		this.regDate = regDate;
 	}
 	
-	
 
 	public int getRead() {
 		return read;

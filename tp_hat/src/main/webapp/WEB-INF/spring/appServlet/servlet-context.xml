@@ -14,8 +14,10 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	 
-	
+	<!-- 
+		TEST 결과에서 에러 처리가나서 주석 처리로 일단 해 놓았음
 	 <resources mapping="/resources/**" location="/resources/" />
+	 -->
 	
 	 
 

@@ -18,20 +18,17 @@
 	<!-- 쪽지 삭제 -->
 	<delete id="delete">
 		DELETE FROM ${tbl_message}
-		WHERE ${reply.mno} = #{mno}
+		WHERE ${message.mno} = #{mno}
 	</delete>
 	
 	<!-- 쪽지를 받은 유저가 해당 쪽지를 읽었을때 값 변경  -> 글씨체를 얇게 만들어주기 위해  -->
 	<update id="updateRead">
-		UPDATE ${tbl_message}
-		SET ${message.read} = 1
-		WHERE ${message.mno} = #{mno}
+		UPDATE ${tbl_message} SET ${tbl_message}.${message.read} = 1 WHERE ${message.mno} = #{mno}
 	</update>
 	
 	<!-- User가 받은 쪽지를 역순으로 출력 -->
 	<select id="selectAll" resultType="Message">
 		SELECT * FROM ${tbl_message}
-		WHERE ${message.reciever} = ${reciever} 
 		ORDER BY ${message.mno} DESC
 	</select>
 	
