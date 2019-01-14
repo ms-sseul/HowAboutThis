@@ -86,6 +86,7 @@
 		<br/>
 		전화번호 <input type="number" id="phone" placeholder="Phone Number"required/>
 		<br/>
+		<!-- 개인정보 수정 (=DB 업데이트) 추가해주세요 -->
 		<input type="submit" value="수정완료" />
       	</form>
     </div>

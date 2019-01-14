@@ -138,7 +138,7 @@
              </div>
              	<span>19세 이상 가능</span>
              <div class="btn-wrap funding">
-             	<button onclick="location.href='#'">펀딩하기</button>
+             	<button onclick="location.href='#rewards.jsp'">펀딩하기</button>
              </div>
           </div>
          </div>

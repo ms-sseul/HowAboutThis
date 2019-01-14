@@ -98,32 +98,39 @@
 </div>
 
 <div class="content-category">
+		<!-- onclick : tech.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='tech.jsp'">테크 & 가전
 		<span class="badge badge-light"></span>
 		</button>
+		<!-- onclick : fasion.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='fasion.jsp'">패션
 		<span class="badge badge-light"></span>
 		</button>
+		<!-- onclick : design.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='design.jsp'">디자인
 		<span class="badge badge-light"></span>
 		</button>
+		<!-- onclick : animal.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='animal.jsp'">반려동물
 		<span class="badge badge-light"></span>
 		</button>
+		<!-- onclick : hobby.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='hobby.jsp'">취미
 		<span class="badge badge-light"></span>
 		</button>
+		<!-- onclick : social.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='social.jsp'">소셜
 		<span class="badge badge-light"></span>
 		</button>
 </div>
 	
-<div class="container">
+<div class="project-container">
 
 	<h3 style="padding: 10px;">마감 임박순</h3>
 	<div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
+          	<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
             <a href=""><img class="card-img-top" src=""></a>
             <div class="card-body">
               <h4 class="card-title">
@@ -337,14 +344,14 @@
           </div>
         </div>
 	</div>
-		<!-- 더보기 버튼 (미사용시 제거) -->
+		<!-- 더보기 버튼 : 누르면 프로젝트 추가로 불러오는 기능 넣어주세요 -->
 	<div class="more-project" style="margin: 1em">
 			<button style="width: 100%; height: 30px;">더보기</button>
 	</div>
 	
 </div>
 
-<div>
+<div class="footer">
     <footer class="py-5 bg-info">
       <div class="container">
         <p class="m-0 text-center text-white">Footer</p>

@@ -66,8 +66,7 @@
 
 <!-- content : 들어가기 → 변경예정 -->
 <div class="container" style="margin:10em;">
-	<!-- url 추가 -->
-	<h1><a href=""> 들어가기 </a></h1>
+	<h1><a href="web/main"> 들어가기 </a></h1>
 </div>
 
 <c:if test="${empty loginId}">

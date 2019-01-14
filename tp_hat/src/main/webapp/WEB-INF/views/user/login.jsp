@@ -72,7 +72,7 @@
 		<hr class="my-4">
 		<input type="hidden" name="queryString" value="${targetUrl}"/>
 		<div id="register-link" class="text-right">
-			  <a href="${pageContext.request.contextPath}/register.jsp" class="text-info">회원가입</a>
+			  <a href="user/register" class="text-info">회원가입</a>
 		</div>
 	</form>   
 

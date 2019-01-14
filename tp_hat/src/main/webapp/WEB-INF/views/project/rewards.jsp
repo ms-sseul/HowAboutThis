@@ -186,7 +186,7 @@
 		<p class="confirm">
 		{프로젝트이름}에 {리워드 선택금액합}원을 펀딩합니다.
 		</p>
-		<button class="wz button primary" onclick="purchaseNextStep();">
+		<button class="wz button primary" onclick="location.href='#result.jsp'">
 			다음 단계로 <i class="icon chevron-right"></i>
 		</button>
 	</div>
