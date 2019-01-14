@@ -74,13 +74,7 @@
 		<div id="register-link" class="text-right">
 			  <a href="${pageContext.request.contextPath}/register.jsp" class="text-info">회원가입</a>
 		</div>
-	</form>
-	
-<!-- content : 들어가기 → 변경예정 -->
-<div class="container" style="margin:10em;">
-	<!-- url 추가 -->
-	<h1><a href=""> 들어가기 </a></h1>
-</div>   
+	</form>   
 
 </div>
 </body>

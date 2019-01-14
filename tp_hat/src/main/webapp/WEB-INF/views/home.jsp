@@ -64,6 +64,12 @@
 	<li><a href="web/main">홈페이지</a></li>
 </ul>
 
+<!-- content : 들어가기 → 변경예정 -->
+<div class="container" style="margin:10em;">
+	<!-- url 추가 -->
+	<h1><a href=""> 들어가기 </a></h1>
+</div>
+
 <c:if test="${empty loginId}">
 <form action="user/login-post" method="post">
 	<input type="text" name="userId" placeholder="아이디" required />
@@ -91,6 +97,7 @@ $(document).ready(function() {
 	});
 });
 </script>
+
 
 
 </body>
