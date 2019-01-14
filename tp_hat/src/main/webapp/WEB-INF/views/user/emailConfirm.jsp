@@ -10,7 +10,9 @@
 <body>
 
 <h1>emailConfirm 페이지</h1>
-
+<% 
+	request.getSession().removeAttribute("certyResult");
+%>
 <script>
 	var userId = '${user_Id}';
 	

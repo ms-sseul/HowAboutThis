@@ -76,9 +76,21 @@
 	${loginId}님, 안녕하세요!
 	<button id="btn-logout">로그아웃</button>
 </c:if>
+<c:if test="${not empty certyResult}">
+	<script >
+		alert("메일인증이 완료되지 않았습니다. 메일 인증 후 다시 로그인 해주세요");
+	</script>
+</c:if>
 
 <hr/>
 
+<script>
+$(document).ready(function() {
+	$('#btn-logout').click(function() {
+		location = 'user/logout';
+	});
+});
+</script>
 
 
 </body>
