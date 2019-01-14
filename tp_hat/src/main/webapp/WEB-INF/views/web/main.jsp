@@ -99,27 +99,27 @@
 
 <div class="content-category">
 		<!-- onclick : tech.jsp 연결 -->
-		<button class="btn btn-primary" onclick="location.href='tech.jsp'">테크 & 가전
+		<button class="btn btn-primary" onclick="location.href='tech'">테크 & 가전
 		<span class="badge badge-light"></span>
 		</button>
 		<!-- onclick : fasion.jsp 연결 -->
-		<button class="btn btn-primary" onclick="location.href='fasion.jsp'">패션
+		<button class="btn btn-primary" onclick="location.href='fasion'">패션
 		<span class="badge badge-light"></span>
 		</button>
 		<!-- onclick : design.jsp 연결 -->
-		<button class="btn btn-primary" onclick="location.href='design.jsp'">디자인
+		<button class="btn btn-primary" onclick="location.href='design'">디자인
 		<span class="badge badge-light"></span>
 		</button>
 		<!-- onclick : animal.jsp 연결 -->
-		<button class="btn btn-primary" onclick="location.href='animal.jsp'">반려동물
+		<button class="btn btn-primary" onclick="location.href='animal'">반려동물
 		<span class="badge badge-light"></span>
 		</button>
 		<!-- onclick : hobby.jsp 연결 -->
-		<button class="btn btn-primary" onclick="location.href='hobby.jsp'">취미
+		<button class="btn btn-primary" onclick="location.href='hobby'">취미
 		<span class="badge badge-light"></span>
 		</button>
 		<!-- onclick : social.jsp 연결 -->
-		<button class="btn btn-primary" onclick="location.href='social.jsp'">소셜
+		<button class="btn btn-primary" onclick="location.href='social'">소셜
 		<span class="badge badge-light"></span>
 		</button>
 </div>
@@ -134,7 +134,7 @@
             <a href=""><img class="card-img-top" src=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Project One</a>
+                <a href="description">Project One</a>
               </h4>
               <p class="card-text">Hello!</p>
             </div>

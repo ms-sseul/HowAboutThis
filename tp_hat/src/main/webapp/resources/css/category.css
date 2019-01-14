@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.category {
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px;
+}
+
+.badge {
+	margin: 15px;
+}
+
+.carousel-item {
+  height: 20vh;
+  min-height: 30px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

@@ -11,7 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-<title>TECH</title>
+<title>ANIMAL</title>
 
 </head>
 <body>
@@ -61,25 +61,25 @@
 	<button class="btn btn-primary" onclick="location.href='tech'">테크 & 가전
 	<span class="badge badge-light"></span>
 	</button>
-	<button class="btn btn-primary" onclick="location.href='fasion.jsp'">패션
+	<button class="btn btn-primary" onclick="location.href='fasion'">패션
 	<span class="badge badge-light"></span>
 	</button>
-	<button class="btn btn-primary" onclick="location.href='design.jsp'">디자인
+	<button class="btn btn-primary" onclick="location.href='design'">디자인
 	<span class="badge badge-light"></span>
 	</button>
-	<button class="btn btn-primary" onclick="location.href='animal.jsp'">반려동물
+	<button class="btn btn-primary" onclick="location.href='animal'">반려동물
 	<span class="badge badge-light"></span>
 	</button>
-	<button class="btn btn-primary" onclick="location.href='hobby.jsp'">취미
+	<button class="btn btn-primary" onclick="location.href='hobby'">취미
 	<span class="badge badge-light"></span>
 	</button>
-	<button class="btn btn-primary" onclick="location.href='social.jsp'">소셜
+	<button class="btn btn-primary" onclick="location.href='social'">소셜
 	<span class="badge badge-light"></span>
 	</button>
 </div>
 
 <div class="container">
-	<h1>테크 & 가전</h1>
+	<h1>반려동물</h1>
 	<div style="float: right; padding: 10px;">
 		<select>
 			<option value="all">전체</option>
