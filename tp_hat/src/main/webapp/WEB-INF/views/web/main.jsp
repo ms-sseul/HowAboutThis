@@ -7,98 +7,17 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   
 <title>MAIN</title>
 
-<style>
-
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Style the topnav links */
-#menu {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* 네비게이션 바 - 검색&로그인  CSS */
-#search, #login {
-  float: right;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* body bootstrap */
-.container {
-	min-width:992px!important
-}
-
-.row {
-	display:-ms-flexbox;
-	display:flex;
-	-ms-flex-wrap:wrap;
-	flex-wrap:wrap;
-	margin-right:-15px;
-	margin-left:-15px
-}
-
-.carousel-item {
-  height: 50vh;
-  min-height: 300px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-ul, .category {
-	margin: 0 auto;
-	text-align: center;
-}
-
-li, .badge {
-	margin: 15px;
-}
-
-.badge, .category {
-	padding: 30px;
-}
-
-</style>
 </head>
 <body>
 
-!-- 상단메뉴바(고정) -->
+<!-- 상단메뉴바(고정) -->
 <div class="topnav" id="myTopnav">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info sticky-top">
       <a class="navbar-brand" href="#">여기어때</a>
@@ -178,25 +97,25 @@ li, .badge {
         </a>
 </div>
 
-<div class="category">
-	<button class="btn btn-primary" onclick="location.href='tech.jsp'">테크 & 가전
-	<span class="badge badge-light"></span>
-	</button>
-	<button class="btn btn-primary" onclick="location.href='fasion.jsp'">패션
-	<span class="badge badge-light"></span>
-	</button>
-	<button class="btn btn-primary" onclick="location.href='design.jsp'">디자인
-	<span class="badge badge-light"></span>
-	</button>
-	<button class="btn btn-primary" onclick="location.href='animal.jsp'">반려동물
-	<span class="badge badge-light"></span>
-	</button>
-	<button class="btn btn-primary" onclick="location.href='hobby.jsp'">취미
-	<span class="badge badge-light"></span>
-	</button>
-	<button class="btn btn-primary" onclick="location.href='social.jsp'">소셜
-	<span class="badge badge-light"></span>
-	</button>
+<div class="content-category">
+		<button class="btn btn-primary" onclick="location.href='tech.jsp'">테크 & 가전
+		<span class="badge badge-light"></span>
+		</button>
+		<button class="btn btn-primary" onclick="location.href='fasion.jsp'">패션
+		<span class="badge badge-light"></span>
+		</button>
+		<button class="btn btn-primary" onclick="location.href='design.jsp'">디자인
+		<span class="badge badge-light"></span>
+		</button>
+		<button class="btn btn-primary" onclick="location.href='animal.jsp'">반려동물
+		<span class="badge badge-light"></span>
+		</button>
+		<button class="btn btn-primary" onclick="location.href='hobby.jsp'">취미
+		<span class="badge badge-light"></span>
+		</button>
+		<button class="btn btn-primary" onclick="location.href='social.jsp'">소셜
+		<span class="badge badge-light"></span>
+		</button>
 </div>
 	
 <div class="container">
@@ -418,6 +337,11 @@ li, .badge {
           </div>
         </div>
 	</div>
+		<!-- 더보기 버튼 (미사용시 제거) -->
+	<div class="more-project" style="margin: 1em">
+			<button style="width: 100%; height: 30px;">더보기</button>
+	</div>
+	
 </div>
 
 <div>
