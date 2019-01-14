@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import edu.spring.domain.User;
@@ -19,6 +21,7 @@ public class UserDaoImple implements UserDao{
 	private final Logger logger = LoggerFactory.getLogger(UserDaoImple.class);
 	
 	@Autowired SqlSession session;
+	@Autowired private BCryptPasswordEncoder encode;
 	
 	@Override
 	public User loginCheck(User user) {
@@ -31,6 +34,21 @@ public class UserDaoImple implements UserDao{
 	public int insert(User user) {
 		logger.info("UserDaoImple insert() 호출");
 		user.setCertification("n");
+		
+		String pwd = user.getUserPwd();
+		logger.info("기존 비밀 번호: " + pwd);
+		
+		String encPwd = encode.encode(user.getUserPwd());
+		
+		if(encode.matches(pwd, encPwd)) {
+			logger.info("비밀번호 일치");
+			user.setUserPwd(encPwd);
+			logger.info("암호화된 비밀번호 : " + user.getUserPwd());
+		} else {
+			logger.info("비밀번호 불일치");
+		}
+		
+		
 		return session.insert(USER_MAPPERS+ ".insert", user);
 	}
 	

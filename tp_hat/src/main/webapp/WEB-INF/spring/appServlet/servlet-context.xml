@@ -19,14 +19,32 @@
 	 <resources mapping="/resources/**" location="/resources/" />
 	 -->
 	
-	 
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="contentType" value="text/html; charset=UTF-8" />
 	</beans:bean>
+	
+	<!-- 인터셉터 객체(bean) 생성/관리 -->
+	<beans:bean id="loginIntercept" class="edu.spring.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authIntercept" class="edu.spring.interceptor.AuthInterceptor"></beans:bean>
+	
+	
+	<!--  
+	<bean id="loginIntercept" class="edu.spring.interceptor.LoginInterceptor"></bean>
+	<bean id="authIntercept" class="edu.spring.interceptor.AuthInterceptor"></bean>
+	-->
+	 
+	<!-- 인터셉터 매핑 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/login-post"/>
+			<!-- <mvc:exclude-mapping path=""/> -->	
+			<beans:ref bean="loginIntercept"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	<context:component-scan base-package="edu.spring.controller" />
 	

@@ -49,8 +49,8 @@ public class UserController {
 		logger.info("loginPost({}) 호출", user);
 		
 		// preHandle 위치
-		// User result = userService.loginCheck(user);
-		// model.addAttribute("loginResult", result);
+		User result = userService.loginCheck(user);
+		model.addAttribute("loginResult", result);
 		// postHandle 위치
 	}
 	

@@ -65,11 +65,11 @@
 </ul>
 
 <c:if test="${empty loginId}">
-<form action="member/login-post" method="post">
+<form action="user/login-post" method="post">
 	<input type="text" name="userId" placeholder="아이디" required />
 	<input type="password" name="userPwd" placeholder="비밀번호 입력" required />
 	<input type="submit" value="로그인" />
-	<input type="hidden" name="queryString" value="http://localhost:8181/test/"/>
+	<input type="hidden" name="queryString" value="https://localhost:8443/controller/"/>
 </form>
 </c:if>
 <c:if test="${not empty loginId}">

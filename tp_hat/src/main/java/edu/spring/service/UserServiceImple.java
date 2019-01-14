@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +40,7 @@ public class UserServiceImple implements UserService {
 	@Override
 	public int insert(User user) throws MessagingException, UnsupportedEncodingException {
 		logger.info("UserService insert() 호출");
-
+		
 		int result = 0;
 
 		result = userDao.insert(user);

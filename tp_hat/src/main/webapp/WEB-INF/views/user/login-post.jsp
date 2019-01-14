@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test</title>
+<title>hat</title>
 </head>
 <body>
 
 <h1>login-post 페이지</h1>
+
+<%System.out.println("login-post.jsp");%>
 
 
 </body>
