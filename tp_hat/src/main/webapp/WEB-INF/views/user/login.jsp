@@ -35,7 +35,7 @@
 		<hr class="my-4">
 		<input type="hidden" name="queryString" value="https://localhost:8443/controller/"/>
 		<div id="register-link" class="text-right">
-			  <a href="user/register" class="text-info">회원가입</a>
+			  <a href="/controller/user/register" class="text-info">회원가입</a>
 		</div>
 	</form>   
 
