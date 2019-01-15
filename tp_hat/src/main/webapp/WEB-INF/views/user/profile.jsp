@@ -78,17 +78,17 @@
     <div id="menu3" class="container tab-pane fade"><br>
       <h3>개인정보 수정 페이지</h3>
       	<form action="profile" method="post">
-      	아이디 <input type="text" id="${loginId}" name="${loginId}" placeholder="${loginId}" readonly>
+      	아이디 <input type="text" id="userId" name="userId" value="${loginId}" readonly>
       	<br/>
       	비밀번호 <input type="password" id="userPwd" name="userPwd" placeholder="Password" required />
 		<br/>
 		<div id="pwdResult"></div>
 		<br/>
-		이메일 <input type="email" id="userEmail" name="userEmail" placeholder="Email" required/>
+		이메일 <input type="email" id="userEmail" name="userEmail" value="${user_email}" placeholder="Email" required/>
 		<br/>
 		<div id="emailResult"></div>
 		<br/>
-		전화번호 <input type="text" id="phone" name="phone" placeholder="Phone Number"required/>
+		전화번호 <input type="text" id="phone" name="phone" value="${user_phone}" placeholder="Phone Number"required/>
 		<br/>
 		<div id="phoneResult"></div>
 		<br/>
@@ -101,6 +101,8 @@
 
 <script>
 $(document).ready(function () {
+	
+	
 	
 	var checkPwd = false;
 	var checkPhone = false;

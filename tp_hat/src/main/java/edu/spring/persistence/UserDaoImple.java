@@ -84,5 +84,11 @@ public class UserDaoImple implements UserDao{
 		return session.update(USER_MAPPERS+".certiUpdate", params);
 	}
 	
+	@Override
+	public User selectOne(String userId) {
+		logger.info("userDaoImple selectOne() 호출");
+		
+		return session.selectOne(USER_MAPPERS+".selectOne", userId);
+	}
 	
 }

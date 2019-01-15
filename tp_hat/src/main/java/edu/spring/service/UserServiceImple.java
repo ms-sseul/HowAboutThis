@@ -76,5 +76,11 @@ public class UserServiceImple implements UserService {
 		
 		return userDao.certiUpdate(userId);
 	}
+	
+	@Override
+	public User selectOne(String userId) {
+		
+		return userDao.selectOne(userId);
+	}
 
 }

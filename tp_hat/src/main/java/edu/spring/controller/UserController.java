@@ -118,11 +118,21 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
-	public void profile(HttpSession session) {
+	public void profile(User user, HttpSession session, Model model) {
 		// 후원한 페이지, 개인 보낸 쪽지, 개인정보 사항 select 해서 리스트로 출력해줘야함.
 		logger.info("profile() 호출");
 		logger.info("loginId: {}", session.getAttribute("loginId"));
 		
+		logger.info("userId:({})", user.getUserId());
+		String userId = (String) session.getAttribute("loginId");
+		
+		User result = userService.selectOne(userId);
+		
+		String userEamil = result.getUserEmail();
+		String phone = result.getPhone();
+		
+		model.addAttribute("user_email", userEamil);
+		model.addAttribute("user_phone", phone);
 		
 	}
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
