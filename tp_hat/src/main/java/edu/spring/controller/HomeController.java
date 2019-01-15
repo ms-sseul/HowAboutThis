@@ -51,6 +51,9 @@ public class HomeController {
 		return "/web/main";
 	}
 	
-	
+	@RequestMapping(value = "/board/list")
+	public String board() {
+		return "/board/list";
+	}
 	
 }

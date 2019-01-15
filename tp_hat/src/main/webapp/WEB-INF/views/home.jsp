@@ -31,6 +31,10 @@
 	<h1><a href="web/main"> 들어가기 </a></h1>
 </div>
 
+<div class="container" style="margin:10em;">
+	<h1><a href="board/list"> 게시판 </a></h1>
+</div>
+
 <c:if test="${empty loginId}">
 <form action="user/login-post" method="post">
 	<input type="text" name="userId" placeholder="아이디" required />
