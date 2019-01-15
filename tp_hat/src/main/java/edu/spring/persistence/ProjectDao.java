@@ -13,6 +13,5 @@ public interface ProjectDao {
 	List<Project> selectProjectByCategory(int category);		// 카테고리별 프로젝트 출력
 	List<Project> selectProjectByPopularity();					// 인기순 프로젝트 출력
 	Project selectOneProject(int pno);							// 프로젝트 상세보기
-	
+	Project selectLastProject();								// 최근에 저장된 프로젝트
 }
-

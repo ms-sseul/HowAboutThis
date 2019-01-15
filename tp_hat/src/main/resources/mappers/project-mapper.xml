@@ -34,15 +34,15 @@
 	</select>
 	
 	<!-- Project 인기순으로 5개 출력 -->
-	<select id = "selectByPopularity">
+	<select id = "selectByPopularity" resultType="Project">
 		SELECT *
 		FROM ${tbl_project}
 		ORDER BY ${project.readCnt} + ${project.replyCnt} DESC
-		LIMIT 5
+		LIMIT 3
 	</select>
 	
 	<!-- Project 가테고리별 출력  -->
-	<select id = "selectByCategory">
+	<select id = "selectByCategory" resultType="Project">
 		SELECT *
 		FROM ${tbl_project}
 		WHERE ${project.category} = #{category}
@@ -50,11 +50,19 @@
 	</select>
 	
 	<!-- Project 추천순으로 보기 5개 값만  -->
-	<select id = "selectByRecommendation">
+	<select id = "selectByRecommendation" resultType="Project">
 		SELECT *
 		FROM ${tbl_project}
 		ORDER BY ${project.recommendation} DESC
-		LIMIT 5
+		LIMIT 3
+	</select>
+	
+	<!-- 가장 최근에 저장된 프로젝트 검색 -->
+	<select id = "selectLastInsertProject" resultType="Project">
+		SELECT *
+		FROM ${tbl_project}
+		ORDER BY ${project.pno} DESC
+		LIMIT 1
 	</select>
 	
 	<!-- project 추천수 업데이트 -->

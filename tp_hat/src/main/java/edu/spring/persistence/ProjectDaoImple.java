@@ -8,9 +8,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import edu.spring.domain.Project;
 
+@Repository
 public class ProjectDaoImple implements ProjectDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProjectDaoImple.class);
@@ -72,6 +74,11 @@ public class ProjectDaoImple implements ProjectDao {
 		logger.info("selectOneProject() Call");
 		
 		return session.selectOne(PROJECT_MAPPER + "selectOne", pno);
+	}
+
+	@Override
+	public Project selectLastProject() {
+		return session.selectOne(PROJECT_MAPPER + ".updateProjectRecommendation");
 	}
 
 }
