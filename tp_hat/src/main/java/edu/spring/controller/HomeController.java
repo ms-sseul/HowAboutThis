@@ -50,4 +50,7 @@ public class HomeController {
 	public String main() {
 		return "/web/main";
 	}
+	
+	
+	
 }

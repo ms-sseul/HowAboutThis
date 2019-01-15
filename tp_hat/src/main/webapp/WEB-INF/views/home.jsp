@@ -17,7 +17,7 @@
 <!-- 상단메뉴바(고정) -->
 <div class="topnav" id="myTopnav">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info sticky-top">
-      <a class="navbar-brand" href="#">여기어때</a>
+      <a class="navbar-brand" href="/controller">여기어때</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
       	aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
             <a class="nav-link" href="#">검색</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">로그인</a>
+            <a class="nav-link" href="user/login">로그인</a>
           </li>
         </ul>
       </div>
