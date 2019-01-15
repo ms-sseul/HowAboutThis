@@ -114,9 +114,29 @@ public class UserController {
 		} else {
 			entity = new ResponseEntity<String>("fail", HttpStatus.OK);
 		}
-		
-		
 		return entity;
 	}
+	
+	@RequestMapping(value = "profile", method = RequestMethod.GET)
+	public void profile(HttpSession session) {
+		// 후원한 페이지, 개인 보낸 쪽지, 개인정보 사항 select 해서 리스트로 출력해줘야함.
+		logger.info("profile() 호출");
+		logger.info("loginId: {}", session.getAttribute("loginId"));
+		
+		
+	}
+	@RequestMapping(value = "profile", method = RequestMethod.POST)
+	public void profilePost(User user, HttpSession session) {
+		logger.info("userId: {}", session.getAttribute("loginId"));
+		logger.info("user = ({})", user);
+		
+		String userId = (String) session.getAttribute("loginId");
+		User updateUser = new User(userId, user.getUserPwd(), user.getUserEmail(), user.getPhone(), 0, "y");
+		
+		int result = userService.update(updateUser);
+		
+		logger.info("result = ({})", result);
+	}
+	
 
 } // end class UserController

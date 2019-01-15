@@ -77,21 +77,91 @@
     </div>
     <div id="menu3" class="container tab-pane fade"><br>
       <h3>개인정보 수정 페이지</h3>
-      	<form>
-      	아이디 <input type="text" id="userId" placeholder="ID" disabled>
+      	<form action="profile" method="post">
+      	아이디 <input type="text" id="${loginId}" name="${loginId}" placeholder="${loginId}" readonly>
       	<br/>
-      	비밀번호 <input type="password" id="userPwd" placeholder="Password" required />
+      	비밀번호 <input type="password" id="userPwd" name="userPwd" placeholder="Password" required />
 		<br/>
-		이메일 <input type="email" id="userEmail" placeholder="Email" required/>
+		<div id="pwdResult"></div>
 		<br/>
-		전화번호 <input type="number" id="phone" placeholder="Phone Number"required/>
+		이메일 <input type="email" id="userEmail" name="userEmail" placeholder="Email" required/>
+		<br/>
+		<div id="emailResult"></div>
+		<br/>
+		전화번호 <input type="text" id="phone" name="phone" placeholder="Phone Number"required/>
+		<br/>
+		<div id="phoneResult"></div>
 		<br/>
 		<!-- 개인정보 수정 (=DB 업데이트) 추가해주세요 -->
-		<input type="submit" value="수정완료" />
+		<input type="submit" name="btnResult" id="btnResult" value="수정완료" />
       	</form>
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function () {
+	
+	var checkPwd = false;
+	var checkPhone = false;
+	var btnResult = $('#btnResult');
+	
+	btnResult.attr("disabled", "disabled");
+	
+	$('#userPwd').change(function() {
+		var userPwd = $('#userPwd').val();
+		var pw = /^[a-zA-Z0-9가-힣_]{8,24}$/
+		var result = pw.test(userPwd);
+		console.log("pw = " + result);
+		if(result == false){
+			$('#pwdResult').html('아이디는 8자리~24자리 이하로 입력');
+			$('#pwdResult').css('color', 'red');
+			checkPwd = false;
+			btnResult.attr("disabled", "disabled");
+			check(checkPwd, checkPhone);
+		} else {
+			checkPwd = true;
+			check(checkPwd, checkPhone);
+		}
+		
+	});
+	
+	$('#phone').change(function() {
+		var userPhone = $('#phone').val();
+		var ph = /^010-[0-9]{4}-[0-9]{4}$/
+		var result = ph.test(userPhone);
+		console.log("phone = " + result);
+		if(result == false) {
+			$('#phoneResult').html('ex : 010-1111-1111 (-입력해주세요)');
+			$('#phoneResult').css('color', 'red');
+			checkPhone = false;
+			btnResult.attr("disabled", "disabled");
+			check(checkPwd, checkPhone);
+		} else {
+			checkPhone = true;
+			check(checkPwd, checkPhone);
+		}
+	});
+
+	function check(checkPwd, checkPhone){
+		console.log('pwd:' + checkPwd + ', phone:' + checkPhone);
+		if(checkPwd == true && checkPhone == true) {
+			console.log(checkPwd, checkPhone);
+			btnResult.prop('disabled', false);
+			//btnResult.disabled = false;
+		}
+	}
+	check(checkPwd, checkPhone);
+	
+	btnResult.click(function() {
+		alert("회원 정보가 수정 되었습니다.");
+	});
+	
+})
+</script>
+
+
+
 
 </body>
 </html>

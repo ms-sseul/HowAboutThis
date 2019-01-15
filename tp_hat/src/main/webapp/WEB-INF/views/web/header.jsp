@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <!-- 상단메뉴바(고정) -->
 <div class="topnav" id="myTopnav">
     <nav class="navbar navbar-expand-sm navbar-dark bg-info sticky-top">
-      <a class="navbar-brand" href="#">여기어때</a>
+      <a class="navbar-brand" href="/controller">여기어때</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
       	aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -41,12 +42,26 @@
             <a class="nav-link" href="#">검색</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">로그인</a>
+          <c:if test="${empty loginId}">
+            <a class="nav-link" href="/controller/user/login">로그인</a>
+          </c:if>
+          <c:if test="${not empty loginId}">
+          	<a href="/controller/user/profile">${loginId}</a>님, 안녕하세요!
+			<button id="btn-logout">로그아웃</button>
+          </c:if>
           </li>
         </ul>
       </div>
     </nav>
 </div>
+
+<script>
+$(document).ready(function() {
+	$('#btn-logout').click(function() {
+		location = '/controller/user/logout';
+	});
+});
+</script>
 
 </body>
 </html>

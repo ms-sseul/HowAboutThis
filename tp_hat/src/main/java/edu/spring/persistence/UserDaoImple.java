@@ -56,6 +56,15 @@ public class UserDaoImple implements UserDao{
 	@Override
 	public int update(User user) {
 		logger.info("UserDaoImple update() 호출");
+		
+		String pwd = user.getUserPwd();
+		logger.info("기존 비밀 번호: " + pwd);
+		
+		String encPwd = encode.encode(user.getUserPwd());
+		logger.info("암호화된 비밀번호 : " + user.getUserPwd());
+		
+		user.setUserPwd(encPwd);
+		
 		return session.update(USER_MAPPERS+".update", user);
 	}
 

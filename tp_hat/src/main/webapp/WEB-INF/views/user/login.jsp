@@ -18,7 +18,7 @@
 <h1>로그인 페이지</h1>
 <!-- Login container -->
 <div class="logincontainer">
-	<form action="login-post" method="post">
+	<form action="/controller/user/login-post" method="post">
 		<div class="form-label-group">
 			<label for="inputId">아이디</label>
 				<input type="text" name="userId" placeholder="아이디 입력" class="form-control" required autofocus>
@@ -33,7 +33,7 @@
 		</div>
 		<input type="submit" value="로그인">
 		<hr class="my-4">
-		<input type="hidden" name="queryString" value="${targetUrl}"/>
+		<input type="hidden" name="queryString" value="https://localhost:8443/controller/"/>
 		<div id="register-link" class="text-right">
 			  <a href="user/register" class="text-info">회원가입</a>
 		</div>
