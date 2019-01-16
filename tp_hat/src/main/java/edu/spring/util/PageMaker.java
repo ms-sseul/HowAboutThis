@@ -23,6 +23,7 @@ public class PageMaker {
 		clacData();
 	}
 	
+	
 	private void clacData() {
 		endPage = (int) (Math.ceil(criteria.getPage() / (double) displayPageNum) * displayPageNum);
 		
