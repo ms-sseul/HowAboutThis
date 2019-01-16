@@ -31,7 +31,7 @@
           <li class="nav-item dropdown">
 		  	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 둘러보기</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">카테고리1</a> 
+					<a class="dropdown-item" href="user/point-charge">카테고리1</a> 
 					<a class="dropdown-item" href="#">카테고리2</a> 
 					<a class="dropdown-item" href="#">카테고리3</a>
 				</div>

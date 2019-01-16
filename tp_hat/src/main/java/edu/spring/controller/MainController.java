@@ -55,4 +55,9 @@ public class MainController {
 	public String description() {
 		return "/web/description";
 	}
+	
+	@RequestMapping(value = "/user/point-charge")
+	public String charge() {
+		return "/user/point-charge";
+	}
 }
