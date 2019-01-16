@@ -57,7 +57,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		} else { // 로그인 실패
 			logger.info("로그인 실패");
 
-			response.sendRedirect("/controller/user/login?url=" + target);
+			response.sendRedirect("/controller/user/login?queryString=" + target);
 		}
 
 	}

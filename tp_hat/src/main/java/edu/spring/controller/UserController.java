@@ -37,10 +37,10 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void login(String url, Model model) {
-		logger.info("login(url = {} 호출)", url);
-		if(url != null) {
-			model.addAttribute("targetUrl", url);
+	public void login(String queryString, Model model) {
+		logger.info("login(queryString = {} 호출)", queryString);
+		if(queryString != null) {
+			model.addAttribute("targetUrl", queryString);
 		}
 	}
 	

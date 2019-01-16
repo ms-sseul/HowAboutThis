@@ -72,6 +72,7 @@
 		<input type="search" placeholder="검색어를 입력해주세요">
 		<input type="button" onclick="search()" value="검색">
 		<input type="button" onclick="location.href='insert'" value="글쓰기">
+		<input type="hidden" name="queryString" value="/controller/board/list${pageMaker.makeQuery(pageMaker.criteria.page)}"/>
 	</form>
 </div>
 

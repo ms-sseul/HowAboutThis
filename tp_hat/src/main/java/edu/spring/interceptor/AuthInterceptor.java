@@ -42,7 +42,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	}
 	
 	private String getRedirectTarget(HttpServletRequest request) throws Exception {
-		// ex03/member/login?url=http://... 로그인 페이지 주소를 리턴
+		// controller/user/login?url=http://... 로그인 페이지 주소를 리턴
 		
 		String requestUrl = request.getRequestURI().toString();
 		logger.info("요청주소 : " + requestUrl);
@@ -57,7 +57,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			targetUrl = requestUrl + "?" + queryString;
 		}
 		
-		String result = "/controller/user/login?url=" + URLEncoder.encode(targetUrl, "utf-8");
+		String result = "/controller/user/login?queryString=" + URLEncoder.encode(targetUrl, "utf-8");
 		logger.info("target : " + result);
 		
 		return result;

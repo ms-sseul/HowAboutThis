@@ -33,7 +33,7 @@
 		</div>
 		<input type="submit" value="로그인">
 		<hr class="my-4">
-		<input type="hidden" name="queryString" value="https://localhost:8443/controller/"/>
+		<input type="hidden" name="queryString" value="${param.queryString}"/>
 		<div id="register-link" class="text-right">
 			  <a href="/controller/user/register" class="text-info">회원가입</a>
 		</div>

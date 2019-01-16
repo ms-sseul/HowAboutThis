@@ -44,6 +44,12 @@
 		</interceptor>
 	</interceptors>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/insert"/>
+			<beans:ref bean="authIntercept"/>
+		</interceptor>
+	</interceptors>
 	
 	<context:component-scan base-package="edu.spring.controller" />
 	
