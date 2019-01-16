@@ -43,19 +43,17 @@ public class ProjectServiceImple implements ProjectService {
 
 	@Override
 	public List<Project> selectPopularProject() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Image selectProjectImage(int pno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Project> selectClosingTimeProject() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

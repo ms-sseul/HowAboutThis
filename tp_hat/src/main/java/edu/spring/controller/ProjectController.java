@@ -30,7 +30,7 @@ public class ProjectController {
 		return "/project/create";
 	}
 	
-	@RequestMapping(value = "create" , method = RequestMethod.POST)
+	@RequestMapping(value = "/create" , method = RequestMethod.POST)
 	public String createPostProject(Project project, MultipartFile[] uploadFiles, List<Present> presents) throws Exception{
 		List<Image> images = new ArrayList<>();
 		for(MultipartFile m : uploadFiles) {

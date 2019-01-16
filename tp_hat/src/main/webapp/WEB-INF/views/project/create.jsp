@@ -21,83 +21,97 @@
 
 <h1>프로젝트 만들기</h1>
 
-<form class="container">
+<form class="container" id = "projectForm" action="project/create" method="post">
 
   <div>
   	<div>
   		<div>프로젝트 제목</div> 
-  		<div><input type="text"/></div>
+  		<div><input type="text" name = "title" required="required"/></div>
   	<div>목표 금액</div> 
-  		<div><input type="text" />원</div>
+  		<div><input type="number" name = "targetAmount" required="required"/>원</div>
   	<div>대표 이미지</div> 
   		<div>
-	  		<a href="#">이미지
-	  			<div style="background-image: url('')"></div>
-	  				<ul>
-	  					<li>사이즈</li>
-	  					<li>용량</li>
-	  				</ul>
-  			</a>
+	  		<input name = "file" type="file" multiple="multiple" formenctype="multipart/form-data" />
   		</div>
   	<div>프로젝트 스토리</div>
   		<div>
-  			<textarea rows="5" cols="50"></textarea>
+  			<textarea name ="content" rows="5" cols="50"></textarea>
   		</div>
   </div>
   
   	<div>카테고리</div> 
   		<div>
-  			<select>
+  			<select id = "stepSelect" name = "category" required="required">
   				<option>프로젝트 카테고리</option>
-  				<option>테크 & 가전</option>
-  				<option>패션</option>
-  				<option>디자인</option>
-  				<option>반려동물</option>
-  				<option>취미</option>
-  				<option>소셜</option>
+  				<option value="1">테크 & 가전</option>
+  				<option value="2">패션</option>
+  				<option value="3">디자인</option>
+  				<option value="4">반려동물</option>
+  				<option value="5">취미</option>
+  				<option value="6">소셜</option>
   			</select>
   		</div>
   		
   	<div>
-  		<div>리워드 #</div>
-  		<div>
+  		<div>리워드 </div>
+  		<div id = "reward">
   			<span>금액</span>
-  			<input type="text"/> 원
-  			<span>정렬순서</span>
-  			<select>
-  				<option>1</option>
-  				<option>2</option>
-  				<option>3</option>
-  				<option>4</option>
-  				<option>5</option>
+  			<input type="number" name="amount"/> 원
+  			<span>단계</span>
+  			<select name = "step" required="required">
+  				<option value="1">1</option>
+  				<option value="2">2</option>
+  				<option value="3">3</option>
+  				<option value="4">4</option>
+  				<option value="5">5</option>
   			</select>
-  			<a>삭제</a>
-  		</div>
-  		
-  		<div>
+  			<br>
   			<span>상세설명</span>
-  			<input type="text">
+  			<input type="text" name = "component" >
   		</div>
   	</div>	
-  	
+  	<div id = "newReword"></div>
   		<div>
-	  		<button>새 리워드 만들기</button>
+	  		<button id = "btnCreateNewReward">새 리워드 만들기</button>
 	  	</div>
 	  	
   	<div>프로젝트 종료일</div> 
-  		<div><input type="text" placeholder="yyyy-MM-dd"/></div>
-  		<div>달력 아이콘</div>
-  		
+  		<div><input id= "targetTime" type="text" name = "targetTime" placeholder="yyyy-MM-dd"/></div>
   	</div>
   	
-  		<a>
-  			<button>취소하기</button>
-  		</a>
-  		<a>
-  			<button>저장하기</button>
-  		</a>
+  		<button id = "btnPrev">이전</button>
+  		<input type="submit" value="만들기"/>
  
 </form>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<script id="reply-template" type="text/x-handlebars-template">
+<div id = "reward">
+  			<span>금액</span>
+  			<input type="number" name="amount"/> 원
+  			<span>단계</span>
+  			<select name = "step" required="required">
+  				<option value="1">1</option>
+  				<option value="2">2</option>
+  				<option value="3">3</option>
+  				<option value="4">4</option>
+  				<option value="5">5</option>
+  			</select>
+  			<br>
+  			<span>상세설명</span>
+  			<input type="text" name = "component" >
+  		</div>
+  	</div>	
+</script>
+<script>
+$(document).ready(function() {
+	$('#btnPrev').click(function() {
+		self.location = "/controller/web/main";
+	});
+	$('#btnCreateNewReward').click(function() {
+		var 
+		$('#newReword').append();
+	});
+});
+</script>
 </body>
 </html>
