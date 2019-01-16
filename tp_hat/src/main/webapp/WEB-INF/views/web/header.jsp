@@ -32,11 +32,7 @@
           <li class="nav-item dropdown">
 		  	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 둘러보기</a>
 				<div class="dropdown-menu">
-<<<<<<< HEAD
 					<a class="dropdown-item" href="/controller/project/create">프로젝트 만들기</a> 
-=======
-					<a class="dropdown-item" href="user/point-charge">카테고리1</a> 
->>>>>>> refs/remotes/origin/master
 					<a class="dropdown-item" href="#">카테고리2</a> 
 					<a class="dropdown-item" href="#">카테고리3</a>
 				</div>
