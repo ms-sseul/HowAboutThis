@@ -21,7 +21,7 @@
 
 <h1>프로젝트 만들기</h1>
 
-<form class="container" id = "projectForm" action="project/create" method="post">
+<form class="container" id = "projectForm" action="create" method="post">
 
   <div>
   	<div>
@@ -70,13 +70,13 @@
   			<input type="text" name = "component" >
   		</div>
   	</div>	
-  	<div id = "newReword"></div>
+  	<div id = "newReward"></div>
   		<div>
 	  		<button id = "btnCreateNewReward">새 리워드 만들기</button>
 	  	</div>
 	  	
   	<div>프로젝트 종료일</div> 
-  		<div><input id= "targetTime" type="text" name = "targetTime" placeholder="yyyy-MM-dd"/></div>
+  		<div><input id= "targetTime" type="date" name = "targetTime" placeholder="yyyy-MM-dd"/></div>
   	</div>
   	
   		<button id = "btnPrev">이전</button>
@@ -108,8 +108,7 @@ $(document).ready(function() {
 		self.location = "/controller/web/main";
 	});
 	$('#btnCreateNewReward').click(function() {
-		var 
-		$('#newReword').append();
+		$('#newReward').append();
 	});
 });
 </script>

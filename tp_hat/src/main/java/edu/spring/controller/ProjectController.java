@@ -26,13 +26,17 @@ public class ProjectController {
 	
 	@RequestMapping(value = "/create" , method = RequestMethod.GET )
 	public String createProject() {
-		
+		logger.info("createProject(GET) Call");
 		return "/project/create";
 	}
 	
 	@RequestMapping(value = "/create" , method = RequestMethod.POST)
-	public String createPostProject(Project project, MultipartFile[] uploadFiles, List<Present> presents) throws Exception{
+	public String createPostProject(Project project, MultipartFile[] uploadFiles, Present present) throws Exception{
 		List<Image> images = new ArrayList<>();
+		List<Present> presents = new ArrayList<>();
+		logger.info("createProject(POST) Call");
+		logger.info("목표 시간 = {}", project.getTargetTime());
+		presents.add(present);
 		for(MultipartFile m : uploadFiles) {
 			if(!m.isEmpty()) {
 				System.out.println("이름 : " + m.getName());

@@ -28,14 +28,12 @@ public class ProjectServiceImple implements ProjectService {
 		project = projectDao.selectLastProject();
 		for(Image i : images) {
 			i.setPno(project.getPno());
-			imageDao.createImage(i);
-			result += 1;
+			result +=imageDao.createImage(i);
 			logger.info("result = {}" , result);
 		}
 		for(Present p : presents) {
 			p.setPno(project.getPno());
-			presentDao.createPresent(p);
-			result += 1;
+			result += presentDao.createPresent(p);
 			logger.info("result = {}" , result);
 		}
 		return result;
@@ -43,8 +41,7 @@ public class ProjectServiceImple implements ProjectService {
 
 	@Override
 	public List<Project> selectPopularProject() {
-		
-		return null;
+		return projectDao.selectProjectByPopularity();
 	}
 
 	@Override
