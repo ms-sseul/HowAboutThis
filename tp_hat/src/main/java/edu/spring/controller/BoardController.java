@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.spring.domain.Board;
 import edu.spring.controller.BoardController;
 import edu.spring.service.BoardService;
+import edu.spring.service.BoardServiceImple;
 
 @Controller
 @RequestMapping(value = "board")

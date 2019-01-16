@@ -17,28 +17,26 @@
 
 <jsp:include page="../web/header.jsp" />
 <div class="inserthead" style="margin:3em;">작성하기</div>
+
 <div class="insertBoard" align="center">
+	<form action="insert" method="post">
 	<table width="900px">
-		<tr>
-		<td>
-			<input type="text" id="title" name="title" style="width:100%" value="${detail.title}" 
+		<tr><td>
+			<input type="text" id="category" name="category" placeholder="${board.category}" value="1" readonly>
+			<input type="text" id="title" name="title" style="width:100%" value="${board.title}" 
 				placeholder="제목" autofocus />
-		</td>
-		</tr>
-		<tr>
-		<td>
-			<textarea name="content" id="content" rows="100" cols="100">${detail.content}</textarea>
-		</td>
-		</tr>
-		<tr>
-			<td align="right">
+		</td></tr>
+		<tr><td>
+			<textarea name="content" id="content" rows="100" cols="100">${board.content}</textarea>
+			<input type="text" id="userId" name="userId" placeholder="${loginId}" value="${loginId}" readonly>
+		</td></tr>
+		<tr><td align="right">
 			<br/>
-			<button class="btn" id="save" style="width:20%">작성하기</button>
-			<button class="btn" onclick="location.href='list'" style="width:20%">취소</button>
-			</td>	
-		</tr>
-	
+			<button type="submit" class="btn" style="width:10%">작성</button>
+			<button class="btn" onclick="location.href='list'" style="width:10%">취소</button>
+		</td></tr>
 	</table>
+	</form>	
 </div>
 
 <script>
