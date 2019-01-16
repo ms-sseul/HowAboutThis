@@ -28,8 +28,8 @@
 				<input type="password" name="userPwd" placeholder="비밀번호 입력" class="form-control" placeholder="Password" required>
 		</div>
 		<div class="custom-control custom-checkbox mb-3">
-			<input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">비밀번호를 저장합니다</label>
+			<input type="checkbox" class="custom-control-input" id="userCookie" name="userCookie">
+                <label class="custom-control-label" for="customCheck1">로그인 유지하기</label>
 		</div>
 		<input type="submit" value="로그인">
 		<hr class="my-4">

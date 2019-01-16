@@ -41,19 +41,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		User result = (User) model.get("loginResult");
 		if (result != null) { // 로그인 성공
-			if (result.getCertification().equals("n")) {
-				// mav.addObject("certyResult", "fail");
-				// model.put("certyResult", "fail");
+			if (result.getCertification().equals("n")) { // 이메일 인증이 안되어 있는경우
 				
-				// rttr.addFlashAttribute("certyResult", "fail");
 				request.getSession().setAttribute("certyResult", "fail");
 				response.sendRedirect(target);
-			} else {
+			} else { // 이메일 인증이 되어 있는 경우
 
 				logger.info("로그인 성공");
-
+				
 				request.getSession().setAttribute("loginId", result.getUserId());
 				response.sendRedirect(target);
+				// 여기서 쿠키 사용여부 체크(true/false) 확인 
+				
 			}
 		} else { // 로그인 실패
 			logger.info("로그인 실패");

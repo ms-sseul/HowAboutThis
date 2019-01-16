@@ -12,7 +12,7 @@
 <title>PROFILE</title>
 </head>
 <body>
-
+	<jsp:include page="../web/header.jsp" />
 <!-- 프로필 상단 -->
 
 <div class="profile" style="margin:10em;">
