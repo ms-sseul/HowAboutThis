@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.spring.domain.Board;
@@ -40,7 +42,7 @@ public class BoardController {
 	
 	// 게시글 상세보기
 	@RequestMapping(value = "detail")
-	public void detail(int bno, Model model) {
+	public void detail(@RequestParam int bno, Model model, @ModelAttribute Criteria criteria) {
 		logger.info("detail(bno={}) 호출", bno);
 		Board board = boardService.selectOneBoard(bno);
 		model.addAttribute("board", board);

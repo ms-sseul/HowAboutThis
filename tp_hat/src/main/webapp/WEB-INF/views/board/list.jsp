@@ -34,7 +34,7 @@
 				<tr>
 					<td>${board.bno}</td>
 					<td>
-						<a href="detail?bno=${board.bno}">
+						<a href="/controller/board/detail${pageMaker.makeQuery(pageMaker.criteria.page)}&bno=${board.bno}">
 							${board.title}
 						</a> [${board.replyCnt}]
 					</td>

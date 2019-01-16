@@ -57,7 +57,7 @@
 			</tr>
 		</tbody>
 	</table>
-	<button class="btn" onclick="location.href='list'" style="width:20%" align="right" >리스트</button>
+	<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'" style="width:20%" align="right" >목록으로 돌아가기</button>
 	<a href="update?bno=${board.bno}">수정하기</a>
 </div>
 

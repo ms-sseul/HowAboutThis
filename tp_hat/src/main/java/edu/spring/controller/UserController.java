@@ -60,7 +60,7 @@ public class UserController {
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register(User user, Model model, RedirectAttributes rttr) {
 		logger.info("register({}) 호출");
-		
+		logger.info("user({})", user);
 		int result = 0;
 		try {
 			result = userService.insert(user);
