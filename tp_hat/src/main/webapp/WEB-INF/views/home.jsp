@@ -26,7 +26,6 @@
 	<li><a href="web/main">홈페이지</a></li>
 </ul>
 
-<!-- content : 들어가기 → 변경예정 -->
 <div class="container" style="margin:10em;">
 	<h1><a href="web/main"> 들어가기 </a></h1>
 </div>

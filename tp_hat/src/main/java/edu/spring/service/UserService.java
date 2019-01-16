@@ -10,6 +10,8 @@ public interface UserService {
 	
 	User loginCheck(User user);
 	
+	User selectOne(String userId);
+	
 	int insert(User user) throws MessagingException, UnsupportedEncodingException;
 	
 	int update(User user);

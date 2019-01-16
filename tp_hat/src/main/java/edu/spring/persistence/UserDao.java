@@ -6,6 +6,8 @@ public interface UserDao {
 	
 	User loginCheck(User user);
 	
+	User selectOne(String userId);
+	
 	int insert(User user);
 	
 	int update(User user);

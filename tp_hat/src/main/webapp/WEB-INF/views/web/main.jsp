@@ -28,21 +28,21 @@
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" onclick="location.href='#'"
-          		style="background-image: url(''); cursor: pointer;">
+          		style="background-image: url('${pageContext.request.contextPath}/resources/images/dummy1.jpg'); cursor: pointer;">
             <div class="carousel-caption d-none d-md-block">
               <h3>First Slide</h3>
               <p>This is a description for the first slide.</p>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('')">
+          <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/dummy2.jpg')">
             <div class="carousel-caption d-none d-md-block">
               <h3>Second Slide</h3>
               <p>This is a description for the second slide.</p>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('')">
+          <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/dummy3.jpg')">
             <div class="carousel-caption d-none d-md-block">
               <h3>Third Slide</h3>
               <p>This is a description for the third slide.</p>
@@ -93,7 +93,10 @@
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
           	<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
-            <a href=""><img class="card-img-top" src=""></a>
+          	<div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy4.jpg"></a>
+          </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="description">Project One</a>
@@ -116,7 +119,10 @@
         
          <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+            <div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy5.jpg"></a>
+          	</div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -139,7 +145,10 @@
         
          <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+            <div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy6.jpg"></a>
+          </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -165,7 +174,10 @@
 	<div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+          <div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy7.jpg"></a>
+          </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -188,7 +200,10 @@
         
          <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+          <div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy8.jpg"></a>
+          </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -211,7 +226,10 @@
         
          <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+          <div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy9.jpg"></a>
+          </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -237,7 +255,10 @@
 	<div class="row">
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+          <div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy10.jpg"></a>
+          </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -260,7 +281,10 @@
         
          <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+          	<div>
+            <a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy11.jpg"></a>
+            </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
@@ -281,11 +305,12 @@
           </div>
         </div>
         
-        
-        
          <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=""></a>
+          	<div>
+          	<a href="#"><img class="card-img-top" style="height: 500px"
+            	src="${pageContext.request.contextPath}/resources/images/dummy12.jpg"></a>
+            </div>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Project One</a>
