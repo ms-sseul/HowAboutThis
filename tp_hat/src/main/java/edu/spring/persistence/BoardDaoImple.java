@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.spring.domain.Board;
+import edu.spring.util.Criteria;
 
 @Repository
 public class BoardDaoImple implements BoardDao {
@@ -40,9 +41,15 @@ public class BoardDaoImple implements BoardDao {
 	}
 
 	@Override
-	public List<Board> readAllBoard() {
+	public List<Board> readAllBoard(Criteria criteria) {
 		logger.info("readAllboard() call"); 
-		return session.selectList(BOARD_MAPPER + ".selectAllBoard");
+		return session.selectList(BOARD_MAPPER + ".selectAllBoard", criteria);
+	}
+	
+	@Override
+	public int countBoard(Criteria criteria) {
+		logger.info("countBoard() 호출");
+		return session.selectOne(BOARD_MAPPER + ".countBoard", criteria);
 	}
 
 	@Override

@@ -15,6 +15,8 @@ import edu.spring.domain.Board;
 import edu.spring.controller.BoardController;
 import edu.spring.service.BoardService;
 import edu.spring.service.BoardServiceImple;
+import edu.spring.util.Criteria;
+import edu.spring.util.PageMaker;
 
 @Controller
 @RequestMapping(value = "board")
@@ -24,10 +26,16 @@ public class BoardController {
 	
 	// 게시판 list
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void list(Model model) {
+	public void list(Model model, Criteria criteria) {
 		logger.info("list() 호출");
-		List<Board> boardlist = boardService.selectAllBoard();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countBoard(criteria));
+		
+		List<Board> boardlist = boardService.selectAllBoard(criteria);
 		model.addAttribute("boardList", boardlist);
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	// 게시글 상세보기

@@ -49,12 +49,21 @@
 	</table>
 </div>
 
-<div>
+<div class="text-center">
 	<ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+	<c:if test="${pageMaker.prev}">
+    <li class="page-item"><a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.startPage - 1)}">Previous</a></li>
+	</c:if>
+	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+	    <%-- <li class="page-item" <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
+    		<a class="page-link" href="">${idx}</a> --%>
+    		<li>
+    			<a href="/controller/board/list${pageMaker.makeQuery(idx)}">${idx}</a>
+   			</li>
+	</c:forEach>
+	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+    	<li class="page-item"><a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.endPage + 1)}">Next</a></li>
+	</c:if>	
   </ul>
 </div>
 

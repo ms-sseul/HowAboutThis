@@ -16,7 +16,14 @@
 	<select id = "selectAllBoard" resultType = "Board">
 		SELECT * 
 		FROM ${tbl_board}
-		ORDER BY ${board.bno} DESC 	
+		ORDER BY ${board.bno} DESC
+		LIMIT #{pageStart}, #{perPageNum} 	
+	</select>
+	
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(${board.bno})
+		FROM ${tbl_board}
+		WHERE ${board.bno} > 0
 	</select>
 	
 	<!-- 게시물 상세보기 -->

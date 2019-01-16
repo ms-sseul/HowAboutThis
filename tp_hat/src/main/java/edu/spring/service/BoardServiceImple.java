@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import edu.spring.domain.Board;
 import edu.spring.persistence.BoardDao;
+import edu.spring.util.Criteria;
 
 @Service
 public class BoardServiceImple implements BoardService {
@@ -33,9 +34,15 @@ public class BoardServiceImple implements BoardService {
 	}
 
 	@Override
-	public List<Board> selectAllBoard() {
+	public List<Board> selectAllBoard(Criteria criteria) {
 		logger.info("selectAllBoard() call");
-		return boardDao.readAllBoard();
+		return boardDao.readAllBoard(criteria);
+	}
+	
+	@Override
+	public int countBoard(Criteria criteria) {
+		
+		return boardDao.countBoard(criteria);
 	}
 
 	@Override

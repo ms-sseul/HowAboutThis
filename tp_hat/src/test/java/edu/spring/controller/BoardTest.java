@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import edu.spring.domain.Board;
 import edu.spring.service.BoardService;
+import edu.spring.util.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -33,9 +34,9 @@ public class BoardTest {
 		return result;
 	}
 	
-	private List<Board> selectAllBoard(){
+	private List<Board> selectAllBoard(Criteria criteria){
 		List<Board> list = new ArrayList<Board>();
-		list = boardService.selectAllBoard();
+		list = boardService.selectAllBoard(criteria);
 		return list;
 	}
 }
