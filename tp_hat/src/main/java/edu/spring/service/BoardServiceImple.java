@@ -39,12 +39,6 @@ public class BoardServiceImple implements BoardService {
 	}
 
 	@Override
-	public List<Board> selectBoardByCategory(int category) {
-		logger.info("selectBoardByCategory() call");
-		return boardDao.readBoardByCategory(category);
-	}
-
-	@Override
 	public Board selectOneBoard(int bno) {
 		logger.info("selectOneBoard() call");
 		return boardDao.readBoard(bno);

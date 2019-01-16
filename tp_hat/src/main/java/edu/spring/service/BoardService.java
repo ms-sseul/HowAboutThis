@@ -9,6 +9,5 @@ public interface BoardService {
 	int deleteBoard(int bno);
 	int updateBoard(Board board);
 	List<Board> selectAllBoard();
-	List<Board> selectBoardByCategory(int category);
 	Board selectOneBoard(int bno);
 }

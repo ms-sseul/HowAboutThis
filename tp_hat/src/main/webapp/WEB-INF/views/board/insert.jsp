@@ -22,7 +22,6 @@
 	<form action="insert" method="post">
 	<table width="900px">
 		<tr><td>
-			<input type="text" id="category" name="category" placeholder="${board.category}" value="1" readonly>
 			<input type="text" id="title" name="title" style="width:100%" value="${board.title}" 
 				placeholder="제목" autofocus />
 		</td></tr>

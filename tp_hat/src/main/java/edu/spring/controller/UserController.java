@@ -51,6 +51,9 @@ public class UserController {
 		// preHandle 위치
 		User result = userService.loginCheck(user);
 		model.addAttribute("loginResult", result);
+		
+		// 여기서 디비에 체크(true / flase) 하고 model에 저장된 값 보내기
+		
 		// postHandle 위치
 	}
 	

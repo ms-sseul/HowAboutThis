@@ -28,7 +28,7 @@ public class BoardTest {
 	}
 	private int insertBoard() {
 		int result = 0;
-		Board board = new Board(0, "김기명", 1, "시간이 제대로 나올까요?", "과연....", 0, 0, null);
+		Board board = new Board(0, "김기명", "시간이 제대로 나올까요?", "과연....", 0, 0, null);
 		result = boardService.insertBoard(board);
 		return result;
 	}

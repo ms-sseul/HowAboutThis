@@ -127,7 +127,6 @@ $(document).ready(function () {
 		if(checkId == true && checkPwd == true && checkPhone == true) {
 			console.log(checkId, checkPwd, checkPhone);
 			btnResult.prop('disabled', false);
-			//btnResult.disabled = false;
 		}
 	}
 	check(checkId, checkPwd, checkPhone);
