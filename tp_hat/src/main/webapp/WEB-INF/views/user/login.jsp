@@ -36,6 +36,7 @@
 		<input type="hidden" name="queryString" value="${targetUrl}"/>
 		<div id="register-link" class="text-right">
 			  <a href="/controller/user/register" class="text-info">회원가입</a>
+			  
 		</div>
 	</form>   
 

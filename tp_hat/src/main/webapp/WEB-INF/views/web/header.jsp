@@ -57,6 +57,7 @@
     </nav>
 </div>
 
+
 <script>
 $(document).ready(function() {
 	$('#btn-logout').click(function() {
