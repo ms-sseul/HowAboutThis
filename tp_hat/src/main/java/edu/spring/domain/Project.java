@@ -21,11 +21,10 @@ public class Project {
 	public Project() {}
 	
 			
-
+	
 	public Project(int pno, String title, String content, int recommendation, int category, int currentAmount,
 			int targetAmount, String userId, Date targetTime, Date regTime, int readCnt, int replyCnt,
 			int finished) {
-		super();
 		this.pno = pno;
 		this.title = title;
 		this.content = content;
@@ -40,6 +39,12 @@ public class Project {
 		this.replyCnt = replyCnt;
 		this.finished = finished;
 	}
+
+	public int getFinished() {
+		return finished;
+	}
+
+
 
 
 
@@ -154,10 +159,6 @@ public class Project {
 
 	public void setRegTime(Date regTime) {
 		this.regTime = regTime;
-	}
-
-	public int isFinished() {
-		return finished;
 	}
 
 	public void setFinished(int finished) {

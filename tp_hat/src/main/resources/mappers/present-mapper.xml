@@ -36,6 +36,7 @@
 	<delete id="delete">
 		DELETE FROM ${tbl_present}
 		WHERE ${present.pno} = #{pno}	
+		
 	</delete>
 	
 </mapper>	

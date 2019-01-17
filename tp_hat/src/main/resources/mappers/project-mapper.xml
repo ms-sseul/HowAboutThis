@@ -27,13 +27,20 @@
 		ORDER BY ${project.pno} DESC	
 	</select>
 	
+	<!-- Project 최근 작성 순 으로 출력 -->
+	<select id = "selectLastestProject" resultType="Project">
+		SELECT * FROM ${tbl_project}
+		ORDER BY ${project.regTime} DESC
+		LIMIT 3
+	</select>
+	
 	<!-- Project 상세보기 -->
 	<select id="selectOne" resultType="Project">
 		SELECT * FROM ${tbl_project}
 		WHERE ${project.pno} =#{pno}	
 	</select>
 	
-	<!-- Project 인기순으로 5개 출력 -->
+	<!-- Project 인기순으로 3개 출력 -->
 	<select id = "selectByPopularity" resultType="Project">
 		SELECT *
 		FROM ${tbl_project}
@@ -49,7 +56,7 @@
 		ORDER BY ${project.pno} DESC
 	</select>
 	
-	<!-- Project 추천순으로 보기 5개 값만  -->
+	<!-- Project 추천순으로 보기 3개 값만  -->
 	<select id = "selectByRecommendation" resultType="Project">
 		SELECT *
 		FROM ${tbl_project}
@@ -66,9 +73,9 @@
 	</select>
 	
 	<!-- project 추천수 업데이트 -->
-	<update id="updateProjectRecommendation">
+	<update id="updateProjectReadCnt">
 		UPDATE 	${tbl_project}
-		SET ${project.recommendation} = ${project.recommendation} + #{increment};
+		SET ${project.readCnt} = ${project.readCnt} + 1;
 	</update>
 	
 	<!-- Project 제목, 내용, 목표금액 , 목표시간 변경 -->
@@ -81,7 +88,13 @@
 		WHERE ${project.pno} = #{pno}	
 	</update>
 
-	
+	<!-- 마감임박순 프로젝트 출력  -->
+	<select id = "selectClosingTimeProject" resultType="Project">
+		SELECT * FROM ${tbl_project}
+		WHERE ${project.targetTime} - current_date() > 0
+		ORDER BY ${project.targetTime} - current_date() 
+		LIMIT 3	
+	</select>
 	
 	
 </mapper>

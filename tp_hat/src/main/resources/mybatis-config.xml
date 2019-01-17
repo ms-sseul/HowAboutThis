@@ -52,6 +52,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<property name="project.userId" value = "userId" />
 		<property name="project.targetTime" value="targetTime"/>
 		<property name="project.regTime" value = "regTime" />
+		<property name="project.readCnt" value = "readCnt" />
+		<property name="project.replyCnt" value = "replyCnt" />
 		<property name="project.finished" value = "finished" />		
 	
 		<!-- Reply talbe -->

@@ -41,11 +41,9 @@ public class ProjectDaoImple implements ProjectDao {
 	}
 
 	@Override
-	public int updateProjectRecommendation(int increment) {
+	public int updateProjectReadCnt() {
 		logger.info("updateProjectREcommendation() call");
-		Map<String, Integer> params = new HashMap<>();
-		params.put("increment", increment);
-		return session.update(PROJECT_MAPPER + ".updateProjectRecommendation", params);
+		return session.update(PROJECT_MAPPER + ".updateProjectReadCnt");
 	}
 
 	@Override
@@ -73,12 +71,22 @@ public class ProjectDaoImple implements ProjectDao {
 	public Project selectOneProject(int pno) {
 		logger.info("selectOneProject() Call");
 		
-		return session.selectOne(PROJECT_MAPPER + "selectOne", pno);
+		return session.selectOne(PROJECT_MAPPER + ".selectOne", pno);
 	}
 
 	@Override
 	public Project selectLastProject() {
-		return session.selectOne(PROJECT_MAPPER + ".updateProjectRecommendation");
+		return session.selectOne(PROJECT_MAPPER + ".selectLastInsertProject");
+	}
+
+	@Override
+	public List<Project> selectLastestProject() {
+		return session.selectList(PROJECT_MAPPER + ".selectLastestProject");
+	}
+
+	@Override
+	public List<Project> selectClosingTimeProject() {
+		return session.selectList(PROJECT_MAPPER + ".selectClosingTimeProject");
 	}
 
 }

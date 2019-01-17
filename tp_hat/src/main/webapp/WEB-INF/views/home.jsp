@@ -27,7 +27,7 @@
 </ul>
 
 <div class="container" style="margin:10em;">
-	<h1><a href="web/main"> 들어가기 </a></h1>
+	<h1><a href="project/main"> 들어가기 </a></h1>
 </div>
 
 <div class="container" style="margin:10em;">

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
   		<div><input type="number" name = "targetAmount" required="required"/>원</div>
   	<div>대표 이미지</div> 
   		<div>
-	  		<input name = "file" type="file" multiple="multiple" formenctype="multipart/form-data" />
+	  		<input name = "uploadFiles" type="file" multiple="multiple" formenctype="multipart/form-data" />
   		</div>
   	<div>프로젝트 스토리</div>
   		<div>
@@ -76,7 +76,7 @@
 	  	</div>
 	  	
   	<div>프로젝트 종료일</div> 
-  		<div><input id= "targetTime" type="date" name = "targetTime" placeholder="yyyy-MM-dd"/></div>
+  		<div><input id= "targetTime" type="date" name = "targetDate" placeholder="yyyy-MM-dd"/></div>
   	</div>
   	
   		<button id = "btnPrev">이전</button>
