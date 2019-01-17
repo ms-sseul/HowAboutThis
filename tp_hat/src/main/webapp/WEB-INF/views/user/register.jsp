@@ -1,62 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/user.css">
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
 <title>REGISTER</title>
 </head>
 <body>
 
 <jsp:include page="../web/header.jsp" />
-<!-- Register container -->
-<div class="container">
-	<div class="row">
-		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-			<div class="card card-signin my-5">
-				<div class="card-body">
-					<h5 class="card-title text-center">회원가입</h5>
-					<form class="form-signin" action="register" method="post">
-						<div class="form-label-group">
-							<input type="text" id="inputId" class="form-control" placeholder="ID" required autofocus> 
-								<label for="inputId">아이디</label>
-							<div id="idResult"></div>
-						</div>
 
-						<div class="form-label-group">
-							<input type="password" id="inputPassword" class="form-control" placeholder="Password" required> 
-							<label for="inputPassword">비밀번호</label>
-							<div id="pwdResult"></div>
-						</div>
+<h1>회원 가입 페이지</h1>
 
-						<div class="form-label-group">
-							<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> 
-							<label for="inputEmail">이메일</label>
-							<div id="emailResult"></div>
-						</div>
-
-						<div class="form-label-group">
-							<input type="text" id="inputPhone" class="form-control" placeholder="Phone" required> 
-							<label for="inputPhone">전화번호</label>
-							<div id="phoneResult"></div>
-						</div>
-
-						<button class="btn btn-lg btn-primary btn-block" type="submit" name="btnResult" id="btnResult">회원가입</button>
-						<hr class="my-4">
-						<input type="hidden" name="queryString"
-							value="${param.queryString}" />
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<form action="register" method="post">
+	<input type="text" name="userId" id="userId" placeholder="아이디 입력" required/>
+	<br/>
+	<div id="idResult"></div>
+	<br/>
+	<input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력" required/>
+	<br/>
+	<div id="pwdResult"></div>
+	<br/>
+	<input type="email" name="userEmail" id="userEmail" placeholder="이메일 입력" required/>
+	<br/>
+	<div id="emailResult"></div>
+	<br/>
+	<input type="text" name="phone" id="phone" placeholder="전화번호 입력">
+	<br/>
+	<div id="phoneResult"></div>
+	<br/>
+	<input type="submit" name="btnResult" id="btnResult" value="가입하기"/>
+	<br/>
+</form>
 
 
 <script>
@@ -78,7 +59,7 @@ $(document).ready(function () {
 		console.log("userId = " + userId);
 		console.log("id = " + result);
 		if (result == false) {
-			$('#idResult').html('아이디는 3~12자리로 입력해주세요.');
+			$('#idResult').html('아이디는 3자리~12자리 이하로 입력');
 			$('#idResult').css('color', 'red');
 			checkId = false;
 			btnResult.attr("disabled", "disabled");
@@ -91,7 +72,7 @@ $(document).ready(function () {
 				contentType: 'application/x-www-form-urlencoded',
 				success: function(res) {
 				if (res == 'success') {
-					alert("이미 존재하는 아이디입니다. 다른 아이디를 입력해 주세요");
+					alert("아이디가 존재합니다. 다른 아이디를 입력해 주세요");
 					checkId = false;
 					btnResult.attr("disabled", "disabled");
 					check(checkId, checkPwd, checkPhone);
@@ -104,7 +85,7 @@ $(document).ready(function () {
 			}
 		});
 		}
-	});	
+	});
 	
 	$('#userPwd').change(function() {
 		var userPwd = $('#userPwd').val();
@@ -112,7 +93,7 @@ $(document).ready(function () {
 		var result = pw.test(userPwd);
 		console.log("pw = " + result);
 		if(result == false){
-			$('#pwdResult').html('비밀번호는 8~24자리로 입력해주세요');
+			$('#pwdResult').html('아이디는 8자리~24자리 이하로 입력');
 			$('#pwdResult').css('color', 'red');
 			checkPwd = false;
 			btnResult.attr("disabled", "disabled");
@@ -130,7 +111,7 @@ $(document).ready(function () {
 		var result = ph.test(userPhone);
 		console.log("phone = " + result);
 		if(result == false) {
-			$('#phoneResult').html('형식에 맞게 입력해주세요 (예) 010-1111-1111');
+			$('#phoneResult').html('ex : 010-1111-1111 (-입력해주세요)');
 			$('#phoneResult').css('color', 'red');
 			checkPhone = false;
 			btnResult.attr("disabled", "disabled");
