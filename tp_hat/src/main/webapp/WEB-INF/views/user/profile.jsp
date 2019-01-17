@@ -19,7 +19,9 @@
 	<div class="profile-background">
 		<div>프로필 배경 이미지 </div>
 		<div>프로필 이미지 </div>
-		<div>"userId" 님 </div>
+		<div><h6>${userId}님</h6></div>	
+		<div><h6>${point}포인트 보유중</h6></div>
+		<a href="/controller/user/point-charge">포인트 충전</a>
 	</div>
 
 </div>

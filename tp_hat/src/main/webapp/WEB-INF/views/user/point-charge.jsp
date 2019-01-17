@@ -29,23 +29,21 @@
   <div class="card h-100">
     <div class="card-body">
       <div class="mt-0">
-      	<span>충전할 금액</span>      
-      	<span><input type="text" placeholder="금액을 입력해주세요"></span>
-      	<span>point</span>
+      	<span>충전할 금액</span>
+      	<form action="point-charge" method="post">
+      	<span><input type="text" id="userId" name="userId" placeholder="${userId}님" readonly></span>
+      	<br/>
+      	<span><input type="text" id="phone" name="phone" placeholder="${phone}" readonly></span>
+      	<br/>
+      	<span><input type="number" id="money" name="point" placeholder="금액을 입력해주세요" required></span>
+      	<br/>
+      	<span><input type="submit" id="result" value="충전 완료"></span>
+      	<br/>
+      	</form>
       </div>
     </div>
     
-    <div class="card-footer">
-    	<a class="btn btn-primary">+10,000</a>
-    	<a class="btn btn-primary">+50,000</a>
-    	<a class="btn btn-primary">+100,000</a>
-    </div>
     
-     <div class="card-footer">
-    	<a class="btn btn-danger">-10,000</a>
-    	<a class="btn btn-danger">-50,000</a>
-    	<a class="btn btn-danger">-100,000</a>
-    </div>
   </div>      
  </div>
 </div>
@@ -69,6 +67,12 @@
 	<button>확인</button>
 	<button>취소</button>
 </div>
+
+<script>
+$(document).readry(function(){
+	
+});
+</script>
 
 </body>
 </html>

@@ -91,4 +91,10 @@ public class UserDaoImple implements UserDao{
 		return session.selectOne(USER_MAPPERS+".selectOne", userId);
 	}
 	
+	@Override
+	public int pointUpdate(User user) {
+		
+		return session.update(USER_MAPPERS + ".pointUpdate", user);
+	}
+	
 }

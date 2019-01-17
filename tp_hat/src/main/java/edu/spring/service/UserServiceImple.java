@@ -82,5 +82,10 @@ public class UserServiceImple implements UserService {
 		
 		return userDao.selectOne(userId);
 	}
+	
+	@Override
+	public int pointUpdate(User user) {
+		return userDao.pointUpdate(user);
+	}
 
 }

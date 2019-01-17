@@ -134,10 +134,12 @@ public class UserController {
 		
 		String userEamil = result.getUserEmail();
 		String phone = result.getPhone();
+		int point = result.getPoint();
 		
+		model.addAttribute("userId", userId);
 		model.addAttribute("user_email", userEamil);
 		model.addAttribute("user_phone", phone);
-		
+		model.addAttribute("point", point);
 	}
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public void profilePost(User user, HttpSession session) {
@@ -152,5 +154,44 @@ public class UserController {
 		logger.info("result = ({})", result);
 	}
 	
+	@RequestMapping(value = "point-charge", method = RequestMethod.GET)
+	public void pointCharge(HttpSession session, Model model, User user) {
+		logger.info("point-charge() 호출");
+		
+		String userId = (String) session.getAttribute("loginId");
+		
+		User result = userService.selectOne(userId);
+		
+		String phone = result.getPhone();
+		logger.info("userPhone = ({})", phone);
+		
+		logger.info("userId({})", userId);
+		model.addAttribute("userId", userId);
+		model.addAttribute("phone", phone);
+	}
+	
+	@RequestMapping(value = "point-charge", method = RequestMethod.POST)
+	public String pointChargePost(User user, HttpSession session) {
+		logger.info("pointChargePost() 호출");
+		logger.info("userPointChargePost = ({})", user);
+		String userId = (String) session.getAttribute("loginId");
+		
+		User beforeUser = userService.selectOne(userId);
+		int beforePoint = beforeUser.getPoint();
+		logger.info("beforePoint = ({})", beforePoint);
+		
+		int nowPoint = user.getPoint();
+		logger.info("nowPoint = ({})", nowPoint);
+		
+		int resultPoint = beforePoint + nowPoint;
+		logger.info("resultPoint = ({})", resultPoint);
+		
+		User updateUser = new User(userId, null, null, null, resultPoint, null);
+		
+		int result = userService.pointUpdate(updateUser);
+		logger.info("resultUser = ({})", result);
+		
+		return "/user/profile";
+	}
 
 } // end class UserController

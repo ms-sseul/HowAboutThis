@@ -19,5 +19,7 @@ public interface UserService {
 	int delete(String userId);
 
 	int certiUpdate(String userId);
+	
+	int pointUpdate(User user);
 
 }
