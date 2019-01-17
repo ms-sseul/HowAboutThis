@@ -76,28 +76,7 @@
          </div>
   
      <div class="col-lg-8">
-     <hr>   
-		<div class="category">
-			<button class="btn btn-primary" onclick="location.href='#'">테크 & 가전
-			<span class="badge badge-light"></span>
-			</button>
-			<button class="btn btn-primary" onclick="location.href='#'">패션
-			<span class="badge badge-light"></span>
-			</button>
-			<button class="btn btn-primary" onclick="location.href='#'">디자인
-			<span class="badge badge-light"></span>
-			</button>
-			<button class="btn btn-primary" onclick="location.href='#'">반려동물
-			<span class="badge badge-light"></span>
-			</button>
-			<button class="btn btn-primary" onclick="location.href='#'">취미
-			<span class="badge badge-light"></span>
-			</button>
-			<button class="btn btn-primary" onclick="location.href='#'">소셜
-			<span class="badge badge-light"></span>
-			</button>
-		</div>
-		
+     <hr>   		
 		<div>
           <!-- Post Content -->
           <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
@@ -133,37 +112,41 @@
           <div class="media mb-4">
             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
             <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
-
-          <!-- Comment with nested comments -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
+              <div class="mt-0"> 
+               <span>Commenter Name</span>
+               <span>
+              	 <a href="#">답글</a>
+               </span>
+              </div>
+               <p>내용</p>
+              
               <div class="media mt-4">
                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                 <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-
-              <div class="media mt-4">
+	              <div class="mt-0"> 
+	               <span>Commenter Name</span>
+	               <span>
+	                 <a href="#">답글</a>
+	               </span>
+	              </div>
+	               <p>내용</p>
+	              
+	          <div class="media mt-4">
                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                 <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  <div class="mt-0"> 
+	               <span>Commenter Name</span>
+	               <span>
+	                 <a href="#">답글</a>
+	               </span>
+	              </div>
+	              	<p>내용</p>
                 </div>
               </div>
-
+               </div>
+             </div>
             </div>
           </div>
-
         </div>
 
         <!-- Sidebar Widgets Column -->
