@@ -44,7 +44,8 @@
           </li>
           <li class="nav-item">
           <c:if test="${empty loginId}">
-            <a class="nav-link" href="/controller/user/login">로그인</a>
+            <!-- <a class="nav-link" href="/controller/user/login">로그인</a> -->
+            <button type="button" id="btn-login">로그인</button>
           </c:if>
           <c:if test="${not empty loginId}">
           	<a href="/controller/user/profile">${loginId}</a>님, 안녕하세요!
@@ -61,6 +62,11 @@ $(document).ready(function() {
 	$('#btn-logout').click(function() {
 		location = '/controller/user/logout';
 	});
+	
+	 $('#btn-login').click(function() {
+		location = encodeURI('/controller/user/login?url=' + location.href);
+	});
+
 });
 </script>
 

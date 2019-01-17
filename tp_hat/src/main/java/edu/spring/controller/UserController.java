@@ -37,20 +37,21 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public void login(String queryString, Model model) {
-		logger.info("login(queryString = {} 호출)", queryString);
-		if(queryString != null) {
-			model.addAttribute("targetUrl", queryString);
+	public void login(Model model, String url) {
+		logger.info("url=({})", url);
+		if(url != null) {
+			model.addAttribute("targetUrl", url);
 		}
 	}
 	
 	@RequestMapping(value = "login-post", method = RequestMethod.POST)
-	public void loginPost (User user, Model model) {
+	public void loginPost (User user, String url, Model model) {
 		logger.info("loginPost({}) 호출", user);
 		
 		// preHandle 위치
 		User result = userService.loginCheck(user);
 		model.addAttribute("loginResult", result);
+		logger.info("result = ({})", result);
 		
 		// 여기서 디비에 체크(true / flase) 하고 model에 저장된 값 보내기
 		

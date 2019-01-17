@@ -19,27 +19,50 @@
 <div class="inserthead" style="margin:3em;">작성하기</div>
 
 <div class="insertBoard" align="center">
-	<form action="insert" method="post">
-	<table width="900px">
+	<form action="insert" method="post" id="form">
+	<table width="700px">
 		<tr><td>
-			<input type="text" id="title" name="title" style="width:100%" value="${board.title}" 
-				placeholder="제목" autofocus />
+			<input type="text" id="title" name="title" style="width:100%" placeholder="제목" autofocus required/>
 		</td></tr>
 		<tr><td>
-			<textarea name="content" id="content" rows="100" cols="100">${board.content}</textarea>
+			<textarea name="content" id="contents" rows="10" cols="100" required></textarea>
 			<input type="text" id="userId" name="userId" placeholder="${loginId}" value="${loginId}" readonly>
 		</td></tr>
 		<tr><td align="right">
 			<br/>
-			<button type="submit" class="btn" style="width:10%">작성</button>
-			<button class="btn" onclick="location.href='list'" style="width:10%">취소</button>
+			<button type="submit" class="btn" id="btnResult" style="width:10%">작성</button>
+			<button type="button" class="btn" onclick="location.href='list'" id = "btnCancel" style="width:10%">취소</button>
 		</td></tr>
 	</table>
 	</form>	
 </div>
 
 <script>
-	CKEDITOR.replace( 'content' );
+$(document).ready(function() {
+	$('#btnCancel').click(function(event) {
+		event.preventDefault();
+		self.location = 'list';
+	});
+	var btnResult = $('#btnResult');
+	
+	/* var form = $('#form');
+	btnResult.click(function(event) {
+		event.preventDefault();
+		
+		var title = $('#title').val();
+		console.log(title);
+		var content = $('#contents').val();
+		console.log(content);
+		
+		if(title == "" || content == "") {
+			alert('제목과 내용을 빠짐없이 입력해 주세요');
+		} else {
+			document.form.submit();
+		}
+	}); */
+	
+});
+	// CKEDITOR.replace( 'content' );
 </script>
 
 </body>

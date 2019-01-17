@@ -60,6 +60,7 @@ public class BoardController {
 	public String insertPost(Board board) {
 		logger.info("insert(board) POST 호출");
 		boardService.insertBoard(board);
+		
 		return "redirect:list";
 	}
 	
