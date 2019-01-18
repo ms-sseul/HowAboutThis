@@ -38,7 +38,7 @@
       <a class="nav-link" data-toggle="tab" href="#menu1">만든 프로젝트</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">쪽지함</a>
+      <a class="nav-link" data-toggle="tab" href="#menu2" id="menuclick">쪽지함</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#menu3">개인정보</a>
@@ -64,18 +64,13 @@
       <p>만든 프로젝트 </p>
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
-      <h3>쪽지함</h3>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
-      <p>받은 쪽지함</p>
+     <h3 class="message-h3">쪽지함</h3>
+      <a href="/controller/message/createMessage">쪽지 보내기</a>      
+      <div class="message-list-ul">
+      	<!-- 메시지 창 -->
+      	
+      </div>
+		<a href="${messageUrl}">Click to enter</a>
     </div>
     <div id="menu3" class="container tab-pane fade"><br>
       <h3>개인정보 수정 페이지</h3>
@@ -163,6 +158,90 @@ $(document).ready(function () {
 	
 })
 </script>
+
+  <input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<script id="message-template" type="text/x-handlebars-template">
+<div class="message-item">
+	<input type="text" id="mno" value="{{mno}}" />
+	<input type="text" id="content" value="{{content}}" />
+	<input type="text" id="sender" value="{{sender}}" />
+	<input type="text" id="regDate" value="{{regDate}}" />
+	<button class="btnDelete">삭제</button>
+</div>
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log("EEESda");
+	var source = $('#message-template').html();
+	var template = Handlebars.compile(source);
+	var division = $('.message-list-ul');
+	var loginId = $('#loginId').val();	
+	console.log('loginId: ' + loginId);
+	console.log('테스트용');
+	
+	
+	function getAllMessage(){
+		$.getJSON('/controller/message/' + loginId, function(data){
+			division.empty();
+			
+			$(data).each(function(){
+			var date = new Date(this.regDate);
+			var dateString = date.toLocaleDateString()+' '+date.toLocaleTimeString();
+			
+			var message_item = {
+					mno : this.mno,
+					content : this.content,
+					sender : this.sender,
+					regDate : dateString
+			};
+			var messageItem = template(message_item);
+			console.log("message 값 = "+messageItem);
+			division.append(messageItem);
+			});
+		});
+	}
+	
+	getAllMessage();
+	
+	$('#menuclick').click(function() {		
+		getAllMessage();		
+		
+	});
+	
+	
+	
+	division.on('click','.message-item .btnDelete', function(){
+		var mno = $(this).prevAll('#mno').val();
+		console.log(mno);
+		var result = confirm(mno + '번 쪽지를 삭제 하시겠습니까?');
+		if(result == true){
+			$.ajax({
+				type: 'delete',
+				url: '/controller/message/delete/'+mno,
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'delete'
+				},
+				success : function(data){
+					if(data == 'success'){
+						alert(mno+'번 메시지 삭제 성공');
+						getAllMessage();
+					}
+				}
+			});
+		} // end if
+		
+	});
+
+	
+});//ready end
+
+</script>
+
+
 
 
 
