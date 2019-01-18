@@ -24,6 +24,7 @@ public class ReplyController {
 	
 	@Autowired private ReplyService replyService;
 	
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Integer> createReply(
 			@RequestBody Reply reply){
@@ -48,7 +49,7 @@ public class ReplyController {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "{rno}")
+	@RequestMapping(method = RequestMethod.POST, value = "rrno/{rno}")
 	public ResponseEntity<Integer> createReplyrrno(
 			@RequestBody Reply reply,
 			@PathVariable (name = "rno") int rno){
@@ -71,14 +72,14 @@ public class ReplyController {
 		
 	}
   
-	@RequestMapping(value = "all/{pno}", method = RequestMethod.GET)
+	@RequestMapping(value = "all/{bno}", method = RequestMethod.GET)
 	public ResponseEntity<List<Reply>> readReplies(
-				@PathVariable(name = "pno") int pno
+				@PathVariable(name = "bno") int bno
 			){
-		logger.info("readReplies(pno={})",pno);		
+		logger.info("readReplies(bno={})",bno);		
 		
-		List<Reply> list = replyService.select(pno);
-		
+		List<Reply> list = replyService.select(bno);
+		logger.info("list값" + list.toString());
 		ResponseEntity<List<Reply>> entity =
 				new ResponseEntity<List<Reply>>(list, HttpStatus.OK);
 		
@@ -87,7 +88,7 @@ public class ReplyController {
 		
 	}
 	
-	@RequestMapping(value="all/{rno}", method = RequestMethod.GET)
+	@RequestMapping(value="/allRno/{rno}", method = RequestMethod.GET)
 	public ResponseEntity<List<Reply>> readRepliesRrno(@PathVariable(name = "rno") int rno){
 		
 		logger.info("readRepliesRrno(rno={})", rno);
@@ -100,7 +101,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	@RequestMapping(value = "{rno}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/{rno}", method = RequestMethod.PUT)
 	public ResponseEntity<Integer> updateReply(
 			@PathVariable(name="rno") int rno,
 			@RequestBody Reply reply){
@@ -119,7 +120,7 @@ public class ReplyController {
 		return entity;		
 	}
 	
-	@RequestMapping(value = "{rrno}", method= RequestMethod.PUT)
+	@RequestMapping(value = "update2/{rrno}", method= RequestMethod.PUT)
 	public ResponseEntity<Integer> updateReplyrrno(
 			@PathVariable(name = "rrno") int rrno,
 			@RequestBody Reply reply
@@ -139,7 +140,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	@RequestMapping(value = "{rno}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "delete/{rno}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteReply(@PathVariable(name="rno") int rno){
 		logger.info("deleteReply(rno={})", rno);
 		
@@ -156,6 +157,7 @@ public class ReplyController {
 		return entity;		
 	}
 	
+	@RequestMapping(value="delete2/{rrno}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteReplyrrno(@PathVariable(name = "rrno") int rrno){
 		logger.info("deleteReplyrrno(rrno={})",rrno);
 		

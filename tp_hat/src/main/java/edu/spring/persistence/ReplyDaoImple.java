@@ -31,7 +31,7 @@ public class ReplyDaoImple implements ReplyDao {
 	public List<Reply> read(int pno) {
 		logger.info("readAllReply(pno={}) call",pno);
 		
-		return session.selectList(REPLY_MAPPER +".selectAll",pno);
+		return session.selectList(REPLY_MAPPER +".selectReplyByBno", pno);
 	}
 
 	@Override

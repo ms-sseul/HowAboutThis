@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.spring.domain.Message;
 import edu.spring.persistence.MessageDao;
@@ -17,7 +18,7 @@ public class MessageServiceImple implements MessageService {
 	
 	@Autowired MessageDao messageDao;
 	
-	
+	@Transactional
 	@Override
 	public int insert(Message message) {
 		logger.info("insert service call()");
@@ -26,13 +27,13 @@ public class MessageServiceImple implements MessageService {
 	}
 
 	@Override
-	public List<Message> read() {
+	public List<Message> read(String id) {
 		logger.info("read Service call = {}");
-		return messageDao.read();
+		return messageDao.read(id);
 	}
 
 	@Override
-	public int update(int message) {
+	public int updateread(int message) {
 		logger.info("message update service call = {}", message);
 		return messageDao.updateRead(message);
 	}

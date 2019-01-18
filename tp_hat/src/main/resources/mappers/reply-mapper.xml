@@ -14,6 +14,9 @@
 		ORDER BY ${reply.rno} DESC
 	</select>
 	
+	<select id="selectReplyByBno" resultType="Reply">
+		SELECT * FROM ${tbl_reply} WHERE ${reply.pno} = #{bno} ORDER BY ${reply.rno} DESC
+	</select>
 	<select id="selectAllrrno" resultType="Reply">
 		SELECT 
 		*FROM ${tbl_reply}

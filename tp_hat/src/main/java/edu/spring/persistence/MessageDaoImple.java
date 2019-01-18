@@ -30,11 +30,11 @@ public class MessageDaoImple implements MessageDao {
 	}
 
 	@Override
-	public List<Message> read() {
+	public List<Message> read(String id) {
 		logger.info("List Dao  출력");
 
 		
-		return session.selectList(MESSAGE_MAPPER+".selectAll");
+		return session.selectList(MESSAGE_MAPPER+ ".selectAll", id);
 	}
 
 	@Override

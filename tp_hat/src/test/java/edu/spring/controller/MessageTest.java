@@ -28,11 +28,11 @@ public class MessageTest {
 	
 	@Test
 	public void doTest() {
-//		insert();
+		insert();
 //		list();
 //		selectOne();
 //		delete();
-		update();
+//		update();
 	
 	}
 	
@@ -41,8 +41,8 @@ public class MessageTest {
 		
 		message.setTitle("두번째 메시지 title");
 		message.setContent("두번째 메시지 content");
-		message.setSender("두번째 보내는 사람");
-		message.setReciever("두번째 받는 사람");
+		message.setSender("두번째");
+		message.setReciever("김상현");
 		
 		int result = messageService.insert(message);
 		
@@ -54,18 +54,18 @@ public class MessageTest {
 		
 	}
 	
-	public void list() {
-		List<Message> list = messageService.read();
-		
-		if(list != null) {
-			for(Message m : list) {
-				logger.info(m.toString());
-			}
-		}else {
-			logger.info("출력할 내용이 없습니다");
-		}
-		
-	}
+//	public void list() {
+//		List<Message> list = messageService.read();
+//		
+//		if(list != null) {
+//			for(Message m : list) {
+//				logger.info(m.toString());
+//			}
+//		}else {
+//			logger.info("출력할 내용이 없습니다");
+//		}
+//		
+//	}
 	
 	public void selectOne() {
 		Message result = messageService.selectOne(1);

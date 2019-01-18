@@ -28,7 +28,7 @@
 	
 	<!-- User가 받은 쪽지를 역순으로 출력 -->
 	<select id="selectAll" resultType="Message">
-		SELECT * FROM ${tbl_message}
+		SELECT * FROM ${tbl_message} where ${message.reciever} = #{id} 
 		ORDER BY ${message.mno} DESC
 	</select>
 	
