@@ -21,7 +21,7 @@
 <div class="table-responsive-lg" align="center" style="margin:1em">
 	<table class="table table-hover" text-align="center">
 		<thead>
-			<tr>
+			<tr class="info">
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
@@ -52,13 +52,15 @@
 <div class="text-center">
 	<ul class="pagination justify-content-center">
 	<c:if test="${pageMaker.prev}">
-    <li class="page-item"><a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.startPage - 1)}">Previous</a></li>
+    <li class="page-item">
+    	<a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.startPage - 1)}">Previous</a>
+    </li>
 	</c:if>
 	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 	    <%-- <li class="page-item" <c:out value="${pageMaker.criteria.page == idx ? 'class=active' : ''}"/>>
     		<a class="page-link" href="">${idx}</a> --%>
-    		<li>
-    			<a href="/controller/board/list${pageMaker.makeQuery(idx)}">${idx}</a>
+    		<li class="page-item">
+    			<a class="page-link" href="/controller/board/list${pageMaker.makeQuery(idx)}">${idx}</a>
    			</li>
 	</c:forEach>
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -9,10 +8,9 @@
 </head>
 <body>
 
-
 <!-- 상단메뉴바(고정) -->
 <div class="topnav" id="myTopnav">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-info sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info fixed-top">
       <a class="navbar-brand" href="/controller">여기어때</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
       	aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
