@@ -121,7 +121,6 @@
 										<h4 class="card-title">
 											<a href="description?pno=${ctp.pno}">${ctp.title}</a>
 										</h4>
-										<p class="card-text">${ctp.content}</p>
 									</div>
 									<div class="progress">
 										<a class="progress-bar progress-bar-striped"
@@ -132,8 +131,8 @@
 										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${ctp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber></a>
-										<c:if test="${ctp.restDay>0}">
-											<a class="">D-${ctp.restDay}</a>
+										<c:if test="${ctp.restDay<0}">
+											<a class="">D${ctp.restDay}</a>
 										</c:if>
 										<c:if test="${ctp.restDay==0}">
 											<a class="">D-Day</a>
@@ -159,7 +158,6 @@
 										<h4 class="card-title">
 											<a href="description?pno=${pp.pno}">${pp.title}</a>
 										</h4>
-										<p class="card-text">${pp.content}</p>
 									</div>
 									<div>
 										<a></a>
@@ -173,8 +171,8 @@
 										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${pp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber></a>
-										<c:if test="${pp.restDay>0}">
-											<a class="">D-${pp.restDay}</a>
+										<c:if test="${pp.restDay<0}">
+											<a class="">D${pp.restDay}</a>
 										</c:if>
 										<c:if test="${pp.restDay==0}">
 											<a class="">D-Day</a>
@@ -199,7 +197,6 @@
 										<h4 class="card-title">
 											<a href="description?pno=${lp.pno}">${lp.title}</a>
 										</h4>
-										<p class="card-text">${lp.content}</p>
 									</div>
 									<div>
 										<a></a>
@@ -213,8 +210,8 @@
 										<a><fmt:formatNumber value="${lp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${lp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber></a>
-										<c:if test="${lp.restDay>0}">
-											<a class="">D-${lp.restDay}</a>
+										<c:if test="${lp.restDay<0}">
+											<a class="">D${lp.restDay}</a>
 										</c:if>
 										<c:if test="${lp.restDay==0}">
 											<a class="">D-Day</a>
@@ -232,91 +229,52 @@
 					<c:forEach items="${projectModels}" var="pm" varStatus="vs">
 						<c:if test="${vs.index%3==0}">
 							<div class="row">
-								<div class="col-lg-4 col-sm-6 portfolio-item">
-									<div class="card h-100">
-										<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
-										<div>
-											<a href="description?pno=${pm.pno}"><img
-												class="card-img-top" src="${pm.image.image}"></a>
-										</div>
-										<div class="card-body">
-											<h4 class="card-title">
-												<a href="description?pno=${pm.pno}">${pm.title}</a>
-											</h4>
-											<p class="card-text">${pm.content}</p>
-										</div>
-										<div>
-											<a></a>
-										</div>
-										<div class="progress">
-											<div class="progress-bar progress-bar-striped"
-												role="progressbar" aria-valuenow="40" aria-valuemin="0"
-												aria-valuemax="100" style="width:${pm.percent*100}%"></div>
-										</div>
-										<div>
-											<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
-											<a><fmt:formatNumber value="${pm.currentAmount}"
-													groupingUsed="true"></fmt:formatNumber></a>
-											<c:if test="${pm.restDay>0}">
-												<a class="">D-${pm.restDay}</a>
-											</c:if>
-											<c:if test="${pm.restDay==0}">
-												<a class="">D-Day</a>
-											</c:if>
-										</div>
-									</div>
-								</div>
-
 						</c:if>
-						<c:if test="${vs.index%3!=0}">
-							<div class="col-lg-4 col-sm-6 portfolio-item">
-								<div class="card h-100">
-									<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
-									<div>
-										<a href="description?pno=${pm.pno}"><img
-											class="card-img-top" src="${pm.image.image}"></a>
-									</div>
-									<div class="card-body">
-										<h4 class="card-title">
-											<a href="description?pno=${pm.pno}">${pm.title}</a>
-										</h4>
-										<p class="card-text">${pm.content}</p>
-									</div>
-									<div>
-										<a></a>
-									</div>
-									<div class="progress">
-										<div class="progress-bar progress-bar-striped"
-											role="progressbar" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100" style="width:${pm.percent*100}%"></div>
-									</div>
-									<div>
-										<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
-										<a><fmt:formatNumber value="${pm.currentAmount}"
-												groupingUsed="true"></fmt:formatNumber></a>
-										<c:if test="${pm.restDay>0}">
-											<a class="">D-${pm.restDay}</a>
-										</c:if>
-										<c:if test="${pm.restDay==0}">
-											<a class="">D-Day</a>
-										</c:if>
-									</div>
+						<div class="col-lg-4 col-sm-6 portfolio-item">
+							<div class="card h-100">
+								<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
+								<div>
+									<a href="description?pno=${pm.pno}"><img
+										class="card-img-top" src="${pm.image.image}"></a>
+								</div>
+								<div class="card-body">
+									<h4 class="card-title">
+										<a href="description?pno=${pm.pno}">${pm.title}</a>
+									</h4>
+								</div>
+								<div>
+									<a></a>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-striped"
+										role="progressbar" aria-valuenow="40" aria-valuemin="0"
+										aria-valuemax="100" style="width:${pm.percent*100}%"></div>
+								</div>
+								<div>
+									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
+									<a><fmt:formatNumber value="${pm.currentAmount}"
+											groupingUsed="true"></fmt:formatNumber></a>
+									<c:if test="${pm.restDay<0}">
+										<a class="">D${pm.restDay}</a>
+									</c:if>
+									<c:if test="${pm.restDay==0}">
+										<a class="">D-Day</a>
+									</c:if>
 								</div>
 							</div>
-						<c:if test="${vs.index%3==2}"></div></c:if>
-						</c:if>
-					</c:forEach>
-				</c:if>
-				<!--  더보기 버튼 지웠어여  -->
+						</div>
+						<c:if test="${vs.index%3==2}"> </div> </c:if>
+			</c:forEach>
+			</c:if>
+			<!--  더보기 버튼 지웠어여  -->
+		</div>
+	</div>
+	<div class="footer">
+		<footer class="py-5 bg-info">
+			<div class="container">
+				<p class="m-0 text-center text-white">Footer</p>
 			</div>
-		</div>
-		<div class="footer">
-			<footer class="py-5 bg-info">
-				<div class="container">
-					<p class="m-0 text-center text-white">Footer</p>
-				</div>
-			</footer>
-		</div>
+		</footer>
 	</div>
 </body>
 </html>

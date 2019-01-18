@@ -9,7 +9,7 @@ public class ProjectModel extends Project {
 	private int restDay;
 	
 	
-	public long getRestDay() {
+	public int getRestDay() {
 		return restDay;
 	}
 
@@ -42,8 +42,8 @@ public class ProjectModel extends Project {
 		this.image = image;
 		this.percent = Float.parseFloat(String.format("%.2f", Float.parseFloat(String.valueOf(project.getCurrentAmount())) / project.getTargetAmount()));
 //		this.restDay = Period.between(LocalDate.now(), LocalDate.ofInstant(project.getTargetTime().toInstant(), ZoneId.systemDefault())).getDays();
-		this.restDay = new Date().toInstant().atZone(ZoneId.systemDefault()).toInstant().
-				compareTo(project.getTargetTime().toInstant().atZone(ZoneId.systemDefault()).toInstant());
+		this.restDay = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().
+				compareTo(project.getTargetTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 	}
 	
 	public ProjectModel() {}

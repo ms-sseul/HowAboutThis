@@ -1,6 +1,7 @@
 package edu.spring.controller;
 
 import java.io.File;
+import java.security.acl.LastOwnerException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -129,6 +130,7 @@ public class ProjectController {
 
 		for (int i = 0; i < 3; i++) {
 			lastestProjectModel.add(new ProjectModel(lastestImageList.get(i), lastestProject.get(i)));
+			logger.info("D-day({})",lastestProjectModel.get(i).getRestDay());
 		}
 		model.addAttribute("lastestProjects", lastestProjectModel);
 
@@ -167,9 +169,7 @@ public class ProjectController {
 		}
 		for(int i = 0; i < projects.size() ;i++) {
 			projectModels.add(new ProjectModel(images.get(i),projects.get(i)));
-			logger.info("project({})", projects.get(i).toString());
 		}
-		logger.info("projectModels.size({})", projectModels.size());
 		model.addAttribute("projectModels", projectModels);
 		switch (category) {
 		case 1:
