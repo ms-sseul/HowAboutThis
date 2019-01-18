@@ -38,13 +38,13 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createProject() {
 		logger.info("createProject(GET) Call");
 		return "/project/create";
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "create", method = RequestMethod.POST)
 	public String createPostProject(String targetDate, Project project, MultipartFile[] uploadFiles, Present present,
 			HttpServletRequest req) throws Exception {
 		List<Image> images = new ArrayList<>();
@@ -62,6 +62,7 @@ public class ProjectController {
 		project.setTargetTime(date);
 
 		presents.add(present);
+		// TODO : 파일 업로드
 //		if(uploadFiles.length!=0) {
 //		for(MultipartFile m : uploadFiles) {
 //				System.out.println("이름 : " + m.getName());
@@ -116,6 +117,7 @@ public class ProjectController {
 		List<ProjectModel> lastestProjectModel = new ArrayList<>();
 		List<Project> lastestProject = projectService.selectLastestProject();
 		List<Image> lastestImageList = new ArrayList<>();
+		// 실제 이미지 데이터 빼오는 코드 
 //		for(Project p :lastestProject) {
 //			Image image = projectService.selectProjectImage(p.getPno());
 //			lastestImageList.add(image.getImage());
@@ -133,10 +135,10 @@ public class ProjectController {
 		return "/web/main";
 	}
 
-	@RequestMapping(value = "description", method = RequestMethod.GET)
+	@RequestMapping(value = "description" , method = RequestMethod.GET)
 	public String detailProject(int pno, Model model) {
 		Project project = projectService.selectOneProject(pno);
-//		Image image = projectService.selectProjectImage(pno);
+//		List<Image> image = projectService.selectProjectImage(pno);
 		Image image = new Image(pno, 1, IMAGE_ARRAY[pno-1]);
 		ProjectModel projectModel = new ProjectModel(image, project);
 		logger.info("imagePath = {}" , image.getImage());
@@ -144,14 +146,55 @@ public class ProjectController {
 		return "web/description";
 	}
 	
-	
-	@RequestMapping(value = "" , method = RequestMethod.GET)
-	public String showProjectByCategory(int category, Model model) {
-		
-		List<Project> projects = projectService.selectProjectByCategory(category);
+	@RequestMapping(value = "theme" , method = RequestMethod.GET)
+	public String projectByCategory(int category, Model model) {
+		List<Project> projects = new ArrayList<>();
 		List<Image> images = new ArrayList<>();
-		return null;
+		List<ProjectModel> projectModels = new ArrayList<>();
+		List<Image> bannerImageList = new ArrayList<>();
+		for (int i = 1; i < 4; i++) {
+			bannerImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		}
+		model.addAttribute("bannerImageList", bannerImageList);
+		model.addAttribute("option", "not null");
+		if(category >=1 && category <=6) {
+			projects = projectService.selectProjectByCategory(category);
+		} else  {
+			projects = projectService.selectAllProject();
+		}
+		for(Project p : projects) {
+			images.add(new Image(p.getPno(), 1, IMAGE_ARRAY[p.getPno()-1]));
+		}
+		for(int i = 0; i < projects.size() ;i++) {
+			projectModels.add(new ProjectModel(images.get(i),projects.get(i)));
+			logger.info("project({})", projects.get(i).toString());
+		}
+		logger.info("projectModels.size({})", projectModels.size());
+		model.addAttribute("projectModels", projectModels);
+		switch (category) {
+		case 1:
+			model.addAttribute("categoryName", "테크 & 가전");
+			break;
+		case 2:
+			model.addAttribute("categoryName", "패션");
+			break;
+		case 3:
+			model.addAttribute("categoryName", "디자인");
+			break;
+		case 4:
+			model.addAttribute("categoryName", "반려동물");
+			break;
+		case 5:
+			model.addAttribute("categoryName", "취미");
+			break;
+		case 6:
+			model.addAttribute("categoryName", "소셜");
+			break;
+		default:
+			model.addAttribute("categoryName", "전체보기");
+			break;
+		}
+		return "web/main";
 	}
-	
 	
 }

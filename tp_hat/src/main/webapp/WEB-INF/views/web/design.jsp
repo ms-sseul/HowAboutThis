@@ -19,7 +19,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="category">
-	<button class="btn btn-primary" onclick="location.href='tech'">테크 & 가전
+	<button class="btn btn-primary" onclick="location.href='pr'">테크 & 가전
 	<span class="badge badge-light"></span>
 	</button>
 	<button class="btn btn-primary" onclick="location.href='fasion'">패션
