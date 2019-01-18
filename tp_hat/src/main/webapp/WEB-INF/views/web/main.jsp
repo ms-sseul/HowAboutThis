@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.Date"%>
@@ -8,28 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <title>MAIN</title>
 </head>
 <body>
 
 	<jsp:include page="header.jsp"></jsp:include>
-	<div style="margin: 3.5em 0.5em 0.5em 0.5em">
+	<div style="margin: 0 0.5em 0.5em 0.5em">
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
 			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
@@ -128,9 +121,9 @@
 											aria-valuemax="100" style="width:${ctp.percent*100}%"></a>
 									</div>
 									<div>
-										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber></a>
+										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber>원</a>
 										<a><fmt:formatNumber value="${ctp.currentAmount}"
-												groupingUsed="true"></fmt:formatNumber></a>
+												groupingUsed="true"></fmt:formatNumber>원</a>
 										<c:if test="${ctp.restDay<0}">
 											<a class="">D${ctp.restDay}</a>
 										</c:if>
@@ -168,9 +161,9 @@
 											aria-valuemax="100" style="width:${pp.percent*100}%"></div>
 									</div>
 									<div>
-										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber></a>
+										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber>원</a>
 										<a><fmt:formatNumber value="${pp.currentAmount}"
-												groupingUsed="true"></fmt:formatNumber></a>
+												groupingUsed="true"></fmt:formatNumber>원</a>
 										<c:if test="${pp.restDay<0}">
 											<a class="">D${pp.restDay}</a>
 										</c:if>
@@ -207,9 +200,9 @@
 											aria-valuemax="100" style="width:${lp.percent*100}%"></a>
 									</div>
 									<div>
-										<a><fmt:formatNumber value="${lp.percent}" type="percent"></fmt:formatNumber></a>
+										<a><fmt:formatNumber value="${lp.percent}" type="percent"></fmt:formatNumber>원</a>
 										<a><fmt:formatNumber value="${lp.currentAmount}"
-												groupingUsed="true"></fmt:formatNumber></a>
+												groupingUsed="true"></fmt:formatNumber>원</a>
 										<c:if test="${lp.restDay<0}">
 											<a class="">D${lp.restDay}</a>
 										</c:if>
@@ -251,9 +244,9 @@
 										aria-valuemax="100" style="width:${pm.percent*100}%"></div>
 								</div>
 								<div>
-									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
+									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber>원</a>
 									<a><fmt:formatNumber value="${pm.currentAmount}"
-											groupingUsed="true"></fmt:formatNumber></a>
+											groupingUsed="true"></fmt:formatNumber>원</a>
 									<c:if test="${pm.restDay<0}">
 										<a class="">D${pm.restDay}</a>
 									</c:if>
@@ -266,7 +259,6 @@
 						<c:if test="${vs.index%3==2}"> </div> </c:if>
 			</c:forEach>
 			</c:if>
-			<!--  더보기 버튼 지웠어여  -->
 		</div>
 	</div>
 	<div class="footer">
