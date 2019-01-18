@@ -48,31 +48,6 @@
  </div>
 </div>
 
-<div class="row">
- <div class="col-md-4 mb-4">
-  <div class="card h-100">
-    <div class="card-body">
-      <div>충전 방식</div>
-      <a class="btn btn-primary">휴대폰</a>
-    </div>
-    
-    <div class="card-footer">
-    	핸드폰 번호 <input type="text">
-    </div>
-  </div>      
- </div>
-</div>
-
-<div class="row">
-	<button>확인</button>
-	<button>취소</button>
-</div>
-
-<script>
-$(document).readry(function(){
-	
-});
-</script>
 
 </body>
 </html>
