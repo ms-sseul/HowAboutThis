@@ -21,7 +21,8 @@
 	<table width="900px">
 		<thead>
 			<tr><td>
-				<div><input type="number" id="bno" value="${board.bno}" readonly />
+				<div>					
+					<input type="number" id="bno" value="${board.bno}" readonly />
 					<input type="text" value="${board.title}" readonly /></div>
 					
 					<fmt:formatDate value="${board.regDate}" pattern="yyyy/MM/dd HH:mm:ss" var="regDate"/>
@@ -33,7 +34,9 @@
 		<tbody>
 			<tr>
 				<td>
-					<div><textarea rows="5" cols="80" readonly>${board.content}</textarea></div>
+					<div class="jumbotron">
+						${board.content}
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -50,7 +53,8 @@
 			<tr>
 				<td>
 					<div id="replies">
-						<!-- 댓글 리스트를 넣어줄 영역 -->
+						<ul class="list-group">
+						</ul>
 						<textarea rows="5" cols="80" readonly>댓글리스트</textarea>
 					</div>
 				</td>
@@ -65,14 +69,14 @@
 <input type ="hidden" id="pagenum"  value="?page=${criteria.page}&perPageNum=${criteria.perPageNum}"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script id="reply-template" type="text/x-handlebars-template">
-<div class="reply-item">
+<li class="reply-item list-group-item d-flex justify-content-between align-items-center">
 	<input id="rno" value="{{rno}}" type="hidden" readonly />
 	<input id="content" value="{{content}}" type="text" />
 	<input id="userId" value="{{userId}}" type="text" readonly />
 	<input id="regDate" value="{{regDate}}" type="text" readonly />
 	<button class="btnUpdate">수정</button>
 	<button class="btnDelete">삭제</button>
-<div>
+</li>
 
 </script>
 
