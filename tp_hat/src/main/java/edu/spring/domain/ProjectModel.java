@@ -1,7 +1,5 @@
 package edu.spring.domain;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -36,10 +34,16 @@ public class ProjectModel extends Project {
 	}
 
 	public ProjectModel(Image image, Project project) {
-		super(project.getPno(), project.getTitle(), project.getContent(), project.getRecommendation(), project.getCategory(), project.getCurrentAmount(), project.getTargetAmount(), project.getUserId(), project.getTargetTime(), project.getRegTime(), project.getReadCnt(), project.getReplyCnt(), project.getFinished());
+		super(project.getPno(), project.getTitle(), project.getContent(), 
+				project.getRecommendation(), project.getCategory(), project.getCurrentAmount(), 
+				project.getTargetAmount(), project.getUserId(), project.getTargetTime(), 
+				project.getRegTime(), project.getReadCnt(), project.getReplyCnt(), 
+				project.getFinished());
 		this.image = image;
 		this.percent = Float.parseFloat(String.format("%.2f", Float.parseFloat(String.valueOf(project.getCurrentAmount())) / project.getTargetAmount()));
-		this.restDay = Period.between(LocalDate.now(), LocalDate.ofInstant(project.getTargetTime().toInstant(), ZoneId.systemDefault())).getDays();
+//		this.restDay = Period.between(LocalDate.now(), LocalDate.ofInstant(project.getTargetTime().toInstant(), ZoneId.systemDefault())).getDays();
+		this.restDay = new Date().toInstant().atZone(ZoneId.systemDefault()).toInstant().
+				compareTo(project.getTargetTime().toInstant().atZone(ZoneId.systemDefault()).toInstant());
 	}
 	
 	public ProjectModel() {}
