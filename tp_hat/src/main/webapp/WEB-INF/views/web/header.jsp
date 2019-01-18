@@ -18,22 +18,15 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-		  <!-- navbar 메뉴 추가시 주석 해제 
+        <ul class="navbar-nav mr-auto"> 
 		  <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">프로젝트 <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">프로젝트 만들기</a>
           </li>
-          -->
           <li class="nav-item dropdown">
-		  	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 둘러보기</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="/controller/project/create">프로젝트 만들기</a> 
-					<a class="dropdown-item" href="#">카테고리2</a> 
-					<a class="dropdown-item" href="#">카테고리3</a>
-				</div>
+			<a class="nav-link" href="#">커뮤니티</a>
 		  </li>
         </ul>
         <ul class="navbar-nav">
