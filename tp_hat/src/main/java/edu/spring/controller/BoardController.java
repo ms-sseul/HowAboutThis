@@ -30,15 +30,61 @@ public class BoardController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void list(Model model, Criteria criteria) {
 		logger.info("list() 호출");
-		
+		logger.info("criteria = ({})", criteria);
+		/*logger.info("searchType =({})", searchType);
+		logger.info("keyWord = ({})", keyWord);*/
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
 		pageMaker.setTotalCount(boardService.countBoard(criteria));
 		
 		List<Board> boardlist = boardService.selectAllBoard(criteria);
+		
+		logger.info("boardlist = ({})", boardlist);
 		model.addAttribute("boardList", boardlist);
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+	@RequestMapping(value = "listSearch" , method = RequestMethod.GET)
+	public void listSearch(Integer searchType, String keyWord, Model model, Criteria criteria) {
+		// logger.info("queryString({})", queryString);
+		logger.info("listSearch() 호출");
+		logger.info("searchType({}) 호출", searchType);
+		logger.info("keyWord({}) 호출", keyWord);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countSelectedBoard(searchType, keyWord, criteria));
+		List<Board> boardlist = boardService.searchByKeyword(searchType, keyWord, criteria); 
+		logger.info("boardList = ({})", boardlist);
+		
+		logger.info("pageMaker = ({})", pageMaker);
+		model.addAttribute("boardList", boardlist);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("keyWord", keyWord);
+		model.addAttribute("searchType", searchType);
+		// model.addAttribute("queryString", queryString);
+		
+	}
+	
+	/*@RequestMapping(value = "list", method = RequestMethod.POST)
+	public void listPost(int searchType, String keyWord, Model model, Criteria criteria, String queryString) {
+		logger.info("listPost() 호출");
+		logger.info("searchType = ({})", searchType);
+		logger.info("keyWord = ({})", keyWord);
+		logger.info("queryString = ({})", queryString);
+		
+		
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(boardService.countSelectedBoard(searchType, keyWord));
+		List<Board> boardlist = boardService.searchByKeyword(searchType, keyWord, criteria); 
+		logger.info("boardList = ({})", boardlist);
+		
+		logger.info("pageMaker = ({})", pageMaker);
+		model.addAttribute("boardList", boardlist);
+		model.addAttribute("pageMaker", pageMaker);
+	}*/
 	
 	// 게시글 상세보기
 	@RequestMapping(value = "detail")

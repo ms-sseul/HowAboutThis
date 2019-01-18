@@ -76,13 +76,25 @@ public class BoardDaoImple implements BoardDao {
 	}
 
 	@Override
-	public List<Board> searchByKeyword(int searchType, String keyword) {
+	public List<Board> searchByKeyword(int searchType, String keyword, Criteria criteria) {
 		logger.info("searchByKeyword() call");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchType", searchType);
 		params.put("keyword", "%" + keyword + "%");
+		params.put("pageStart", criteria.getPageStart());
+		params.put("perPageNum",criteria.getPerPageNum());
 		return session.selectList(BOARD_MAPPER + ".searchByKeyword" , params);
+	}
+	
+	@Override
+	public int countSelectedBoard(int searchType, String keyword, Criteria criteria) {
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("keyword", "%" + keyword + "%");
+		params.put("criteria", criteria);
+		return session.selectOne(BOARD_MAPPER+ ".searchByKeywordCount", params);
 	}
 	
 	

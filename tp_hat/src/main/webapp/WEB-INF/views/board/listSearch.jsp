@@ -53,22 +53,23 @@
 	<ul class="pagination justify-content-center">
 	<c:if test="${pageMaker.prev}">
     <li class="page-item">
-    	<a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.startPage - 1)}">Previous</a>
+    	<a class="page-link" href="/controller/board/listSearch${pageMaker.makeQuery(pageMaker.startPage - 1)}&keyWord=${keyWord}&searchType=${searchType}">Previous</a>
     </li>
 	</c:if>
 	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
     		<li class="page-item">
-    			<a class="page-link" href="/controller/board/list${pageMaker.makeQuery(idx)}">${idx}</a>
+    			<a class="page-link" href="/controller/board/listSearch${pageMaker.makeQuery(idx)}&keyWord=${keyWord}&searchType=${searchType}">${idx}</a>
    			</li>
 	</c:forEach>
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li class="page-item"><a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.endPage + 1)}">Next</a></li>
+    	<li class="page-item"><a class="page-link" href="/controller/board/listSearch${pageMaker.makeQuery(pageMaker.endPage + 1)}&keyWord=${keyWord}&searchType=${searchType}">Next</a></li>
 	</c:if>	
   </ul>
 </div>
 
 <div class="option">
 	<form align="right" action="listSearch" method="get">
+		<input type="button" onclick="location.href='list'" value="전체목록" />
 		<select name="searchType">
 			<option value="1">글쓴이</option>
 			<option value="2">제목</option>
@@ -84,30 +85,7 @@
 <div>
 <input type="button" onclick="location.href='insert'" value="글쓰기" />
 </div>
-<!-- <div class="option">
-	<select name="searchType" id="searchType">
-		<option value="1">글쓴이</option>
-		<option value="2">제목</option>
-		<option value="3">제목/내용</option>
-	</select>
-	<input type="text" id="keyWord" name="keyWord" placeholder="검색어를 입력해주세요" required/>
-		<input type="button" value="검색" id="btnSearch" />
-		<input type="button" onclick="location.href='insert'" value="글쓰기" />
-</div> -->
 
-<!-- onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'" 
-	<input type="hidden" name="queryString" value="/controller/board/list${pageMaker.makeQuery(pageMaker.criteria.page)}"/>
- -->
-
-<!-- <script>
-$(document).ready(function() {
-	$('#btnSearch').click(function () {
-		var searchType = $('#searchType').val();
-		var keyWord = $('#keyWord').val();
-		location = encodeURI('/controller/board/list?searchType=' + searchType + '&keyWord=' + keyWord);
-	});
-});
-</script> -->
 
 
 </body>

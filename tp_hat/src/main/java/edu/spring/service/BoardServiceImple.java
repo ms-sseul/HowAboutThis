@@ -48,7 +48,19 @@ public class BoardServiceImple implements BoardService {
 	@Override
 	public Board selectOneBoard(int bno) {
 		logger.info("selectOneBoard() call");
+		boardDao.updateBoardReadCnt(bno);
 		return boardDao.readBoard(bno);
+	}
+	
+	@Override
+	public List<Board> searchByKeyword(int searchType, String keyword, Criteria criteria) {
+		return boardDao.searchByKeyword(searchType, keyword, criteria);
+	}
+	
+	@Override
+	public int countSelectedBoard(int searchType, String keyword, Criteria criteria) {
+		
+		return boardDao.countSelectedBoard(searchType, keyword, criteria);
 	}
 
 }

@@ -79,7 +79,25 @@
 			or 
 			lower(${board.content}) like lower(#{keyword})
 		</if>
-		ORDER BY ${board.bno} DESC	
+		ORDER BY ${board.bno} DESC
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 게시물 검색 사용자 / 제목 / 제목 및 내용 -->
+	<select id="searchByKeywordCount" resultType="int">
+		SELECT COUNT(${board.bno}) FROM ${tbl_board}
+		WHERE 
+		<if test="searchType == 1">
+			lower(${board.userId}) like lower(#{keyword})
+		</if>
+		<if test="searchType == 2">
+			lower(${board.title}) like lower(#{keyword})
+		</if>
+		<if test ="searchType == 3">
+			lower(${board.title}) like lower(#{keyword})
+			or 
+			lower(${board.content}) like lower(#{keyword})
+		</if>
 	</select>
 	
 </mapper>

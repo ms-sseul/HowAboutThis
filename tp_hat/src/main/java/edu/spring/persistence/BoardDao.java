@@ -14,5 +14,6 @@ public interface BoardDao {
 	Board readBoard(int bno);
 	int updateBoardReadCnt(int bno);
 	int updateBoardReplyCnt(int bno, int increment);
-	List<Board> searchByKeyword(int searchType, String keyword);
+	int countSelectedBoard(int searchType, String keyword, Criteria criteria);
+	List<Board> searchByKeyword(int searchType, String keyword, Criteria criteria);
 }

@@ -12,4 +12,6 @@ public interface BoardService {
 	List<Board> selectAllBoard(Criteria criteria);
 	int countBoard(Criteria criteria);
 	Board selectOneBoard(int bno);
+	int countSelectedBoard(int searchType, String keyword, Criteria criteria);
+	List<Board> searchByKeyword(int searchType, String keyword, Criteria criteria);
 }
