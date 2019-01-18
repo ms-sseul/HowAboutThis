@@ -191,7 +191,7 @@ public class UserController {
 		int result = userService.pointUpdate(updateUser);
 		logger.info("resultUser = ({})", result);
 		
-		return "/user/profile";
+		return "redirect:/user/profile";
 	}
 
 } // end class UserController
