@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +28,10 @@
 <div class="carousel slide" data-ride="carousel">
 	<div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('dog.jpg');">
+          <div class="carousel-item active">
             <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+              <h3></h3>
+              <p></p>
             </div>
           </div>
      </div>
@@ -39,38 +41,39 @@
 <div class="container">
 
 	<!-- Title -->
-         <h1 class="mt-4">Post Title</h1>
+         <h1 class="mt-4">${projectModel.title}</h1>
          <!-- Author -->
          <p class="lead">
-            by
-          <a href="#">Start Bootstrap</a>
+            by 
+          <a href="#">${projectModel.userId}</a>
           </p>
           <hr>
           <!-- Date/Time -->
-          <p>Posted on January 1, 2018 at 12:00 PM</p>
+          <p>Posted on ${projectModel.regTime}</p>
           <hr>
  
    <div class="row">
       <!-- Post Content Column -->
       <div class="col-lg-8">
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          <img class="img-fluid rounded" src="${projectModel.image.image}" alt="">
      </div>
      <!-- Search Widget -->
          <div class="col-md-4">
           <div class="card my-4">
             <div class="card-body">
-            	<p>day</p>
+            	<p>D-${projectModel.restDay}</p>
             	<p class="progress">
-              	<em style="width: 810%"></em>
+            		<a class="progress-bar progress-bar-striped" aria-valuenow="40"
+								role="progressbar" aria-valuemin="0" aria-valuemax="100"
+								style="width:${projectModel.percent*100}%"></a>
               	</p>
-              	<p>남은 기간</p>
-              	<p>money</p>
-              	<p>서포터 인원</p>
+              	<p>펀딩 금액 : <fmt:formatNumber value="${projectModel.currentAmount}"></fmt:formatNumber>원</p>
+              	<p>목표 금액 : <fmt:formatNumber value="${projectModel.targetAmount}"></fmt:formatNumber>원</p>
              </div>
-             	<span>19세 이상 가능</span>
+             	<!-- <span>19세 이상 가능</span> -->
              <div class="btn-wrap funding">
-             	<button onclick="location.href='#rewards.jsp'">펀딩하기</button>
+             	<button class="btn btn-primary" onclick="location.href='/project/rewards'">펀딩하기</button>
              </div>
           </div>
          </div>
@@ -79,11 +82,12 @@
      <hr>   		
 		<div>
           <!-- Post Content -->
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+          <p class="lead"><!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
 		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-          <blockquote class="blockquote">
+		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>-->		
+		  ${projectModel.content}
+		  </p>
+          <!-- <blockquote class="blockquote">
             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             <footer class="blockquote-footer">Someone famous in
               <cite title="Source Title">Source Title</cite>
@@ -92,7 +96,7 @@
 
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p> -->
 	</div>
 
           <!-- Comments Form -->
@@ -154,8 +158,8 @@
 
           <div class="card my-4">
             <div class="card-body">
-            	<h3>창작자 소개</h3>
-            	<p>설명</p>
+            	<h3>${projectModel.userId}</h3>
+            	<!-- <p>설명</p> -->
              </div>
           </div>
          </div>
@@ -163,7 +167,6 @@
        </div> <!-- .row -->
 
 </div> <!-- .container -->
-    
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">

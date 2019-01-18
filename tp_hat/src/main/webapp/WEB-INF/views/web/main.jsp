@@ -40,7 +40,7 @@
 			<c:forEach items="${bannerImageList}" var="bannerImage" varStatus="b">
 				<c:if test="${b.count==1}">
 					<div class="carousel-item active"
-						onclick="location.href='project/description?pno='+${bannerImage.pno}"
+						onclick="location.href='description?pno='+${bannerImage.pno}"
 						style="background-image: url('${bannerImage.image}'); cursor: pointer;">
 						<div class="carousel-caption d-none d-md-block">
 							<h3>프로젝트 보러가기</h3>
@@ -48,6 +48,7 @@
 					</div>
 				</c:if>
 				<c:if test="${b.count>1}">
+					<!--  이미지 클릭 시 해당 프로젝트 번호 상세보기로 넘어가기 -->
 					<div class="carousel-item"
 						onclick="Location.href = 'project/description?pno='+${bannerImage.pno}"
 						style="background-image: url('${bannerImage.image}'); cursor: pointer;">
@@ -57,22 +58,6 @@
 					</div>
 				</c:if>
 			</c:forEach>
-			<%-- <!-- Slide Two - Set the background image for this slide in the line below -->
-			<div class="carousel-item"
-				style="background-image: url('${pageContext.request.contextPath}/resources/images/dummy2.jpg')">
-				<div class="carousel-caption d-none d-md-block">
-					<h3>Second Slide</h3>
-					<p>This is a description for the second slide.</p>
-				</div>
-			</div>
-			<!-- Slide Three - Set the background image for this slide in the line below -->
-			<div class="carousel-item"
-				style="background-image: url('${pageContext.request.contextPath}/resources/images/dummy3.jpg')">
-				<div class="carousel-caption d-none d-md-block">
-					<h3>Third Slide</h3>
-					<p>This is a description for the third slide.</p>
-				</div>
-			</div> --%>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators"
 			role="button" data-slide="prev"> <span
@@ -84,7 +69,7 @@
 			class="sr-only">Next</span>
 		</a>
 	</div>
-
+	<!--  TODO : 각 분야별 프로젝트 출력 창으로 넘어가기  -->
 	<div class="content-category">
 		<!-- onclick : tech.jsp 연결 -->
 		<button class="btn btn-primary" onclick="location.href='tech'">
@@ -121,7 +106,7 @@
 					<div class="card h-100">
 						<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
 						<div>
-							<a href=""><img class="card-img-top" style="height: 500px"
+							<a href="description?pno=${ctp.pno}"><img class="card-img-top" style="height: 500px"
 								src="${ctp.image.image}"></a>
 						</div>
 						<div class="card-body">
@@ -134,7 +119,7 @@
 							<a></a>
 						</div>
 						<div class="progress">
-							<a class="progress-bar progress-bar-striped active"
+							<a class="progress-bar progress-bar-striped" aria-valuenow="40"
 								role="progressbar" aria-valuemin="0" aria-valuemax="100"
 								style="width:${ctp.percent*100}%"></a>
 						</div>
@@ -152,53 +137,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			<%-- <div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy5.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div>
 
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy6.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div> --%>
 		</div>
 
 		<h3 style="padding: 10px;">인기순</h3>
@@ -208,7 +147,7 @@
 					<div class="card h-100">
 						<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
 						<div>
-							<a href=""><img class="card-img-top" style="height: 500px"
+							<a href="description?pno=${pp.pno}"><img class="card-img-top" style="height: 500px"
 								src="${pp.image.image}"></a>
 						</div>
 						<div class="card-body">
@@ -221,9 +160,9 @@
 							<a></a>
 						</div>
 						<div class="progress">
-							<a class="progress-bar progress-bar-striped active"
-								role="progressbar" aria-valuemin="0" aria-valuemax="100"
-								style="width:${pp.percent*100}%"></a>
+							<div class="progress-bar progress-bar-striped" 
+								role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+								style="width:${pp.percent*100}%"></div>
 						</div>
 						<div>
 							<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber></a>
@@ -239,77 +178,6 @@
 					</div>
 				</div>
 			</c:forEach>
-			<%-- <div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy7.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy8.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy9.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div> --%>
 		</div>
 
 		<h3 style="padding: 10px;">최신순</h3>
@@ -319,7 +187,7 @@
 					<div class="card h-100">
 						<!-- 해당 프로젝트 연결 / 아래 썸네일도 동일합니다 -->
 						<div>
-							<a href=""><img class="card-img-top" style="height: 500px"
+							<a href="description?pno=${lp.pno}"><img class="card-img-top" style="height: 500px"
 								src="${lp.image.image}"></a>
 						</div>
 						<div class="card-body">
@@ -332,7 +200,7 @@
 							<a></a>
 						</div>
 						<div class="progress">
-							<a class="progress-bar progress-bar-striped active"
+							<a class="progress-bar progress-bar-striped" aria-valuenow="40"
 								role="progressbar" aria-valuemin="0" aria-valuemax="100"
 								style="width:${lp.percent*100}%"></a>
 						</div>
@@ -350,83 +218,8 @@
 					</div>
 				</div>
 			</c:forEach>
-			<%-- <div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="/controller/resources/images/dummy10.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy11.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-6 portfolio-item">
-				<div class="card h-100">
-					<div>
-						<a href="#"><img class="card-img-top" style="height: 500px"
-							src="${pageContext.request.contextPath}/resources/images/dummy12.jpg"></a>
-					</div>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project One</a>
-						</h4>
-						<p class="card-text">Hello!</p>
-					</div>
-					<div>
-						<a>Now Progress</a>
-					</div>
-					<div class="progress">
-						<a class="progress-bar" style=""></a>
-					</div>
-					<div>
-						<a>%</a> <a>money</a> <a>day</a>
-					</div>
-				</div>
-			</div> --%>
 		</div>
-		<!-- 더보기 버튼 : 누르면 프로젝트 추가로 불러오는 기능 넣어주세요 -->
-		<div class="more-project" style="margin: 1em">
-			<button style="width: 100%; height: 30px;">더보기</button>
-		</div>
-
+	<!--  더보기 버튼 지웠어여  -->
 	</div>
 	<div class="footer">
 		<footer class="py-5 bg-info">

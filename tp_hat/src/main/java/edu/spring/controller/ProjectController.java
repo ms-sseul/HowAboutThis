@@ -25,35 +25,42 @@ import edu.spring.domain.ProjectModel;
 import edu.spring.service.ProjectService;
 
 @Controller
-@RequestMapping(value ="project")
+@RequestMapping(value = "project")
 public class ProjectController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
-	
-	@Autowired private ProjectService projectService;
-	
-	@RequestMapping(value = "/create" , method = RequestMethod.GET )
+	private static final String[] IMAGE_ARRAY = { "/controller/resources/images/dummy1.jpg",
+			"/controller/resources/images/dummy2.jpg", "/controller/resources/images/dummy3.jpg",
+			"/controller/resources/images/dummy4.jpg", "/controller/resources/images/dummy5.jpg",
+			"/controller/resources/images/dummy6.jpg", "/controller/resources/images/dummy7.jpg",
+			"/controller/resources/images/dummy8.jpg", "/controller/resources/images/dummy9.jpg",
+			"/controller/resources/images/dummy10.jpg", "/controller/resources/images/dummy11.jpg",
+			"/controller/resources/images/dummy12.jpg" };
+	@Autowired
+	private ProjectService projectService;
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String createProject() {
 		logger.info("createProject(GET) Call");
 		return "/project/create";
 	}
-	
-	@RequestMapping(value = "/create" , method = RequestMethod.POST)
-	public String createPostProject(String targetDate,Project project, MultipartFile[] uploadFiles, Present present, HttpServletRequest req) 
-			throws Exception{
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createPostProject(String targetDate, Project project, MultipartFile[] uploadFiles, Present present,
+			HttpServletRequest req) throws Exception {
 		List<Image> images = new ArrayList<>();
 		List<Present> presents = new ArrayList<>();
-		
-		logger.info("createProject(POST) Call");
-		
-		String[] dateArray = targetDate.split("-");
-		LocalDate ld = LocalDate.of(Integer.parseInt(dateArray[0]), Integer.parseInt(dateArray[1]), Integer.parseInt(dateArray[2]));
-		Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		logger.info("date = {} " , date.toString());
 
-		
-		project.setUserId((String)req.getSession().getAttribute("loginId"));
+		logger.info("createProject(POST) Call");
+
+		String[] dateArray = targetDate.split("-");
+		LocalDate ld = LocalDate.of(Integer.parseInt(dateArray[0]), Integer.parseInt(dateArray[1]),
+				Integer.parseInt(dateArray[2]));
+		Date date = Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		logger.info("date = {} ", date.toString());
+
+		project.setUserId((String) req.getSession().getAttribute("loginId"));
 		project.setTargetTime(date);
-		
+
 		presents.add(present);
 //		if(uploadFiles.length!=0) {
 //		for(MultipartFile m : uploadFiles) {
@@ -69,45 +76,43 @@ public class ProjectController {
 		projectService.insertProject(project, images, presents);
 		return "redirect:../web/main";
 	}
-	
-	@RequestMapping(value = "main" , method = RequestMethod.GET)
+
+	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String projectMain(Model model, HttpServletRequest req) {
 		// 메인 배너 이미지
 		List<Image> bannerImageList = new ArrayList<>();
-		bannerImageList.add(new Image(1, 1, "/controller/resources/images/dummy1.jpg"));
-		bannerImageList.add(new Image(2, 1, "/controller/resources/images/dummy2.jpg"));		
-		bannerImageList.add(new Image(3, 1, "/controller/resources/images/dummy3.jpg"));	
+		for (int i = 1; i < 4; i++) {
+			bannerImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		}
 		model.addAttribute("bannerImageList", bannerImageList);
-		
-		
+
 		List<ProjectModel> closingTimeProjectModels = new ArrayList<>();
-		// 마감임박순 
+		// 마감임박순
 		List<Project> closingTimeProject = projectService.selectClosingTimeProject();
 		List<Image> closingTimeImageList = new ArrayList<>();
-		closingTimeImageList.add(new Image(4, 1, "/controller/resources/images/dummy4.jpg"));
-		closingTimeImageList.add(new Image(5, 1, "/controller/resources/images/dummy5.jpg"));
-		closingTimeImageList.add(new Image(6, 1, "/controller/resources/images/dummy6.jpg"));
-		for(int i = 0 ; i <3 ; i++) {
+		for (int i = 4; i < 7; i++) {
+			closingTimeImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		}
+		for (int i = 0; i < 3; i++) {
 			closingTimeProjectModels.add(new ProjectModel(closingTimeImageList.get(i), closingTimeProject.get(i)));
 		}
-		logger.info(closingTimeProjectModels.get(0).getTitle());
-		logger.info(closingTimeProjectModels.get(1).getTitle());
-		logger.info(closingTimeProjectModels.get(2).getTitle());
-		model.addAttribute("closingTimeProjects", closingTimeProjectModels);
 		
+		model.addAttribute("closingTimeProjects", closingTimeProjectModels);
+
 		// 인기순
 		List<ProjectModel> popularProjectModels = new ArrayList<>();
 		List<Project> popularProject = projectService.selectPopularProject();
 		List<Image> popularImageList = new ArrayList<>();
-		popularImageList.add(new Image(7, 1, "/controller/resources/images/dummy7.jpg"));
-		popularImageList.add(new Image(8, 1, "/controller/resources/images/dummy8.jpg"));
-		popularImageList.add(new Image(9, 1, "/controller/resources/images/dummy9.jpg"));
-		for(int i = 0; i<3 ; i ++) {
+		for(int i = 7 ; i < 10; i++) {
+			popularImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		}
+		
+		for (int i = 0; i < 3; i++) {
 			popularProjectModels.add(new ProjectModel(popularImageList.get(i), popularProject.get(i)));
 		}
 		model.addAttribute("popularProjects", popularProjectModels);
-		
-		//최신순 프로젝트 
+
+		// 최신순 프로젝트
 		List<ProjectModel> lastestProjectModel = new ArrayList<>();
 		List<Project> lastestProject = projectService.selectLastestProject();
 		List<Image> lastestImageList = new ArrayList<>();
@@ -115,15 +120,38 @@ public class ProjectController {
 //			Image image = projectService.selectProjectImage(p.getPno());
 //			lastestImageList.add(image.getImage());
 //		}
+		for(int i = 10 ; i <13 ; i++) {
+			lastestImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+			
+		}
 
-		lastestImageList.add(new Image(10, 1, "/controller/resources/images/dummy10.jpg"));
-		lastestImageList.add(new Image(11, 1, "/controller/resources/images/dummy11.jpg"));
-		lastestImageList.add(new Image(12, 1, "/controller/resources/images/dummy12.jpg"));
-		for(int i = 0; i <3 ; i ++) {
-			lastestProjectModel.add(new ProjectModel(lastestImageList.get(i),lastestProject.get(i)));
+		for (int i = 0; i < 3; i++) {
+			lastestProjectModel.add(new ProjectModel(lastestImageList.get(i), lastestProject.get(i)));
 		}
 		model.addAttribute("lastestProjects", lastestProjectModel);
-		
+
 		return "/web/main";
 	}
+
+	@RequestMapping(value = "description", method = RequestMethod.GET)
+	public String detailProject(int pno, Model model) {
+		Project project = projectService.selectOneProject(pno);
+//		Image image = projectService.selectProjectImage(pno);
+		Image image = new Image(pno, 1, IMAGE_ARRAY[pno-1]);
+		ProjectModel projectModel = new ProjectModel(image, project);
+		logger.info("imagePath = {}" , image.getImage());
+		model.addAttribute("projectModel", projectModel);
+		return "web/description";
+	}
+	
+	
+	@RequestMapping(value = "" , method = RequestMethod.GET)
+	public String showProjectByCategory(int category, Model model) {
+		
+		List<Project> projects = projectService.selectProjectByCategory(category);
+		List<Image> images = new ArrayList<>();
+		return null;
+	}
+	
+	
 }

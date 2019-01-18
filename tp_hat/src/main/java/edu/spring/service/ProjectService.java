@@ -11,6 +11,7 @@ public interface ProjectService {
 	int insertProject(Project project, List<Image> images, List<Present> presents);
 	List<Project> selectAllProject();				// 전체 프로젝트 
 	List<Project> selectSearchProject(String keyword); // 검색어에 해당하는 프로젝트 출력
+	List<Project> selectProjectByCategory(int category);	// 카테고리 별 프로젝트 출력
 	List<Project> selectPopularProject();			// 인기순
 	List<Project> selectClosingTimeProject(); 		// 마감임박 순
 	List<Project> selectLastestProject(); 			// 최근 순

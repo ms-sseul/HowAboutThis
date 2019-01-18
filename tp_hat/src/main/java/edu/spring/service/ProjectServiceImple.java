@@ -114,6 +114,11 @@ public class ProjectServiceImple implements ProjectService {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Project> selectProjectByCategory(int category) {
+		return projectDao.selectProjectByCategory(category);
+	}
 	
 	
 
