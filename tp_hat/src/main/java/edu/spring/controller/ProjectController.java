@@ -28,13 +28,9 @@ import edu.spring.service.ProjectService;
 @RequestMapping(value = "project")
 public class ProjectController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
-	private static final String[] IMAGE_ARRAY = { "/controller/resources/images/project/pr1-1.jpg",
-			"/controller/resources/images/dummy2.jpg", "/controller/resources/images/dummy3.jpg",
-			"/controller/resources/images/dummy4.jpg", "/controller/resources/images/dummy5.jpg",
-			"/controller/resources/images/dummy6.jpg", "/controller/resources/images/dummy7.jpg",
-			"/controller/resources/images/dummy8.jpg", "/controller/resources/images/dummy9.jpg",
-			"/controller/resources/images/dummy10.jpg", "/controller/resources/images/dummy11.jpg",
-			"/controller/resources/images/dummy12.jpg" };
+	private static final String[] IMAGE_ARRAY = { "/controller/resources/images/banner/banner1.png",
+			"/controller/resources/images/banner/banner2.png", "/controller/resources/images/banner/banner3.png",
+			"/controller/resources/images/banner/banner4.png", "/controller/resources/images/banner/banner5.png"};
 	@Autowired
 	private ProjectService projectService;
 	@Autowired
@@ -84,8 +80,8 @@ public class ProjectController {
 	public String projectMain(Model model, HttpServletRequest req) {
 		// 메인 배너 이미지
 		List<Image> bannerImageList = new ArrayList<>();
-		for (int i = 1; i < 4; i++) {
-			bannerImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		for (int i = 0; i < 5; i++) {
+			bannerImageList.add(new Image(i+1, 1, IMAGE_ARRAY[i]));
 		}
 		model.addAttribute("bannerImageList", bannerImageList);
 
@@ -93,8 +89,8 @@ public class ProjectController {
 		// 마감임박순
 		List<Project> closingTimeProject = projectService.selectClosingTimeProject();
 		List<Image> closingTimeImageList = new ArrayList<>();
-		for (int i = 4; i < 7; i++) {
-			closingTimeImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		for(Project p : closingTimeProject) {
+			closingTimeImageList.add(projectService.selectProjectImage(p.getPno()));
 		}
 		for (int i = 0; i < 3; i++) {
 			closingTimeProjectModels.add(new ProjectModel(closingTimeImageList.get(i), closingTimeProject.get(i)));
@@ -106,8 +102,8 @@ public class ProjectController {
 		List<ProjectModel> popularProjectModels = new ArrayList<>();
 		List<Project> popularProject = projectService.selectPopularProject();
 		List<Image> popularImageList = new ArrayList<>();
-		for(int i = 7 ; i < 10; i++) {
-			popularImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		for(Project p : popularProject) {
+			popularImageList.add(projectService.selectProjectImage(p.getPno()));
 		}
 		
 		for (int i = 0; i < 3; i++) {
@@ -120,14 +116,10 @@ public class ProjectController {
 		List<Project> lastestProject = projectService.selectLastestProject();
 		List<Image> lastestImageList = new ArrayList<>();
 		// 실제 이미지 데이터 빼오는 코드 
-//		for(Project p :lastestProject) {
-//			Image image = projectService.selectProjectImage(p.getPno());
-//			lastestImageList.add(image.getImage());
-//		}
-		for(int i = 10 ; i <13 ; i++) {
-			lastestImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
-			
+		for(Project p :lastestProject) {
+			lastestImageList.add(projectService.selectProjectImage(p.getPno()));
 		}
+
 
 		for (int i = 0; i < 3; i++) {
 			lastestProjectModel.add(new ProjectModel(lastestImageList.get(i), lastestProject.get(i)));
@@ -142,9 +134,8 @@ public class ProjectController {
 	public String detailProject(int pno, Model model) {
 		Project project = projectService.selectOneProject(pno);
 //		List<Image> image = projectService.selectProjectImage(pno);
-		Image image = new Image(pno, 1, IMAGE_ARRAY[pno-1]);
+		Image image = projectService.selectProjectImage(pno);
 		ProjectModel projectModel = new ProjectModel(image, project);
-		logger.info("imagePath = {}" , image.getImage());
 		model.addAttribute("projectModel", projectModel);
 		return "web/description";
 	}
@@ -155,8 +146,8 @@ public class ProjectController {
 		List<Image> images = new ArrayList<>();
 		List<ProjectModel> projectModels = new ArrayList<>();
 		List<Image> bannerImageList = new ArrayList<>();
-		for (int i = 1; i < 4; i++) {
-			bannerImageList.add(new Image(i, 1, IMAGE_ARRAY[i-1]));
+		for (int i = 0; i < 5; i++) {
+			bannerImageList.add(new Image(i+1, 1, IMAGE_ARRAY[i]));
 		}
 		model.addAttribute("bannerImageList", bannerImageList);
 		model.addAttribute("option", "not null");
@@ -166,7 +157,7 @@ public class ProjectController {
 			projects = projectService.selectAllProject();
 		}
 		for(Project p : projects) {
-			images.add(new Image(p.getPno(), 1, IMAGE_ARRAY[p.getPno()-1]));
+			images.add(projectService.selectProjectImage(p.getPno()));
 		}
 		for(int i = 0; i < projects.size() ;i++) {
 			projectModels.add(new ProjectModel(images.get(i),projects.get(i)));

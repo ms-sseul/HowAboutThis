@@ -25,6 +25,8 @@
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<!-- 배너 이미지출력  -->
@@ -35,7 +37,6 @@
 							onclick="location.href='description?pno='+${bannerImage.pno}"
 							style="background-image: url('${bannerImage.image}'); cursor: pointer;">
 							<div class="carousel-caption d-none d-md-block">
-								<h3>프로젝트 보러가기</h3>
 							</div>
 						</div>
 					</c:if>
