@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.servlet.tags.ParamAware;
 
 import edu.spring.domain.User;
 import edu.spring.service.UserServiceImple;
@@ -95,6 +96,14 @@ public class UserDaoImple implements UserDao{
 	public int pointUpdate(User user) {
 		
 		return session.update(USER_MAPPERS + ".pointUpdate", user);
+	}
+
+	@Override
+	public int updateSupportPoint(String userId, int supportAmount) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("userId", userId);
+		params.put("supportAmount", supportAmount);
+		return session.update(USER_MAPPERS + ".updatesupprotPoint" , params);
 	}
 	
 }

@@ -1,7 +1,5 @@
 package edu.spring.controller;
 
-import java.io.File;
-import java.security.acl.LastOwnerException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -23,13 +21,14 @@ import edu.spring.domain.Image;
 import edu.spring.domain.Present;
 import edu.spring.domain.Project;
 import edu.spring.domain.ProjectModel;
+import edu.spring.persistence.UserDao;
 import edu.spring.service.ProjectService;
 
 @Controller
 @RequestMapping(value = "project")
 public class ProjectController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
-	private static final String[] IMAGE_ARRAY = { "/controller/resources/images/dummy1.jpg",
+	private static final String[] IMAGE_ARRAY = { "/controller/resources/images/project/pr1-1.jpg",
 			"/controller/resources/images/dummy2.jpg", "/controller/resources/images/dummy3.jpg",
 			"/controller/resources/images/dummy4.jpg", "/controller/resources/images/dummy5.jpg",
 			"/controller/resources/images/dummy6.jpg", "/controller/resources/images/dummy7.jpg",
@@ -38,6 +37,8 @@ public class ProjectController {
 			"/controller/resources/images/dummy12.jpg" };
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private UserDao userDao;
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createProject() {
@@ -197,4 +198,25 @@ public class ProjectController {
 		return "web/main";
 	}
 	
+	
+	@RequestMapping(value= "rewards" , method=RequestMethod.GET)
+	public String rewardProject(HttpServletRequest req, int pno, Model model) {
+		List<Present> rewards = projectService.selectProjectPresents(pno);
+		Project project = projectService.selectOneProject(pno);
+		String userId = (String)req.getSession().getAttribute("loginId");
+		
+		
+		model.addAttribute("userPoint", userDao.selectOne(userId).getPoint());
+		model.addAttribute("rewards", rewards);
+		model.addAttribute("projectTitle", project.getTitle());
+		
+		return "project/rewards";
+	}
+	
+	@RequestMapping(value = "rewards", method = RequestMethod.POST)
+	public String confirmSupportProject(int pno, int supportAmount, Model model) {
+		model.addAttribute("result", "result");
+		
+		return "web/main";
+	}
 }

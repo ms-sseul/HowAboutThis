@@ -47,6 +47,12 @@
 		WHERE ${user.userId} = #{userId}
 	</update>
 	
+	<update id="updatesupprotPoint">
+		UPDATE ${tbl_user}
+		SET ${user.point} = ${user.point} - #{supportAmount}
+		WHERE ${user.userId} = #{userId}
+	</update>
+	
 	<update id="certiUpdate">
 		UPDATE ${tbl_user}
 		SET ${user.certification} = 'y'

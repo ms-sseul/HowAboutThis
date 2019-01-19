@@ -14,6 +14,7 @@ import edu.spring.domain.Project;
 import edu.spring.persistence.ImageDao;
 import edu.spring.persistence.PresentDao;
 import edu.spring.persistence.ProjectDao;
+import edu.spring.persistence.UserDao;
 
 @Service
 public class ProjectServiceImple implements ProjectService {
@@ -21,6 +22,7 @@ public class ProjectServiceImple implements ProjectService {
 	@Autowired private ProjectDao projectDao;
 	@Autowired private ImageDao imageDao;
 	@Autowired private PresentDao presentDao;
+	@Autowired private UserDao userDao;
 	
 	@Override
 	public int insertProject(Project project, List<Image> images, List<Present> presents) {
@@ -119,6 +121,17 @@ public class ProjectServiceImple implements ProjectService {
 	public List<Project> selectProjectByCategory(int category) {
 		return projectDao.selectProjectByCategory(category);
 	}
+
+
+	@Override
+	public int updateProjectCurrentAmount(int pno, int supportAmount) {
+		int result = 0;
+		
+		
+		
+		return result;
+	}
+	
 	
 	
 

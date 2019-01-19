@@ -23,6 +23,8 @@ public interface ProjectService {
 	int updateProject(Project project);							// 해당 프로젝트 수정
 	int updatePresents(List<Present> presents);	// 해당 프로젝트의 리워드 수정
 	int updateImages(List<Image> images);		// 해당 프로젝트 이미지 수정
+	int updateProjectCurrentAmount(int pno, int supportAmount);  // 유저가 후원 금액만큼 프로젝트의 현재 모금 금액을 갱신
+	
 	
 	
 	

@@ -121,7 +121,7 @@
 											aria-valuemax="100" style="width:${ctp.percent*100}%"></a>
 									</div>
 									<div>
-										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber>원</a>
+										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${ctp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
 										<c:if test="${ctp.restDay<0}">
@@ -161,7 +161,7 @@
 											aria-valuemax="100" style="width:${pp.percent*100}%"></div>
 									</div>
 									<div>
-										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber>원</a>
+										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${pp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
 										<c:if test="${pp.restDay<0}">
@@ -200,7 +200,7 @@
 											aria-valuemax="100" style="width:${lp.percent*100}%"></a>
 									</div>
 									<div>
-										<a><fmt:formatNumber value="${lp.percent}" type="percent"></fmt:formatNumber>원</a>
+										<a><fmt:formatNumber value="${lp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${lp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
 										<c:if test="${lp.restDay<0}">
@@ -244,7 +244,7 @@
 										aria-valuemax="100" style="width:${pm.percent*100}%"></div>
 								</div>
 								<div>
-									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber>원</a>
+									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
 									<a><fmt:formatNumber value="${pm.currentAmount}"
 											groupingUsed="true"></fmt:formatNumber>원</a>
 									<c:if test="${pm.restDay<0}">

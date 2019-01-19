@@ -8,7 +8,8 @@ public interface ProjectDao {
 	int createProject(Project project); 						// 프로젝트 생성
 	int deleteProject(int pno);									// 프로젝트 제거
 	int updateProject(Project project);							// 프로젝트 갱신
-	int updateProjectReadCnt();									// 프로젝트 조회수 업데이트
+	int updateProjectCurrentAmount(int pno, int suppotyAmount);	// 프로젝트 모금금액 업데이트
+	int updateProjectReadCnt();									// 프로젝트 조회수 증가 
 	List<Project> selectAllProject();							// 모든 프로젝트 출력
 	List<Project> selectProjectByCategory(int category);		// 카테고리별 프로젝트 출력
 	List<Project> selectProjectByPopularity();					// 인기순 프로젝트 출력
