@@ -66,26 +66,6 @@ public class BoardController {
 		
 	}
 	
-	/*@RequestMapping(value = "list", method = RequestMethod.POST)
-	public void listPost(int searchType, String keyWord, Model model, Criteria criteria, String queryString) {
-		logger.info("listPost() 호출");
-		logger.info("searchType = ({})", searchType);
-		logger.info("keyWord = ({})", keyWord);
-		logger.info("queryString = ({})", queryString);
-		
-		
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(boardService.countSelectedBoard(searchType, keyWord));
-		List<Board> boardlist = boardService.searchByKeyword(searchType, keyWord, criteria); 
-		logger.info("boardList = ({})", boardlist);
-		
-		logger.info("pageMaker = ({})", pageMaker);
-		model.addAttribute("boardList", boardlist);
-		model.addAttribute("pageMaker", pageMaker);
-	}*/
-	
 	// 게시글 상세보기
 	@RequestMapping(value = "detail")
 	public void detail(@RequestParam int bno, Model model, @ModelAttribute Criteria criteria) {
@@ -93,6 +73,16 @@ public class BoardController {
 		Board board = boardService.selectOneBoard(bno);
 		model.addAttribute("board", board);
 	}
+	
+	@RequestMapping(value = "detailSearch")
+	public void detailSearch(@RequestParam int bno, Model model, @ModelAttribute Criteria criteria, Integer searchType, String keyWord) {
+		logger.info("detail(bno={}) 호출", bno);
+		Board board = boardService.selectOneBoard(bno);
+		model.addAttribute("board", board);
+		model.addAttribute("keyWord", keyWord);
+		model.addAttribute("searchType", searchType);
+	}
+	
 	
 	// 게시글 쓰기
 	@RequestMapping(value = "insert", method = RequestMethod.GET)
