@@ -7,3 +7,14 @@ textarea {
 input:focus {
   outline: none;
 }
+
+.btn {
+  background-color: #f3969a;
+  color: #ffffff;
+}
+
+
+.page-link {
+  background-color: #78c2ad;
+  color: #ffffff;
+}

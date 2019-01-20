@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/css/board.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -16,25 +17,31 @@
 <body>
 
 <jsp:include page="../web/header.jsp" />
-<div class="inserthead" style="margin:3em;">작성하기</div>
+<div class="container col-lg-10 col-sm-8">
 
-<div class="insertBoard" align="center">
-	<form action="insert" method="post" id="form">
-	<table width="700px">
-		<tr><td>
-			<input type="text" id="title" name="title" style="width:100%" placeholder="제목" autofocus required/>
-		</td></tr>
-		<tr><td>
-			<textarea name="content" id="contents" rows="10" cols="100" required></textarea>
-			<input type="text" id="userId" name="userId" placeholder="${loginId}" value="${loginId}" readonly>
-		</td></tr>
-		<tr><td align="right">
-			<br/>
-			<button type="submit" class="btn" id="btnResult" style="width:10%">작성</button>
-			<button type="button" class="btn" onclick="location.href='list'" id = "btnCancel" style="width:10%">취소</button>
-		</td></tr>
-	</table>
-	</form>	
+	<div class="table-responsive-lg" style="margin: 5em;">		
+		<form class="form-group" action="insert" method="post" id="form">
+			<table class="table" text-align="center">
+				<tr>
+					<td>
+					<input type="text" id="title" name="title" placeholder="제목을 입력하세요" class="form-control" required>
+					<input type="hidden" id="userId" name="userId" value="${loginId}" class="form-control" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<textarea class="form-control" name="content" id="contents" rows="10" cols="100" required></textarea>
+				</tr>
+				<tr>
+					<td align="right">
+						<button type="submit" class="btn " id="btnResult" style="margin-right: 0.5em;">작성</button>
+						<button type="button" class="btn float-right" onclick="location.href='list'" id="btnCancel">취소</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+
+	</div>
 </div>
 
 <script>
