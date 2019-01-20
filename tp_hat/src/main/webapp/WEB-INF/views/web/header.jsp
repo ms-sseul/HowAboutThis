@@ -4,13 +4,52 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/css/header.css">
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Noto+Sans+KR:300" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<style>
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.navbar {
+  background-color: #78c2ad;
+  font-family: 'Black Han Sans', sans-serif;
+}
+.navbar .navbar-brand {
+  color: #ffffff;
+  font-size: x-large;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus,
+.nav-item {
+  color: #ffffff;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #ffffff;
+  border-radius: .25rem;
+  margin: 0 0.25em;
+}
+
+.btn {
+  background-color: #f3969a;
+  color: #ffffff;
+}
+
+</style>
+
 </head>
 <body>
 
 <!-- 상단메뉴바(고정) -->
-<div class="topnav" id="myTopnav">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-info fixed-top">
+<div class="topnav">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="myTopnav">
       <a class="navbar-brand" href="/controller">여기어때</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
       	aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,27 +59,30 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto"> 
 		  <li class="nav-item active">
-            <a class="nav-link" href="/controller/project/main">프로젝트 <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">프로젝트 <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/controller/project/create">프로젝트 만들기</a>
+            <a class="nav-link" href="#">프로젝트 만들기</a>
           </li>
           <li class="nav-item dropdown">
-			<a class="nav-link" href="/controller/board/list">커뮤니티</a>
+			<a class="nav-link" href="#">커뮤니티</a>
 		  </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">검색</a>
+            <form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em">
+		      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+		      <button class="btn my-2 my-sm-0" type="submit">Search</button>
+		    </form>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"> 
           <c:if test="${empty loginId}">
             <!-- <a class="nav-link" href="/controller/user/login">로그인</a> -->
-            <button type="button" id="btn-login">로그인</button>
+            <button class="btn my-2 my-sm-0" type="button" id="btn-login">로그인</button>
           </c:if>
           <c:if test="${not empty loginId}">
-          	<a href="/controller/user/profile">${loginId}</a>님, 안녕하세요!
-			<button id="btn-logout">로그아웃</button>
+          	<a href="/controller/user/profile" style="text-decoration:none;">${loginId}</a>님, 안녕하세요!
+			<button class="btn my-2 my-sm-0" id="btn-logout">로그아웃</button>
           </c:if>
           </li>
         </ul>

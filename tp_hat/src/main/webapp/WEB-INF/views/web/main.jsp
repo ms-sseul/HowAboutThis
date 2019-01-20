@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../resources/css/main.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&amp;subset=korean" rel="stylesheet">
 
 <title>MAIN</title>
 </head>
@@ -46,7 +47,6 @@
 							onclick="Location.href = 'project/description?pno='+${bannerImage.pno}"
 							style="background-image: url('${bannerImage.image}'); cursor: pointer;">
 							<div class="carousel-caption d-none d-md-block">
-								<h3>프로젝트 보러가기</h3>
 							</div>
 						</div>
 					</c:if>
@@ -65,33 +65,38 @@
 
 		<!--  TODO : 각 분야별 프로젝트 출력 창으로 넘어가기  -->
 		<div class="content-category">
+			<!-- 전체보기 -->
+			<button class="btn"
+				onclick="location.href='theme?category=1'">
+				전체 <span class="badge badge-light"></span>
+			</button>
 			<!-- onclick : tech.jsp 연결 -->
-			<button class="btn btn-primary"
+			<button class="btn"
 				onclick="location.href='theme?category=1'">
 				테크 & 가전 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : fasion.jsp 연결 -->
-			<button class="btn btn-primary"
+			<button class="btn"
 				onclick="location.href='theme?category=2'">
 				패션 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : design.jsp 연결 -->
-			<button class="btn btn-primary"
+			<button class="btn"
 				onclick="location.href='theme?category=3'">
 				디자인 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : animal.jsp 연결 -->
-			<button class="btn btn-primary"
+			<button class="btn"
 				onclick="location.href='theme?category=4'">
 				반려동물 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : hobby.jsp 연결 -->
-			<button class="btn btn-primary"
+			<button class="btn"
 				onclick="location.href='theme?category=5'">
 				취미 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : social.jsp 연결 -->
-			<button class="btn btn-primary"
+			<button class="btn"
 				onclick="location.href='theme?category=6'">
 				소셜 <span class="badge badge-light"></span>
 			</button>
@@ -117,11 +122,11 @@
 										</h4>
 									</div>
 									<div class="progress">
-										<a class="progress-bar progress-bar-striped"
+										<a class="progress-bar progress-bar-striped progress-bar-animated"
 											aria-valuenow="40" role="progressbar" aria-valuemin="0"
-											aria-valuemax="100" style="width:${ctp.percent*100}%"></a>
+											aria-valuemax="100" style="width:${ctp.percent*100}%;"></a>
 									</div>
-									<div>
+									<div >
 										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${ctp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
@@ -157,9 +162,9 @@
 										<a></a>
 									</div>
 									<div class="progress">
-										<div class="progress-bar progress-bar-striped"
+										<a class="progress-bar progress-bar-striped progress-bar-animated"
 											role="progressbar" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100" style="width:${pp.percent*100}%"></div>
+											aria-valuemax="100" style="width:${pp.percent*100}%"></a>
 									</div>
 									<div>
 										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber></a>
@@ -196,7 +201,7 @@
 										<a></a>
 									</div>
 									<div class="progress">
-										<a class="progress-bar progress-bar-striped"
+										<a class="progress-bar progress-bar-striped progress-bar-animated" 
 											aria-valuenow="40" role="progressbar" aria-valuemin="0"
 											aria-valuemax="100" style="width:${lp.percent*100}%"></a>
 									</div>
@@ -240,9 +245,9 @@
 									<a></a>
 								</div>
 								<div class="progress">
-									<div class="progress-bar progress-bar-striped"
+									<a class="progress-bar progress-bar-striped progress-bar-animated"
 										role="progressbar" aria-valuenow="40" aria-valuemin="0"
-										aria-valuemax="100" style="width:${pm.percent*100}%"></div>
+										aria-valuemax="100" style="width:${pm.percent*100}%"></a>
 								</div>
 								<div>
 									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
