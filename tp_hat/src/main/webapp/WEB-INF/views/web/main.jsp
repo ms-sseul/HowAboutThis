@@ -19,9 +19,8 @@
 <body>
 
 	<jsp:include page="header.jsp"></jsp:include>
-	<div style="margin: 0 0.5em 0.5em 0.5em">
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
+	<div style="margin: 0 0.5em 0.5em 0">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -64,20 +63,22 @@
 		</div>
 
 		<!--  TODO : 각 분야별 프로젝트 출력 창으로 넘어가기  -->
-		<div class="content-category">
+		<div class="content-category" style="transform: translateY(0px);">
 			<!-- 전체보기 -->
-			<button class="btn"
-				onclick="location.href='theme?category=1'">
-				전체 <span class="badge badge-light"></span>
-			</button>
+			<div>
+				<!-- 수정예정 
+				<a href="" onclick="location.href='theme?category=1'" style="display: inline-block;">
+					<img src="../resources/images/category/category-all.jpeg" style="width:60px;height:60px;border:0;">
+	 					전체보기
+				</a>
+				-->
 			<!-- onclick : tech.jsp 연결 -->
-			<button class="btn"
+			<button class=btn
 				onclick="location.href='theme?category=1'">
 				테크 & 가전 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : fasion.jsp 연결 -->
-			<button class="btn"
-				onclick="location.href='theme?category=2'">
+			<button class="btn" onclick="location.href='theme?category=2'">
 				패션 <span class="badge badge-light"></span>
 			</button>
 			<!-- onclick : design.jsp 연결 -->
@@ -101,7 +102,9 @@
 				소셜 <span class="badge badge-light"></span>
 			</button>
 		</div>
-
+	</div>
+	
+	
 		<div>
 			<div class="container">
 				<c:if test="${empty option}">
@@ -121,12 +124,12 @@
 											<a href="description?pno=${ctp.pno}">${ctp.title}</a>
 										</h4>
 									</div>
-									<div class="progress">
+									<div class="progress" style="margin:0 0.5em 0.5em 0.5em;">
 										<a class="progress-bar progress-bar-striped progress-bar-animated"
 											aria-valuenow="40" role="progressbar" aria-valuemin="0"
-											aria-valuemax="100" style="width:${ctp.percent*100}%;"></a>
+											aria-valuemax="100" style="width:${ctp.percent*100}%; background-color:#78c2ad;"></a>
 									</div>
-									<div >
+									<div style="margin:0 0.5em 0.5em 0.5em;">
 										<a><fmt:formatNumber value="${ctp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${ctp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
@@ -161,12 +164,12 @@
 									<div>
 										<a></a>
 									</div>
-									<div class="progress">
+									<div class="progress" style="margin:0 0.5em 0.5em 0.5em;">
 										<a class="progress-bar progress-bar-striped progress-bar-animated"
-											role="progressbar" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100" style="width:${pp.percent*100}%"></a>
+											aria-valuenow="40" role="progressbar" aria-valuemin="0"
+											aria-valuemax="100" style="width:${pp.percent*100}%; background-color:#78c2ad;"></a>
 									</div>
-									<div>
+									<div style="margin:0 0.5em 0.5em 0.5em;">
 										<a><fmt:formatNumber value="${pp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${pp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
@@ -200,12 +203,12 @@
 									<div>
 										<a></a>
 									</div>
-									<div class="progress">
-										<a class="progress-bar progress-bar-striped progress-bar-animated" 
+									<div class="progress" style="margin:0 0.5em 0.5em 0.5em;">
+										<a class="progress-bar progress-bar-striped progress-bar-animated"
 											aria-valuenow="40" role="progressbar" aria-valuemin="0"
-											aria-valuemax="100" style="width:${lp.percent*100}%"></a>
+											aria-valuemax="100" style="width:${lp.percent*100}%; background-color:#78c2ad;"></a>
 									</div>
-									<div>
+									<div style="margin:0 0.5em 0.5em 0.5em;">
 										<a><fmt:formatNumber value="${lp.percent}" type="percent"></fmt:formatNumber></a>
 										<a><fmt:formatNumber value="${lp.currentAmount}"
 												groupingUsed="true"></fmt:formatNumber>원</a>
@@ -244,12 +247,12 @@
 								<div>
 									<a></a>
 								</div>
-								<div class="progress">
+								<div class="progress" style="margin:0 0.5em 0.5em 0.5em;">
 									<a class="progress-bar progress-bar-striped progress-bar-animated"
-										role="progressbar" aria-valuenow="40" aria-valuemin="0"
-										aria-valuemax="100" style="width:${pm.percent*100}%"></a>
+										aria-valuenow="40" role="progressbar" aria-valuemin="0"
+										aria-valuemax="100" style="width:${pm.percent*100}%; background-color:#78c2ad;"></a>
 								</div>
-								<div>
+								<div style="margin:0 0.5em 0.5em 0.5em;">
 									<a><fmt:formatNumber value="${pm.percent}" type="percent"></fmt:formatNumber></a>
 									<a><fmt:formatNumber value="${pm.currentAmount}"
 											groupingUsed="true"></fmt:formatNumber>원</a>
@@ -268,9 +271,9 @@
 		</div>
 	</div>
 	<div class="footer">
-		<footer class="py-5 bg-info">
+		<footer class="py-3" style="background:#78c2ad;">
 			<div class="container">
-				<p class="m-0 text-center text-white">Footer</p>
+				<p class="m-0 text-center text-white">Copyrightⓒ2019 유니세프 All rights reserved.</p>
 			</div>
 		</footer>
 	</div>

@@ -58,14 +58,14 @@ body {
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto"> 
-		  <li class="nav-item active">
-            <a class="nav-link" href="#">프로젝트 <span class="sr-only">(current)</span></a>
+		  <li class="nav-item">
+            <a class="nav-link" href="/controller/project/main">프로젝트</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">프로젝트 만들기</a>
+            <a class="nav-link" href="/controller/project/create">프로젝트 만들기</a>
           </li>
           <li class="nav-item dropdown">
-			<a class="nav-link" href="#">커뮤니티</a>
+			<a class="nav-link" href="/controller/board/list">커뮤니티</a>
 		  </li>
         </ul>
         <ul class="navbar-nav">
