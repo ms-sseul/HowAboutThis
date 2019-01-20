@@ -81,7 +81,6 @@ $(document).ready(function () {
 					alert("사용가능한 아이디 입니다.");
 					checkId = true;
 					check(checkId, checkPwd, checkPhone);
-					
 				}
 			}
 		});

@@ -46,8 +46,24 @@
 					    <div id="register-link" class="text-right">
 							<a href="/controller/user/register" class="text-info">회원가입</a>
 						</div>
+						<div id="find-password" class="text-left">
+							<button type="button" id="findPwd">비밀번호 찾기</button>
+						</div>
 					</form>
 </div></div></div></div>
 </div>
+
+<script>
+$(document).ready(function() {
+	$('#findPwd').click(function() {
+		var result = confirm('비밀번호 찾기를 시작하시겠습니까??');
+		if(result) {
+			location = "find-password";
+		}
+	});
+});
+</script>
+
+
 </body>
 </html>

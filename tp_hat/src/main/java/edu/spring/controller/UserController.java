@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.UsesSunHttpServer;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.spring.domain.User;
 import edu.spring.service.UserService;
+import edu.spring.util.MailHandler;
 
 @Controller
 @RequestMapping(value = "user")
@@ -35,6 +37,8 @@ public class UserController {
 	private final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired UserService userService;
+	
+	@Autowired JavaMailSender mailsender;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login(Model model, String url) {
@@ -68,7 +72,6 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		rttr.addFlashAttribute("msg", "가입시 사용가능한 이메일로 인증해 주세요");
 		logger.info("user = ({})", result);
 		
 		return "redirect:/";
@@ -192,6 +195,51 @@ public class UserController {
 		logger.info("resultUser = ({})", result);
 		
 		return "redirect:/user/profile";
+	}
+	
+	@RequestMapping(value = "find-password", method = RequestMethod.GET)
+	public void findPwd() {
+		logger.info("findPwd() 호출");
+	}
+	
+	@RequestMapping(value = "find-password", method = RequestMethod.POST)
+	public String findPwdPost(User user, Model model) {
+		logger.info("findPwdPost() 호출");
+		
+		String id = user.getUserId();
+		String email = user.getUserEmail();
+		
+		logger.info("id = ({})", id);
+		logger.info("email = ({})", email);
+		
+		
+		MailHandler sendMail;
+		try {
+			sendMail = new MailHandler(mailsender);
+			sendMail.setSubject("이거어때 서비스 비밀번호 찾기 인증이메일!");
+			sendMail.setText(new StringBuffer().append("<h1>메일 인증</h1>")
+					.append("<a href='https://localhost:8443/controller/user/pwd-emailConfirm?userId=").append(user.getUserId())
+					.append("' target='_blenk'>이메일 인증 확인</a>").toString());
+			sendMail.setFrom("myulchi0522@gmail.com", "김상현");
+			sendMail.setTo(user.getUserEmail());
+			sendMail.send();
+			model.addAttribute("user_Id", id);
+			model.addAttribute("user_email", email);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("find-password() 에러발생");
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "pwd-emailConfirm", method = RequestMethod.GET)
+	public String pweEmailConfirm(User user, Model model, RedirectAttributes rttr) {
+		String userId = user.getUserId();
+		logger.info("userId = ({})", userId);
+		
+		model.addAttribute("user_Id", user.getUserId());
+		
+		return "/user/pwd-emailConfirm";
 	}
 
 } // end class UserController
