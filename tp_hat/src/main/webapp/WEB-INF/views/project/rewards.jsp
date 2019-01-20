@@ -36,7 +36,7 @@
 							<li>
 								<dl class="reward-box  active" data-rid="64103">
 									<dt>
-										<label class="checkbox"> <input type="checkbox">
+										<label class="checkbox"> <input id = "rewarCheck" type="checkbox">
 										</label>
 									</dt>
 									<dd>
@@ -47,9 +47,7 @@
 											<div class="amount">
 												<p class="title">수량</p>
 												<p class="input-area">
-													<button type="button">-</button>
-													<input id = "count" type="number" value="0">
-													<button type="button" onclick="${count+1}">+</button>
+													<input id = "count" type="hidden" value="0">
 												</p>
 											</div>
 										</div>
@@ -75,6 +73,10 @@
 			$('#btnSupport').click(function() {
 				location();
 			});
+			$('#rewardCheck').click(function() {
+				$('#count').attr('type', 'number');
+			});
+			
 		});
 	</script>
 </body>

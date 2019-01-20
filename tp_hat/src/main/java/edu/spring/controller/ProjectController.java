@@ -135,7 +135,9 @@ public class ProjectController {
 		Project project = projectService.selectOneProject(pno);
 //		List<Image> image = projectService.selectProjectImage(pno);
 		Image image = projectService.selectProjectImage(pno);
+		List<Image> images = projectService.selectProjectImages(pno);
 		ProjectModel projectModel = new ProjectModel(image, project);
+		model.addAttribute("images", images);
 		model.addAttribute("projectModel", projectModel);
 		return "web/description";
 	}

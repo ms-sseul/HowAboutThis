@@ -49,7 +49,7 @@
           </p>
           <hr>
           <!-- Date/Time -->
-          <p>Posted on ${projectModel.regTime}</p>
+          <p>Posted on <fmt:formatDate value="${projectModel.regTime}" pattern="yy/MM/dd HH:mm:ss"></fmt:formatDate></p>
           <hr>
  
    <div class="row">
@@ -82,7 +82,13 @@
      <hr>   		
 		<div>
           <!-- Post Content -->
-          <p class="lead"><!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+          <c:forEach items = "${images}" var ="img" varStatus="status">
+          	<c:if test = "${status.index!=0}">
+   			<img class="img-fluid rounded" src="${img.image}" alt=""><br/>
+          	</c:if>
+          </c:forEach>
+          <p class="lead">
+          <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
 		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
 		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>-->		
 		  ${projectModel.content}
