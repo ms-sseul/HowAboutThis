@@ -223,6 +223,6 @@ public class ProjectController {
 		rttr.addFlashAttribute("result", "success");
 		
 		
-		return "redirect:../project/main";
+		return "redirect:../project/description?pno=" + pno;
 	}
 }

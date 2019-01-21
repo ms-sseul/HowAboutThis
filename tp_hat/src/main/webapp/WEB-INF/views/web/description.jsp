@@ -20,7 +20,14 @@
 </head>
 
 <body>
+<script>
+	$(document).ready(function() {
+		if('${result}'=='success'){
+			alert('후원을 성공했습니다.');
+		}
+	});
 
+</script>
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="container">

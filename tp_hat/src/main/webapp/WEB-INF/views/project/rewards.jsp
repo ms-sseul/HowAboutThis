@@ -78,6 +78,7 @@
 			var total;
 			var count;
 			var supportAmount = 0;
+			var templet = /^[0-9]+$/
 			division.on('change', '.rewards .rewardCheck', function() {
 				$(this).parent().nextAll('#count').toggle(); // 선택된 체크박스 안에 있는 input 토글
 					amount  = $(this).prevAll('#amount').val();
@@ -87,8 +88,14 @@
 					console.log('total: ' + total);
 
 					x.on('change', function() {
+						if(templet.test($(this).val())){
+						console.log('입력 범위 내에 있음 ');
 						supportAmount = calcTotal();
-						$('#supportAmount').val(supportAmount);
+						$('#supportAmount').val(supportAmount);						
+					} else {
+						console.log('입력 범위를 벗어남');
+						$(this).val(0);
+					}
 					});
 				} else {
 					supportAmount = calcTotal();
@@ -115,7 +122,8 @@
 					if(userPoint > supportAmount){
 						document.$('#supportForm').submit();
 					}else {
-						alert('포인트가 부족합니다.');
+						alert('포인트가 부족합니다. 포인트를 충전해 주세요.');
+						location();
 					}
 				} 
 			});	
