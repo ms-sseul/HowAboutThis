@@ -70,7 +70,7 @@
 	
 	<div class="option form-group">
 		<button class="btn float-left" onclick="location.href='insert'">글쓰기</button>
-		<form action="listSearch" method="get" class="form-inline float-right">			
+		<%-- <form action="listSearch" method="get" class="form-inline float-right">			
 			<select name="searchType" class="custom-select">
 				<option value="1">글쓴이</option>
 				<option value="2">제목</option>
@@ -80,9 +80,9 @@
 			 name="keyWord" style="margin-right: 0.5em; margin-left: 0.5em;" required>
 			<button class="btn" id="btnSearch" >검색</button>
 			<input type="hidden" name="queryString" value="/controller/board/list${pageMaker.makeQuery(pageMaker.criteria.page)}"/>
-		</form>
+		</form> --%>
 	</div>
-	<!-- <div class="option">
+	<div class="option">
 		<select name="searchType" id="searchType">
 			<option value="1">글쓴이</option>
 			<option value="2">제목</option>
@@ -91,21 +91,21 @@
 		<input type="text" id="keyWord" name="keyWord" placeholder="검색어를 입력해주세요" required/>
 			<input type="button" value="검색" id="btnSearch" />
 			<input type="button" onclick="location.href='insert'" value="글쓰기" />
-	</div> -->
+	</div>
 	
 	<!-- onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'" 
 		<input type="hidden" name="queryString" value="/controller/board/list${pageMaker.makeQuery(pageMaker.criteria.page)}"/>
 	 -->
 	
-	<!-- <script>
-	$(document).ready(function() {
-		$('#btnSearch').click(function () {
-			var searchType = $('#searchType').val();
-			var keyWord = $('#keyWord').val();
-			location = encodeURI('/controller/board/list?searchType=' + searchType + '&keyWord=' + keyWord);
-		});
+<script>
+$(document).ready(function() {
+	$('#btnSearch').click(function () {
+		var searchType = $('#searchType').val();
+		var keyWord = $('#keyWord').val();
+		location = encodeURI('/controller/board/listSearch?searchType=' + searchType + '&keyWord=' + keyWord);
 	});
-	</script> -->
+});
+</script>
 
 </div>
 </body>

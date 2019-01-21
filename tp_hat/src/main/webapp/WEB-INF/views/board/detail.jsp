@@ -88,10 +88,12 @@
 			</form>
 		</div>
 	</div>
-
+	
 	<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'">목록으로 돌아가기</button>
+	<c:if test="${board.userId==loginId}">
 	<button class="btn float-right" onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
 	<button class="btn float-right" onclick="location.href='/controller/board/delete?bno=${board.bno}'" style="margin-right: 0.5em;">삭제하기</button>
+	</c:if>
 </div>
 </div>
 

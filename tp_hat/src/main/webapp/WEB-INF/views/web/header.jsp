@@ -98,7 +98,9 @@ $(document).ready(function() {
 	});
 	
 	 $('#btn-login').click(function() {
-		location = encodeURI('/controller/user/login?url=' + location.href);
+		 console.log(encodeURI(location.href));
+		 console.log(encodeURIComponent(location.href));
+		location = '/controller/user/login?url=' + encodeURIComponent(location.href);
 	});
 
 });
