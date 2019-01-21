@@ -8,15 +8,19 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.spring.domain.User;
+import edu.spring.service.UserService;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 	private final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
-
+	
+	@Autowired UserService userService;
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -40,6 +44,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		Map<String, Object> model = mav.getModel();
 
 		User result = (User) model.get("loginResult");
+		
 		if (result != null) { // 로그인 성공
 			if (result.getCertification().equals("n")) { // 이메일 인증이 안되어 있는경우
 				

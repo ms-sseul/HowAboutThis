@@ -79,6 +79,8 @@ public class UserDaoImple implements UserDao{
 	@Override
 	public int passwordUpdate(User user) {
 		logger.info("passwordUpdate() 호출");
+		String encPwd = encode.encode(user.getUserPwd());
+		user.setUserPwd(encPwd);
 		
 		return session.update(USER_MAPPERS+".passwordUpdate", user);
 	}

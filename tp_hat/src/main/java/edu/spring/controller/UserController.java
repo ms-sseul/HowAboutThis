@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.UsesSunHttpServer;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +41,8 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	@Autowired JavaMailSender mailsender;
+	
+	@Autowired private BCryptPasswordEncoder encode;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void login(Model model, String url) {
@@ -122,6 +125,37 @@ public class UserController {
 		} else {
 			entity = new ResponseEntity<String>("fail", HttpStatus.OK);
 		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "pwdCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> pwdCheck(User user) {
+		
+		// 유저의 아이디 체크
+		User result  = userService.loginCheck(user);
+		logger.info("result({})", result);
+		
+		// 디비에 저장되어있는 유저의 비밀번호
+		String userPwd = result.getUserPwd();
+		logger.info("userPwd = ({})", userPwd);
+		
+		// 브라우저에서 전달받은 비밀번호
+		String requestPwd = user.getUserPwd();
+		logger.info("requestPwd = ({})", requestPwd);
+		
+		String encPwd = encode.encode(result.getUserPwd());
+		
+		ResponseEntity<String> entity = null;
+		if(encode.matches(requestPwd, userPwd)) {
+			logger.info("비밀번호 일치");
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+			logger.info("암호화된 비밀번호 = ({}): " + encPwd);
+		} else {
+			logger.info("비밀번호 불일치");
+			entity = new ResponseEntity<String>("fail", HttpStatus.OK);
+		}
+		
 		return entity;
 	}
 	
@@ -255,7 +289,7 @@ public class UserController {
 			sendMail = new MailHandler(mailsender);
 			sendMail.setSubject("이거어때 서비스 비밀번호 찾기 인증이메일!");
 			sendMail.setText(new StringBuffer().append("<h1>메일 인증</h1>")
-					.append("<h2>변경된 임시 비밀번호는 : " + newUser.getUserPwd() + " 입니다.</h2>")
+					.append("<h2>변경된 임시 비밀번호는 : " + key + " 입니다.</h2>")
 					.append("<a href='https://localhost:8443/controller/user/pwd-emailConfirm?userId=").append(user.getUserId())
 					.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 			sendMail.setFrom("myulchi0522@gmail.com", "김상현");
