@@ -67,7 +67,7 @@
 			<h3 class="card-header">[${board.bno}] ${board.title}</h3>
 			<div class="card-body">
 				<fmt:formatDate value="${board.regDate}" pattern="yyyy/MM/dd HH:mm:ss" var="regDate" />
-				<h5 class="card-title">작성자: ${board.userId}</h5>
+				<h5 class="card-title" style="margin-bottom: 0;">작성자: ${board.userId}</h5>
 			</div>
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">

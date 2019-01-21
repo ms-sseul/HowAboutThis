@@ -19,3 +19,9 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+.btn {
+  background-color: #f3969a;
+  outline: 0 none;
+  color: #ffffff;
+}
