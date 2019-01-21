@@ -73,7 +73,12 @@
 	           <div class="card-body btn-wrap funding">
 	           		<form action="rewards" method="get">
 	           			<input type="hidden" id = "inPno" name="pno" value="${projectModel.pno}"/>
-						<button type="submit" id= "btn" class="btn" style="width: 100%" value="펀딩하기"></button>
+	           			<c:if test = "${not empty loginId}">
+							<button type="submit" id= "btn" class="btn" style="width: 100%" >펀딩하기</button>
+	           			</c:if>
+	           			<c:if test="${empty loginId}">
+	           				<a>펀딩하기는 로그인이 필요합니다.</a>
+	           			</c:if>
 	           		</form> 
 	           </div>
 			</div>
@@ -168,13 +173,5 @@
 		</div>
 	</footer>
 </div>
-<script>
-$(document).ready(function() {
-	var pno = $('#inPno').val();
-	$('#btn').click(function() {
-		location = encodeURI('/controller/project/rewards?pno='+pno);
-	});
-});
-</script>
 </body>
 </html>
