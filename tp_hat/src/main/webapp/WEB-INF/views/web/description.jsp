@@ -71,7 +71,10 @@
 					결제는 "마감일자"에 다함께 진행됩니다. <br/>
 	           </div>
 	           <div class="card-body btn-wrap funding">
-					<button class="btn" onclick="location.href='rewards?pno='+${projectModel.pno}" style="width: 100%">펀딩하기</button>
+	           		<form action="rewards" method="get">
+	           			<input type="hidden" id = "inPno" name="pno" value="${projectModel.pno}"/>
+						<button type="submit" id= "btn" class="btn" style="width: 100%" value="펀딩하기"></button>
+	           		</form> 
 	           </div>
 			</div>
 		</div>
@@ -165,6 +168,13 @@
 		</div>
 	</footer>
 </div>
-
+<script>
+$(document).ready(function() {
+	var pno = $('#inPno').val();
+	$('#btn').click(function() {
+		location = encodeURI('/controller/project/rewards?pno='+pno);
+	});
+});
+</script>
 </body>
 </html>
