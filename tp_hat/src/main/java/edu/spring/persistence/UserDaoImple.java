@@ -77,6 +77,13 @@ public class UserDaoImple implements UserDao{
 	}
 	
 	@Override
+	public int passwordUpdate(User user) {
+		logger.info("passwordUpdate() 호출");
+		
+		return session.update(USER_MAPPERS+".passwordUpdate", user);
+	}
+	
+	@Override
 	public int certiUpdate(String userId) {
 		logger.info("UserDaoImple certiUpdate() 호출");
 		

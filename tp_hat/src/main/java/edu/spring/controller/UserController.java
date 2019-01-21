@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.spring.domain.User;
 import edu.spring.service.UserService;
 import edu.spring.util.MailHandler;
+import edu.spring.util.TempKey;
 
 @Controller
 @RequestMapping(value = "user")
@@ -124,6 +125,30 @@ public class UserController {
 		return entity;
 	}
 	
+	@RequestMapping(value = "emailcheck", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> emailCheck(User user) {
+		
+		User result  = userService.loginCheck(user);
+		
+		String userEmail = result.getUserEmail();
+		
+		String reponseEmail = user.getUserEmail();
+		logger.info("userEmail = ({})", userEmail);
+		logger.info("reponseEmail = ({})", reponseEmail);
+		
+		logger.info("result({})", result);
+
+		ResponseEntity<String> entity = null;
+		if (userEmail.equals(reponseEmail)) {
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<String>("fail", HttpStatus.OK);
+		}
+		return entity;
+	}
+	
+	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public void profile(User user, HttpSession session, Model model) {
 		// 후원한 페이지, 개인 보낸 쪽지, 개인정보 사항 select 해서 리스트로 출력해줘야함.
@@ -206,11 +231,23 @@ public class UserController {
 	public String findPwdPost(User user, Model model) {
 		logger.info("findPwdPost() 호출");
 		
-		String id = user.getUserId();
+		String userId = user.getUserId();
 		String email = user.getUserEmail();
 		
-		logger.info("id = ({})", id);
+		logger.info("id = ({})", userId);
 		logger.info("email = ({})", email);
+		
+		String key = new TempKey().getKey(10, false); // 인증키 생성
+		logger.info("key = ({})", key);
+		
+		// 비밀번호 변경 하고나서 메일발송
+		User newPwd = new User(userId, key, null, null, 0, null);
+		
+		int result = userService.passwordUpdate(newPwd);
+		logger.info("result = ({})", result);
+		
+		User newUser = userService.selectOne(userId);
+		logger.info("newUserPwd = ({})", newUser.getUserPwd());
 		
 		
 		MailHandler sendMail;
@@ -218,12 +255,13 @@ public class UserController {
 			sendMail = new MailHandler(mailsender);
 			sendMail.setSubject("이거어때 서비스 비밀번호 찾기 인증이메일!");
 			sendMail.setText(new StringBuffer().append("<h1>메일 인증</h1>")
+					.append("<h2>변경된 임시 비밀번호는 : " + newUser.getUserPwd() + " 입니다.</h2>")
 					.append("<a href='https://localhost:8443/controller/user/pwd-emailConfirm?userId=").append(user.getUserId())
 					.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 			sendMail.setFrom("myulchi0522@gmail.com", "김상현");
 			sendMail.setTo(user.getUserEmail());
 			sendMail.send();
-			model.addAttribute("user_Id", id);
+			model.addAttribute("user_Id", userId);
 			model.addAttribute("user_email", email);
 		} catch (Exception e) {
 			e.printStackTrace();

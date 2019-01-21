@@ -63,6 +63,13 @@ public class UserServiceImple implements UserService {
 
 		return userDao.update(user);
 	}
+	
+	@Override
+	public int passwordUpdate(User user) {
+		logger.info("userService passwordUpdate() 호출");
+		
+		return userDao.passwordUpdate(user);
+	}
 
 	@Override
 	public int delete(String userId) {

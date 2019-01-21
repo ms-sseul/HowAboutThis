@@ -99,10 +99,7 @@
 <script>
 $(document).ready(function () {
 	
-	
-	
 	var checkPwd = false;
-	var checkPhone = false;
 	var btnResult = $('#btnResult');
 	
 	btnResult.attr("disabled", "disabled");
@@ -117,40 +114,22 @@ $(document).ready(function () {
 			$('#pwdResult').css('color', 'red');
 			checkPwd = false;
 			btnResult.attr("disabled", "disabled");
-			check(checkPwd, checkPhone);
+			check(checkPwd);
 		} else {
 			checkPwd = true;
-			check(checkPwd, checkPhone);
+			check(checkPwd);
 		}
 		
 	});
 	
-	$('#phone').change(function() {
-		var userPhone = $('#phone').val();
-		var ph = /^010-[0-9]{4}-[0-9]{4}$/
-		var result = ph.test(userPhone);
-		console.log("phone = " + result);
-		if(result == false) {
-			$('#phoneResult').html('ex : 010-1111-1111 (-입력해주세요)');
-			$('#phoneResult').css('color', 'red');
-			checkPhone = false;
-			btnResult.attr("disabled", "disabled");
-			check(checkPwd, checkPhone);
-		} else {
-			checkPhone = true;
-			check(checkPwd, checkPhone);
-		}
-	});
-
-	function check(checkPwd, checkPhone){
-		console.log('pwd:' + checkPwd + ', phone:' + checkPhone);
-		if(checkPwd == true && checkPhone == true) {
-			console.log(checkPwd, checkPhone);
+	function check(checkPwd){
+		console.log('pwd:' + checkPwd);
+		if(checkPwd == true) {
+			console.log(checkPwd);
 			btnResult.prop('disabled', false);
-			//btnResult.disabled = false;
 		}
 	}
-	check(checkPwd, checkPhone);
+	check(checkPwd);
 	
 	btnResult.click(function() {
 		alert("회원 정보가 수정 되었습니다.");

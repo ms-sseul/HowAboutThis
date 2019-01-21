@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h1>emailConfirm 페이지</h1>
+<h1>password-emailConfirm 페이지</h1>
 <% 
 	request.getSession().removeAttribute("certyResult");
 %>

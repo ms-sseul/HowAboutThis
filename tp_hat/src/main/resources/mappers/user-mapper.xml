@@ -41,6 +41,12 @@
 		WHERE ${user.userId} = #{userId}	
 	</update>
 	
+	<update id="passwordUpdate">
+		UPDATE ${tbl_user}
+		SET ${user.userPwd} = #{userPwd}
+		WHERE ${user.userId} = #{userId}
+	</update>
+	
 	<update id="pointUpdate">
 		UPDATE ${tbl_user}
 		SET ${user.point} = #{point}

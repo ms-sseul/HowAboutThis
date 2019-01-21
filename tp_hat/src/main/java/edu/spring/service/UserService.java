@@ -16,6 +16,8 @@ public interface UserService {
 	
 	int update(User user);
 	
+	int passwordUpdate(User user);
+	
 	int delete(String userId);
 
 	int certiUpdate(String userId);
