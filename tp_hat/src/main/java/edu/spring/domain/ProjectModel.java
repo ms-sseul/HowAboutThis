@@ -1,9 +1,15 @@
 package edu.spring.domain;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ProjectModel extends Project {
+	private static final Logger logger = LoggerFactory.getLogger(ProjectModel.class);
 	private Image image;
 	private float percent;
 	private int restDay;
@@ -41,9 +47,12 @@ public class ProjectModel extends Project {
 				project.getFinished());
 		this.image = image;
 		this.percent = Float.parseFloat(String.format("%.2f", Float.parseFloat(String.valueOf(project.getCurrentAmount())) / project.getTargetAmount()));
-//		this.restDay = Period.between(LocalDate.now(), LocalDate.ofInstant(project.getTargetTime().toInstant(), ZoneId.systemDefault())).getDays();
-		this.restDay = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().
-				compareTo(project.getTargetTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+//		this.restDay = -Period.between(LocalDate.now(), LocalDate.ofInstant(project.getTargetTime().toInstant(), ZoneId.systemDefault())).getDays();
+		this.restDay = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfYear()-project.getTargetTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfYear();
+				
+				/*new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().
+				compareTo(project.getTargetTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());*/
+		logger.info("restDay = {}" ,restDay);
 	}
 	
 	public ProjectModel() {}

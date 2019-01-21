@@ -53,7 +53,12 @@
 			<div class="card my-4">
 				<div class="card-body">
 					<label>남은 시간</label>
-					<h3>D-${projectModel.restDay}</h3>
+					<c:if test= "${projectModel.restDay<0}">
+					<h3>D${projectModel.restDay}</h3>
+					</c:if>
+					<c:if test = "${projectModel.restDay==0}">
+					<h3>D-Day</h3>
+					</c:if>
 					<p class="progress">
 						<a class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="40" role="progressbar" 
 						aria-valuemin="0" aria-valuemax="100" style="width:${projectModel.percent*100}%; background-color:#78c2ad;"></a>
