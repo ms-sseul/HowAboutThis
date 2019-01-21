@@ -17,4 +17,5 @@ public interface ProjectDao {
 	Project selectLastProject();								// 가장 최근에 저장된 프로젝트
 	List<Project> selectLastestProject();						// 최근 생성된 프로젝트 3개
 	List<Project> selectClosingTimeProject();					// 마감순 프로젝트 
+	int updateFinishedProject();								// 목표시간이 지난 프로젝트 종요여부 갱신
 }

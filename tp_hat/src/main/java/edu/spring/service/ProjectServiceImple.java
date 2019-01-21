@@ -127,7 +127,7 @@ public class ProjectServiceImple implements ProjectService {
 	public int updateProjectCurrentAmount(int pno, int supportAmount) {
 		int result = 0;
 		
-		
+		projectDao.updateProjectCurrentAmount(pno, supportAmount);
 		
 		return result;
 	}

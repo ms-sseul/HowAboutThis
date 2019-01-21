@@ -24,12 +24,14 @@
 	<!-- Project pno 역순으로 출력 -->
 	<select id="selectAll" resultType="Project">
 		SELECT * FROM ${tbl_project}
+		WHERE ${project.finished} = 0
 		ORDER BY ${project.pno} DESC	
 	</select>
 	
 	<!-- Project 최근 작성 순 으로 출력 -->
 	<select id = "selectLastestProject" resultType="Project">
 		SELECT * FROM ${tbl_project}
+		WHERE ${project.finished} = 0
 		ORDER BY ${project.regTime} DESC
 		LIMIT 3
 	</select>
@@ -44,6 +46,7 @@
 	<select id = "selectByPopularity" resultType="Project">
 		SELECT *
 		FROM ${tbl_project}
+		WHERE ${project.finished} = 0
 		ORDER BY ${project.readCnt} + ${project.replyCnt} DESC
 		LIMIT 3
 	</select>
@@ -53,6 +56,7 @@
 		SELECT *
 		FROM ${tbl_project}
 		WHERE ${project.category} = #{category}
+		AND ${project.finished} = 0
 		ORDER BY ${project.pno} DESC
 	</select>
 	
@@ -75,7 +79,7 @@
 	<!-- project 조회수 업데이트 -->
 	<update id="updateProjectReadCnt">
 		UPDATE 	${tbl_project}
-		SET ${project.readCnt} = ${project.readCnt} + 1;
+		SET ${project.readCnt} = ${project.readCnt} + 1
 	</update>
 	
 	<!-- Project 제목, 내용, 목표금액 , 목표시간 변경 -->
@@ -92,6 +96,7 @@
 	<select id = "selectClosingTimeProject" resultType="Project">
 		SELECT * FROM ${tbl_project}
 		WHERE ${project.targetTime} - current_date() > 0
+		AND ${project.finished} = 0
 		ORDER BY ${project.targetTime} - current_date() 
 		LIMIT 3	
 	</select>
@@ -99,8 +104,15 @@
 	<!-- project 모금 금액 업데이트 -->
 	<update id="updateProjectCurrentAmount">
 		UPDATE 	${tbl_project}
-		SET ${project.currentAmount} = ${project.currentAmount} + #{supprotAmount};
-		WHERE ${project.pno} = #{pno};
+		SET ${project.currentAmount} = ${project.currentAmount} + #{supportAmount}
+		WHERE ${project.pno} = #{pno}
+	</update>
+	
+	<!-- 기간이 지난 프로젝트는 종료시킴 -->
+	<update id = "updateFinishedProject">
+		UPDATE ${tbl_project}
+		SET ${project.finished} = 1	
+		WHERE current_date() > ${project.targetTime}
 	</update>
 	
 </mapper>

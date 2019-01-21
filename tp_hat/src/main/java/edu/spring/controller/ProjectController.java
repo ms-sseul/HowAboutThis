@@ -16,11 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.sun.scenario.effect.impl.prism.PrImage;
 
 import edu.spring.domain.Image;
 import edu.spring.domain.Present;
 import edu.spring.domain.Project;
 import edu.spring.domain.ProjectModel;
+import edu.spring.persistence.ProjectDao;
 import edu.spring.persistence.UserDao;
 import edu.spring.service.ProjectService;
 
@@ -35,6 +39,7 @@ public class ProjectController {
 	private ProjectService projectService;
 	@Autowired
 	private UserDao userDao;
+	@Autowired private ProjectDao projectDao;
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createProject() {
@@ -78,10 +83,11 @@ public class ProjectController {
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String projectMain(Model model, HttpServletRequest req) {
+		projectDao.updateFinishedProject();
 		// 메인 배너 이미지
 		List<Image> bannerImageList = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
-			bannerImageList.add(new Image(i+1, 1, IMAGE_ARRAY[i]));
+			bannerImageList.add(new Image(3, 1, IMAGE_ARRAY[i]));
 		}
 		model.addAttribute("bannerImageList", bannerImageList);
 
@@ -202,14 +208,21 @@ public class ProjectController {
 		model.addAttribute("userPoint", userDao.selectOne(userId).getPoint());
 		model.addAttribute("rewards", rewards);
 		model.addAttribute("projectTitle", project.getTitle());
+		model.addAttribute("pno", pno);
 		
 		return "project/rewards";
 	}
 	
 	@RequestMapping(value = "rewards", method = RequestMethod.POST)
-	public String confirmSupportProject(int pno, int supportAmount, Model model) {
+	public String confirmSupportProject(int pno, int supportAmount, Model model, HttpServletRequest request, RedirectAttributes rttr) {
 		model.addAttribute("result", "result");
+		logger.info("pno = {}",pno);
+		logger.info("supportAmount = {}" , supportAmount);
+		projectService.updateProjectCurrentAmount(pno, supportAmount);
+		userDao.updateSupportPoint((String)request.getSession().getAttribute("loginId"), supportAmount);
+		rttr.addFlashAttribute("result", "success");
 		
-		return "web/main";
+		
+		return "redirect:../project/main";
 	}
 }
