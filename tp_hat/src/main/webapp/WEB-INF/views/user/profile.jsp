@@ -1,29 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/css/user.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>	
-<title>PROFILE</title>
+<title>마이페이지</title>
 </head>
 <body>
-	<jsp:include page="../web/header.jsp" />
-<!-- 프로필 상단 -->
+	
+<jsp:include page="../web/header.jsp" />
 
-<div class="profile" style="margin:10em;">
+<div class="container">
+	<div style="margin:6em 0 1em 0;">
 	<div class="profile-background">
-		<div>프로필 배경 이미지 </div>
-		<div>프로필 이미지 </div>
-		<div><h6>${userId}님</h6></div>	
-		<div><h6>${point}포인트 보유중</h6></div>
-		<a href="/controller/user/point-charge">포인트 충전</a>
+		<div>
+			<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+			<h1>안녕하세요,</h1><h3>${userId}님</h3>
+		</div>	
+		<div>
+			<h6>${point}포인트 보유중</h6>
+			<button type="button" class="btn" data-toggle="modal" data-target="#myModal">포인트 충전</button>
+		</div>
+		
+		<!-- The Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content" style="text-align: center;">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">포인트 충전</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div> 
+					<!-- Modal body -->
+					<div class="modal-body">
+						<h5><span>충전할 금액</span></h5>
+							<form action="point-charge" method="post">
+							<span><input type="text" class="form-control" id="userId" name="userId" placeholder="${userId}님" readonly></span><br/>
+							<span><input type="text" class="form-control" id="phone" name="phone" placeholder="${user_phone}" readonly></span><br/>
+							<span><input type="number" class="form-control" id="money" name="point" placeholder="금액을 입력해주세요" required></span><br/>
+							<span><button type="submit" class="btn" id="result">충전</button>
+							<button type="button" class="btn" data-dismiss="modal" style="background-color: #78c2ad;">취소</button></span> <br />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>	
 	</div>
-
+</div>
 </div>
 
 <!-- 프로필 하단 탭-->
@@ -32,16 +60,16 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">후원한 프로젝트</a>
+      <a class="nav-link show active" data-toggle="tab" href="#home">후원한 프로젝트</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">만든 프로젝트</a>
+      <a class="nav-link show " data-toggle="tab" href="#menu1">만든 프로젝트</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2" id="menuclick">쪽지함</a>
+      <a class="nav-link show " data-toggle="tab" href="#menu2" id="menuclick">쪽지함</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu3">개인정보</a>
+      <a class="nav-link show " data-toggle="tab" href="#menu3">개인정보</a>
     </li>
   </ul>
 
