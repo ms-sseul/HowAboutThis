@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-textarea {
-	border:none;
-}
-
 input:focus {
   outline: none;
 }

@@ -19,8 +19,8 @@
 <jsp:include page="../web/header.jsp" />
 <div class="container col-lg-10 col-sm-8">
 
-	<div class="table-responsive-lg" style="margin:4em;">
-		<!-- <table class="table" text-align="center">
+	 <div class="table-responsive-lg" style="margin:4em;">
+	<!--	<table class="table" text-align="center">
 			<thead>
 				<tr><td>
 					<div>					
@@ -61,39 +61,38 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>  -->
-
-		<div class="card mb-3">
-			<h3 class="card-header">[${board.bno}] ${board.title}</h3>
-			<div class="card-body">
-				<fmt:formatDate value="${board.regDate}" pattern="yyyy/MM/dd HH:mm:ss" var="regDate" />
-				<h5 class="card-title" style="margin-bottom: 0;">작성자: ${board.userId}</h5>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<div class="jumbotron" style="margin-bottom: 0">
-						<h6 class="text-muted" style="text-align:right">작성시간: ${regDate}</h6>
-					${board.content}
-					</div>
-				</li>
-				<li class="list-group-item">
-					<div id="replies">
-						<ul class="list-group"></ul>
-					</div>
-				</li>
-			</ul>
-			<div class="card-footer form-group" style="margin-bottom: 0;">
-				<form class="form-inline">
-					<input type="text" id="rtext" placeholder="댓글 내용 입력" class="form-control" style="margin-right: 0.5em;" required>
-					<button class="btn" id="createReply">댓글작성</button>
-				</form>
-			</div>
+		</table> -->
+	<div class="card mb-3">
+		<h3 class="card-header">[${board.bno}] ${board.title}</h3>
+		<div class="card-body">
+			<fmt:formatDate value="${board.regDate}" pattern="yyyy/MM/dd HH:mm:ss" var="regDate" />
+			<h5 class="card-title">작성자: ${board.userId}</h5>
 		</div>
-
-		<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'">목록으로 돌아가기</button>
-		<button class="btn float-right" onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
-		<button class="btn float-right" onclick="location.href='/controller/board/delete?bno=${board.bno}'" style="margin-right: 0.5em;">삭제하기</button>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				<div class="jumbotron" style="margin-bottom: 0">
+					<h6 class="text-muted" style="text-align:right">작성시간: ${regDate}</h6>
+				${board.content}
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div id="replies">
+					<ul class="list-group"></ul>
+				</div>
+			</li>
+		</ul>
+		<div class="card-footer form-group" style="margin-bottom: 0;">
+			<form class="form-inline" style="width: 100%">
+				<input type="text" id="rtext" placeholder="댓글 내용 입력" class="form-control" style="margin-right: 0.5em;" required>
+				<button class="btn" id="createReply">댓글작성</button>
+			</form>
+		</div>
 	</div>
+
+	<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'">목록으로 돌아가기</button>
+	<button class="btn float-right" onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
+	<button class="btn float-right" onclick="location.href='/controller/board/delete?bno=${board.bno}'" style="margin-right: 0.5em;">삭제하기</button>
+</div>
 </div>
 
 <input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />

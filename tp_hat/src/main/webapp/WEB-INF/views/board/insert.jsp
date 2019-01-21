@@ -6,19 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../resources/css/board.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../resources/css/board.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <title>게시글 입력하기</title>
 </head>
 <body>
 
 <jsp:include page="../web/header.jsp" />
 <div class="container col-lg-10 col-sm-8">
-
+	<fieldset>
 	<div class="table-responsive-lg" style="margin: 5em;">		
 		<form class="form-group" action="insert" method="post" id="form">
 			<table class="table" text-align="center">
@@ -30,7 +29,10 @@
 				</tr>
 				<tr>
 					<td>
-					<textarea class="form-control" name="content" id="contents" rows="10" cols="100" required></textarea>
+					<div class="form-group">
+					<textarea class="form-control" id="exampleTextarea" rows="20" name="content" id="content" 
+					placeholder="내용을 입력하세요" required>${board.content}</textarea>
+					</div>
 				</tr>
 				<tr>
 					<td align="right">
@@ -40,8 +42,8 @@
 				</tr>
 			</table>
 		</form>
-
 	</div>
+	</fieldset>
 </div>
 
 <script>
@@ -69,7 +71,6 @@ $(document).ready(function() {
 	}); */
 	
 });
-	// CKEDITOR.replace( 'content' );
 </script>
 
 </body>
