@@ -35,7 +35,7 @@
 	
 	<!-- 게시물 삭제 -->
 	<delete id="deleteBoard">
-		DELETE *
+		DELETE 
 		FROM ${tbl_board}
 		WHERE ${board.bno} = #{bno}
 	</delete>
@@ -61,6 +61,11 @@
 	<update id="updateBoardReplyCnt">
 		UPDATE ${tbl_board} 
 		SET ${board.replyCnt} = ${board.replyCnt} + #{increment}
+		WHERE ${board.bno} = #{bno}
+	</update>
+	<update id = "updateDecrementReadCnt">
+		UPDATE ${tbl_board}
+		SET ${board.readCnt} = ${board.readCnt} - 1
 		WHERE ${board.bno} = #{bno}
 	</update>
 	

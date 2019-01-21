@@ -48,7 +48,7 @@ public class BoardServiceImple implements BoardService {
 	@Override
 	public Board selectOneBoard(int bno) {
 		logger.info("selectOneBoard() call");
-		boardDao.updateBoardReadCnt(bno);
+		
 		return boardDao.readBoard(bno);
 	}
 	

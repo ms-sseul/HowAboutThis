@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.spring.domain.Board;
+import edu.spring.persistence.BoardDao;
 import edu.spring.controller.BoardController;
 import edu.spring.service.BoardService;
 import edu.spring.service.BoardServiceImple;
@@ -25,7 +26,7 @@ import edu.spring.util.PageMaker;
 public class BoardController {
 	private final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired private BoardService boardService;
-	
+	@Autowired private BoardDao boardDao;
 	// 게시판 list
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void list(Model model, Criteria criteria) {
@@ -70,6 +71,7 @@ public class BoardController {
 	@RequestMapping(value = "detail")
 	public void detail(@RequestParam int bno, Model model, @ModelAttribute Criteria criteria) {
 		logger.info("detail(bno={}) 호출", bno);
+		boardDao.updateBoardReadCnt(bno);
 		Board board = boardService.selectOneBoard(bno);
 		model.addAttribute("board", board);
 	}

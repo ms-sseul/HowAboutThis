@@ -91,8 +91,8 @@
 	
 	<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'">목록으로 돌아가기</button>
 	<c:if test="${board.userId==loginId}">
-	<button class="btn float-right" onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
-	<button class="btn float-right" onclick="location.href='/controller/board/delete?bno=${board.bno}'" style="margin-right: 0.5em;">삭제하기</button>
+	<button class="btn float-right" id = "btnBoardUpdate" onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
+	<button class="btn float-right" id = "btnBoardDelete" style="margin-right: 0.5em;">삭제하기</button>
 	</c:if>
 </div>
 </div>
@@ -237,6 +237,14 @@ $(document).ready(function(){
 		
 	});
 	
+	$('#btnBoardDelete').click(function() {
+		var result = confirm('게시글을 삭제할까요?');
+		if(result){
+			location = '/controller/board/delete?bno='+${board.bno};
+		} else {
+			
+		}
+	}); 
 	 	
 });	
 	

@@ -96,6 +96,11 @@ public class BoardDaoImple implements BoardDao {
 		params.put("criteria", criteria);
 		return session.selectOne(BOARD_MAPPER+ ".searchByKeywordCount", params);
 	}
+
+	@Override
+	public int updateDecrementReadCnt(int bno) {
+		return session.update(BOARD_MAPPER+".updateDecrementReadCnt");
+	}
 	
 	
 }
