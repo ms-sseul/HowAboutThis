@@ -14,6 +14,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <title>Project Create</title>
+
+<style>
+.row {
+	margin: 10px;
+}
+
+form {
+	border: 1px solid;
+}
+</style>
+
 </head>
 <body>
 
@@ -21,25 +32,44 @@
 
 <h1>프로젝트 만들기</h1>
 
-<form class="container" id = "projectForm" action="create" method="post">
+<form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" id = "projectForm" action="create" method="post">
 
-  <div>
-  	<div>
-  		<div>프로젝트 제목</div> 
-  		<div><input type="text" name = "title" required="required"/></div>
-  	<div>목표 금액</div> 
-  		<div><input type="number" name = "targetAmount" required="required"/>원</div>
-  	<div>대표 이미지</div> 
+  <div class="container">
+  	<div class="row">
+  		<div class="col-lg-4 col-sm-6">프로젝트 제목</div> 
+  		<div>
+  		 <input type="text" name = "title" required="required"/>
+  		</div>
+  	</div>
+  	<hr/>
+  	
+  	<div class="row">
+  	<div class="col-lg-4 col-sm-6">목표 금액</div> 
+  		<div>
+  		 <input type="number" name = "targetAmount" required="required"/> 
+  		 <span>원</span>
+  		</div>
+  	</div>
+  	<hr/>
+  	
+  	<div class="row">
+  	<div class="col-lg-4 col-sm-6">대표 이미지</div> 
   		<div>
 	  		<input name = "uploadFiles" type="file" multiple="multiple" formenctype="multipart/form-data" />
   		</div>
-  	<div>프로젝트 스토리</div>
+  	</div>
+  	<hr/>
+  	
+  	<div class="row">
+  	<div class="col-lg-4 col-sm-6">프로젝트 스토리</div>
   		<div>
   			<textarea name ="content" rows="5" cols="50"></textarea>
   		</div>
-  </div>
+    </div>
+    <hr/>
   
-  	<div>카테고리</div> 
+    <div class="row">
+  	<div class="col-lg-4 col-sm-6">카테고리</div> 
   		<div>
   			<select id = "stepSelect" name = "category" required="required">
   				<option>프로젝트 카테고리</option>
@@ -51,36 +81,45 @@
   				<option value="6">소셜</option>
   			</select>
   		</div>
-  		
-  	<div>
-  		<div>리워드 </div>
+  	</div>
+  	<hr/>
+	
+  	<div id="rew" class="row">
+  		<div class="col-lg-4 col-sm-6">리워드 </div>  		
   		<div id = "reward">
-  			<span>금액</span>
+  			<span class="col-lg-4 col-sm-6">금액</span>
   			<input type="number" name="amount"/> 원
-  			<span>단계</span>
-  			<select name = "step" required="required">
+  			<span class="col-lg-4 col-sm-6">단계</span>
+  			<select id="test" name = "step" required="required">
   				<option value="1">1</option>
-  				<option value="2">2</option>
-  				<option value="3">3</option>
-  				<option value="4">4</option>
-  				<option value="5">5</option>
   			</select>
-  			<br>
-  			<span>상세설명</span>
+  			<br/>
+  		<div>	
+  			<span class="col-lg-4 col-sm-6">상세설명</span>
   			<input type="text" name = "component" >
   		</div>
-  	</div>	
+  		<hr/>
+  		</div>
+  	</div>
+  	<div class="rewardList"></div>
+  		
   	<div id = "newReward"></div>
-  		<div>
+  		<div class="col-lg-4 col-sm-6">
 	  		<button id = "btnCreateNewReward">새 리워드 만들기</button>
 	  	</div>
-	  	
-  	<div>프로젝트 종료일</div> 
+	<hr/>
+	
+	<div class="row">  	
+  	<div class="col-lg-4 col-sm-6">프로젝트 종료일</div> 
   		<div><input id= "targetTime" type="date" name = "targetDate" placeholder="yyyy-MM-dd"/></div>
+  	</div>	
+  	<hr/>
+  </div>
+  
+  	<div class="row">
+  		<button style="margin: 5px;" id = "btnPrev">이전</button>
+  		<input class="save" style="margin: 5px;" type="submit" value="만들기"/>
   	</div>
-  	
-  		<button id = "btnPrev">이전</button>
-  		<input type="submit" value="만들기"/>
  
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
@@ -108,9 +147,18 @@ $(document).ready(function() {
 		self.location = "/controller/web/main";
 	});
 	$('#btnCreateNewReward').click(function() {
-		$('#newReward').append();
+		$('#rew').clone().appendTo(".rewardList");
+		
+		$('#test').empty();
+		
+		var i = 1;
+		while(i <= 5) {
+			i++;
+			$('<option value="' + i + '">' + i + '</option>').appendTo('#test');
+		}
 	});
 });
 </script>
+
 </body>
 </html>
