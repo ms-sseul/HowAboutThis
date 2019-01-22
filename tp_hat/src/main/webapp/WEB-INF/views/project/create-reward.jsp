@@ -30,14 +30,43 @@ form {
 <h1>리워드</h1>
 
 <form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" id = "projectForm" action="create" method="post">
-<div class="rewardList"></div>
-  	<div id="rew" class="row">
+  	
+  	<div id="rew1" class="row">
   		<div class="col-lg-4 col-sm-6">리워드 </div>  		
   		<div id = "reward">
   			<span class="col-lg-4 col-sm-6">금액</span>
   			<input type="number" name="amount"/> 원
-  			<input style="width: 30px; text-align: center;" 
-  				id="test" type="text" name="step" value="1" readonly/>단계
+  			<input style="width: 30px; text-align: center;" type="text" name="step" value="1" readonly/>단계
+  			<br/>
+  		<div>	
+  			<span class="col-lg-4 col-sm-6">상세설명</span>
+  			<input type="text" name = "component" >
+  		</div>
+  		<hr/>
+  		</div>
+  	</div>
+  	
+  	  	<div id="rew2" class="row">
+  		<div class="col-lg-4 col-sm-6">리워드 </div>  		
+  		<div id = "reward">
+  			<span class="col-lg-4 col-sm-6">금액</span>
+  			<input type="number" name="amount"/> 원
+  			<input style="width: 30px; text-align: center;" type="text" name="step" value="2" readonly/>단계
+  			<br/>
+  		<div>	
+  			<span class="col-lg-4 col-sm-6">상세설명</span>
+  			<input type="text" name = "component" >
+  		</div>
+  		<hr/>
+  		</div>
+  	</div>
+  	
+  	  	<div id="rew3" class="row">
+  		<div class="col-lg-4 col-sm-6">리워드 </div>  		
+  		<div id = "reward">
+  			<span class="col-lg-4 col-sm-6">금액</span>
+  			<input type="number" name="amount"/> 원
+  			<input style="width: 30px; text-align: center;" type="text" name="step" value="3" readonly/>단계
   			<br/>
   		<div>	
   			<span class="col-lg-4 col-sm-6">상세설명</span>
@@ -56,16 +85,20 @@ form {
 </form>
 
 <script>
-$('#btnCreateNewReward').click(function() {
+$(document).ready(function() {
 	
-	var red = $('#test').val();
-	red = (Number(red) + 1);
+	$('#rew2').hide();
+	$('#rew3').hide();
 	
-	if($('#test').val() < 3) {
-		$('#test').val(red);
-		$('#rew').clone().appendTo(".rewardList");
-	}
-			
+	var id = 1;
+	
+	$('#btnCreateNewReward').click(function() {
+		id++;
+		if(id < 4){
+			$('#rew'+id).show();
+		}
+		
+	});
 });
 </script>
 
