@@ -23,6 +23,7 @@
 form {
 	border: 1px solid;
 }
+
 </style>
 
 </head>
@@ -30,30 +31,31 @@ form {
 
 <jsp:include page="../web/header.jsp" />
 
-<h1>프로젝트 만들기</h1>
+<h1 style="text-align: center; margin: 10px;">프로젝트 만들기</h1>
 
-<form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" id = "projectForm" action="create" method="post">
+<form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" 
+	id = "projectForm" action="create" method="post">
 
   <div class="container">
   	<div class="row">
-  		<div class="col-lg-4 col-sm-6">프로젝트 제목</div> 
+  		<div class="col-lg-4 col-sm-6"><h4>프로젝트 제목</h4></div> 
   		<div>
-  		 <input type="text" name = "title" required="required"/>
+  		 <input style="border: #f3969a 3px;" type="text" name = "title" required="required"/>
   		</div>
   	</div>
   	<hr/>
   	
   	<div class="row">
-  	<div class="col-lg-4 col-sm-6">목표 금액</div> 
+  	<div class="col-lg-4 col-sm-6"><h4>목표 금액</h4></div> 
   		<div>
-  		 <input type="number" name = "targetAmount" required="required"/> 
+  		 <input style="border: #f3969a 3px;" type="number" name = "targetAmount" required="required"/>
   		 <span>원</span>
   		</div>
   	</div>
   	<hr/>
   	
   	<div class="row">
-  	<div class="col-lg-4 col-sm-6">대표 이미지</div> 
+  	<div class="col-lg-4 col-sm-6"><h4>대표 이미지</h4></div> 
   		<div>
 	  		<input name = "uploadFiles" type="file" multiple="multiple" formenctype="multipart/form-data" />
   		</div>
@@ -61,7 +63,7 @@ form {
   	<hr/>
   	
   	<div class="row">
-  	<div class="col-lg-4 col-sm-6">프로젝트 스토리</div>
+  	<div class="col-lg-4 col-sm-6"><h4>프로젝트 스토리</h4></div>
   		<div>
   			<textarea name ="content" rows="5" cols="50"></textarea>
   		</div>
@@ -69,7 +71,7 @@ form {
     <hr/>
   
     <div class="row">
-  	<div class="col-lg-4 col-sm-6">카테고리</div> 
+  	<div class="col-lg-4 col-sm-6"><h4>카테고리</h4></div> 
   		<div>
   			<select id = "stepSelect" name = "category" required="required">
   				<option>프로젝트 카테고리</option>
@@ -85,15 +87,15 @@ form {
   	<hr/>
 	
 	<div class="row">  	
-  	<div class="col-lg-4 col-sm-6">프로젝트 종료일</div> 
+  	<div class="col-lg-4 col-sm-6"><h4>프로젝트 종료일</h4></div> 
   		<div><input id= "targetTime" type="date" name = "targetDate" placeholder="yyyy-MM-dd"/></div>
   	</div>	
   	<hr/>
   </div>
   
   	<div class="row">
-  		<button style="margin: 5px;" id = "btnPrev">이전</button>
-  		<input class="save" style="margin: 5px;" type="submit" value="다음"/>
+  		<button class="btn btn-primary" style="margin: 5px;" id = "btnPrev">이전</button>
+  		<input  class="btn btn-primary save" style="margin: 5px;" type="submit" value="다음"/>
   	</div>
  
 </form>
@@ -119,7 +121,7 @@ form {
 <script>
 $(document).ready(function() {
 	$('#btnPrev').click(function() {
-		self.location = "/controller/web/main";
+		self.location = "/controller/project/main";
 	});
 	$('#btnCreateNewReward').click(function() {
 		$('#rew').clone().appendTo(".rewardList");

@@ -19,12 +19,43 @@ a:hover, a:active {
 	text-decoration: none; !important;
 	color: black; !important;
 }
+
+.round-button{ 
+  width: 50px; 
+  height: 50px; 
+  text-decoration: none; 
+  display: inline-block; 
+  outline: none; 
+  cursor: pointer; 
+  border-style: none; 
+  color: white; 
+  background-color: #3498db; 
+  border-radius: 100%; 
+  overflow: none; 
+  text-align: center;
+   
+}
+
+.align {
+	padding: 40px;
+	margin: 0 auto;
+}
+
 </style>
 <title>MAIN</title>
 </head>
 <body>
 
+<script>
+$(document).ready(function() {
+   if('${createResult}'=='success'){
+      alert('프로젝트 생성이 성공했습니다.');
+   }
+});
+</script>
+
 <jsp:include page="header.jsp"></jsp:include>
+
 <div>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -71,42 +102,66 @@ a:hover, a:active {
 		<!--  TODO : 각 분야별 프로젝트 출력 창으로 넘어가기  -->
 		<div class="content-category" style="transform: translateY(0px);">
 			<!-- 전체보기 -->
-			<div>
-				<!-- 수정예정 
-				<a href="" onclick="location.href='theme?category=1'" style="display: inline-block;">
-					<img src="../resources/images/category/category-all.jpeg" style="width:60px;height:60px;border:0;">
-	 					전체보기
-				</a>
-				-->
+			<div class="container">
+				
+				
+				
 			<!-- onclick : tech.jsp 연결 -->
-			<button class=btn
-				onclick="location.href='theme?category=1'">
-				테크 & 가전 <span class="badge badge-light"></span>
-			</button>
+		<div class = "form form-inline" style="text-align: center;">
+		
+		 	<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=0'">
+				<img class="round-button" src="../images/category/all.jpg"/> 
+			</a>
+			<div>전체보기</div>
+		 	</div>
+		
+			<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=1'">
+				<img class="round-button" src="../images/category/category-tech.jpeg"/> 
+			</a>
+			<div>테크 & 가전</div>
+			</div>
+			
 			<!-- onclick : fasion.jsp 연결 -->
-			<button class="btn" onclick="location.href='theme?category=2'">
-				패션 <span class="badge badge-light"></span>
-			</button>
+			<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=2'">
+				<img class="round-button" src="../images/category/category-fashion.jpeg"/>
+			</a>
+			<div>패션</div>
+			</div>
+			
 			<!-- onclick : design.jsp 연결 -->
-			<button class="btn"
-				onclick="location.href='theme?category=3'">
-				디자인 <span class="badge badge-light"></span>
-			</button>
+			<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=3'">
+				<img class="round-button" src="../images/category/category-design.jpg"/>
+			</a>
+			<div>디자인</div>
+			</div>
+			
 			<!-- onclick : animal.jsp 연결 -->
-			<button class="btn"
-				onclick="location.href='theme?category=4'">
-				반려동물 <span class="badge badge-light"></span>
-			</button>
+			<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=4'">
+				<img class="round-button" src="../images/category/category-pet.jpg"/>
+			</a>
+			<div>반려동물</div>
+			</div>
+			
 			<!-- onclick : hobby.jsp 연결 -->
-			<button class="btn"
-				onclick="location.href='theme?category=5'">
-				취미 <span class="badge badge-light"></span>
-			</button>
+			<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=5'">
+				<img class="round-button" src="../images/category/category-hobby.jpeg"/>
+			</a>
+			<div>취미</div>
+			</div>
+			
 			<!-- onclick : social.jsp 연결 -->
-			<button class="btn"
-				onclick="location.href='theme?category=6'">
-				소셜 <span class="badge badge-light"></span>
-			</button>
+			<div class="align">
+			<a style="background-color: white; border: none;" onclick="location.href='theme?category=6'">
+				<img class="round-button" src="../images/category/category-social.jpeg"/>
+			</a>
+			<div>소셜</div>
+			</div>
 		</div>
 	</div>
 	

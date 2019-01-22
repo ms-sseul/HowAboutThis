@@ -15,7 +15,7 @@
 
 <jsp:include page="web/header.jsp" />
 
-<img style="max-width:100%; height:auto;" Onclick="location='/controller/project/main'" 
+<img style="max-width:100%; height:auto; cursor: pointer;" Onclick="location='/controller/project/main'" 
  src="https://images.pexels.com/photos/1449080/pexels-photo-1449080.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 
 <c:if test="${not empty certyResult}">
