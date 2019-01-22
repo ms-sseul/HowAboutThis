@@ -70,9 +70,9 @@ body {
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em">
-		      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-		      <button class="btn my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em" action="/controller/project/search" method="get">
+		      <input class="form-control mr-sm-2" name = "keyword" type="text" placeholder="Search">
+		      <button class="btn my-2 my-sm-0"  type="submit">Search</button>
 		    </form>
           </li>
           <li class="nav-item"> 

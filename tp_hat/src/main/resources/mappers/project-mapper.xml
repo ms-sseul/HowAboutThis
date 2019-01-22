@@ -51,6 +51,14 @@
 		LIMIT 3
 	</select>
 	
+	<!-- 검색어에 맞는 프로젝트 출력하기 -->
+	<select id = "selectProjectByKeyword" resultType="Project">
+		SELECT *
+		FROM ${tbl_project}
+		WHERE ${project.title} LIKE lower(#{keyword})
+		ORDER BY ${project.pno} DESC
+	</select>
+	
 	<!-- Project 가테고리별 출력  -->
 	<select id = "selectByCategory" resultType="Project">
 		SELECT *

@@ -225,4 +225,30 @@ public class ProjectController {
 		
 		return "redirect:../project/description?pno=" + pno;
 	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String searchProject(String keyword, Model model) {
+		List<Image> bannerImageList = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			bannerImageList.add(new Image(3, 1, IMAGE_ARRAY[i]));
+		}
+		model.addAttribute("bannerImageList", bannerImageList);
+		List<Project> projects = projectService.selectSearchProject(keyword);
+		List<Image> images = new ArrayList<>();
+		List<ProjectModel> projectModels = new ArrayList<>();
+		logger.info("keyword : {}" , keyword);
+		model.addAttribute("option", "not null");
+		for(Project p:projects) {
+			images.add(projectService.selectProjectImage(p.getPno()));
+		}
+		
+		for(int i =0 ; i <projects.size(); i++) {
+			projectModels.add(new ProjectModel(images.get(i), projects.get(i)));
+			logger.info("pno : {}",projectModels.get(i).getPno());
+		}
+		model.addAttribute("projectModels", projectModels);
+
+		
+		return "web/main";
+	}
 }

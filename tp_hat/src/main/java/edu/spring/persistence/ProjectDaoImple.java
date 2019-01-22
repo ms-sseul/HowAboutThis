@@ -102,4 +102,12 @@ public class ProjectDaoImple implements ProjectDao {
 		return session.update(PROJECT_MAPPER + ".updateFinishedProject");
 	}
 
+	@Override
+	public List<Project> SelectProjectByKeyword(String keyword) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("keyword", "%"+keyword+"%");
+		
+		return session.selectList(PROJECT_MAPPER + ".selectProjectByKeyword", params);
+	}
+
 }
