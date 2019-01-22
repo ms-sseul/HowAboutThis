@@ -36,9 +36,9 @@ public class ReplyServiceImple implements ReplyService {
 	}
 
 	@Override
-	public List<Reply> select(int pno) {
+	public List<Reply> select(int pno, int type) {
 		logger.info("select(pno={}) 호출",pno);
-		return replyDao.read(pno);
+		return replyDao.read(pno, type);
 	}
 
 	@Override
@@ -79,6 +79,12 @@ public class ReplyServiceImple implements ReplyService {
 	public int deleterrno(int rrno) {
 		logger.info("deleterrno({}) 호출",rrno);
 		return replyDao.deleterrno(rrno);
+	}
+
+	@Override
+	public List<Reply> readPno(int pno, int type) {
+		logger.info("readPno ({}) 호출");
+		return replyDao.readPno(pno, type);
 	}
 
 }

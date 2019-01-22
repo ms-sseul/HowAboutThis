@@ -1,6 +1,8 @@
 package edu.spring.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -28,10 +30,12 @@ public class ReplyDaoImple implements ReplyDao {
 	}
 
 	@Override
-	public List<Reply> read(int pno) {
+	public List<Reply> read(int pno, int type) {
 		logger.info("readAllReply(pno={}) call",pno);
-		
-		return session.selectList(REPLY_MAPPER +".selectReplyByBno", pno);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("pno", pno);
+		params.put("type", type);
+		return session.selectList(REPLY_MAPPER +".selectAll", params);
 	}
 
 	@Override
@@ -82,6 +86,15 @@ public class ReplyDaoImple implements ReplyDao {
 	public int selectRno(int rrno) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<Reply> readPno(int pno, int type) {
+		logger.info("readPno() 호출");
+		Map<String, Integer> params = new HashMap<>();
+		params.put("pno", pno);
+		params.put("type", type);
+		return session.selectList(REPLY_MAPPER+".selectAll",params);
 	}
 
 }

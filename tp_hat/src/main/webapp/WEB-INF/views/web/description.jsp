@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="../resources/css/category.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
@@ -112,53 +112,28 @@
 			</div>
 			
 			<!-- 댓글달기 -->
+			<input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
 			<div class="card my-4">
 				<h5 class="card-header">Leave a Comment:</h5>
 				<div class="card-body">
-					<form>
+					<div>
+					<c:if test="${not empty loginId}">
 						<div class="form-group">
-							<textarea class="form-control" rows="3"></textarea>
+							<textarea id="rtext" class="form-control" rows="3"></textarea>
 						</div>
-						<button type="submit" class="btn" style="width: 100%">댓글달기</button>
-					</form>
+						<button type="submit" class="btn" id="btnResult" name="btnResult" style="width: 100%">댓글달기</button>
+					</c:if>	
+					<c:if test="${empty loginId}">
+						<textarea id="rtext" class="form-control" rows="3" placeholder="로그인이 필요합니다" readonly ></textarea>
+					</c:if>
+					</div>
 				</div>
 					<!-- 프로젝트 관련 댓글 -->
-	<div class="media mb-4">
-		<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+	<div class="media mb-4">		
 		<div class="media-body">
-			<div class="mt-0"> 
-				<span>Commenter Name</span>
-				<span>
-					<a href="#">답글</a>
-				</span>
-			</div>
-		<p>내용</p>
-	
-			<div class="media mb-4">
-				<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-				<div class="media-body">
-					<div class="mt-0"> 
-						<span>Commenter Name</span>
-						<span>
-							<a href="#">답글</a>
-						</span>
-					</div>
-				<p>내용</p>
-	       
-					<div class="media mb-4">
-						<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-						<div class="media-body">
-							<div class="mt-0"> 
-								<span>Commenter Name</span>
-								<span>
-									<a href="#">답글</a>
-								</span>
-							</div>
-							<p>내용</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="mt-0" id="mt-0"> 
+				
+			</div>		
 		</div>
 	</div>
 			</div>
@@ -173,5 +148,193 @@
 		</div>
 	</footer>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<script id="reply-template" type="text/x-handlebars-template">
+<li class="reply-item">
+	<input id="rno" value="{{rno}}" type="hidden" readonly />
+	<input id="content" value="{{content}}" type="text" readonly />
+	<input id="userId" value="{{userId}}" type="text" readonly />
+	<input id="regDate" value="{{regDate}}" type="text" readonly />
+	<div class="btnGroup-div{{rno}}">
+		<button class="btnUpdate">수정</button>
+		<button class="btnDelete">삭제</button>
+	</div>
+</li>
+</script>
+
+<script>
+$(document).ready(function(){
+	var pno = ${projectModel.pno};
+	var division = $('#mt-0');
+	var loginId = $('#loginId').val();
+	
+	var source = $('#reply-template').html();
+	
+	var template = Handlebars.compile(source);
+	console.log('pno : ' +pno);
+	
+	function getAllReplies(){
+		console.log('pno : ' + pno);
+		
+		$.getJSON('/controller/replies/allProject/'+pno, function(data){
+			division.empty();
+			console.log(pno);
+			
+			$(data).each(function(){
+				
+				var date = new Date(this.regDate);
+				var dateString = date.toLocaleDateString()
+					+' '+date.toLocaleTimeString();
+				
+				var content_Item = {
+						rno: this.rno,
+						content: this.content,
+						userId: this.userId,
+						regDate: dateString
+						
+				};
+				var replyItem = template(content_Item);
+				var userId = this.userId;
+				division.append(replyItem);
+				var rno = this.rno;
+				console.log("rno 값 = "+rno);
+				
+				if(loginId == userId) {
+					$('.btnGroup-div' + rno + ' ' + '.btnUpdate').show();
+					$('.btnGroup-div' + rno + ' ' + '.btnDelete').show();
+					
+				}
+				if(loginId != userId) {
+					$('.btnGroup-div' + rno + ' ' + '.btnUpdate').hide();
+					$('.btnGroup-div' + rno + ' ' + '.btnDelete').hide();
+				}
+				
+				console.log("loginId : "+loginId);
+				if(loginId == "null"){
+					console.log("loginId가 없음"+loginId);					
+					$('#createReply').hide();
+					$('#rtext').prop('placeholder','로그인이 필요합니다.');
+					$('#rtext').prop('readonly',true);
+					
+				}else{				
+					console.log("loginId가 있다 : "+loginId);
+					$('#rtext').show();
+					$('#createReply').show();
+				}
+				
+			});
+			
+			
+		});
+		
+	}//end function getAllReplies()
+	
+	getAllReplies();
+	
+	$('#btnResult').click(function(event){
+		var content = $('#rtext').val();
+		var loginId = $('#loginId').val();
+		console.log(loginId);
+		if(loginId==null){
+			alert('로그인이 필요합니다.');
+			event.preventDefault();
+		}
+		console.log(loginId);
+		console.log(pno);
+		console.log(content);
+		$.ajax({
+			type: 'post',
+			url: '/controller/replies/projectPno',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-HTTP-Method-Override': 'post'
+			},
+			data: JSON.stringify({
+				'parentNumber': pno,
+				'content': content,
+				'userId': loginId
+			}),
+			success: function(result){
+				alert('댓글 추가 결과: '+result);
+				$('#rtext').val('');
+				getAllReplies();
+			}			
+		});		
+	});
+	
+	division.on('click', '.reply-item .btnUpdate', function(){
+		var userId = $(this).parents('.reply-item').children('#userId').val();
+		var rno = $(this).parents('.reply-item').children('#rno').val();
+		var selectedContent = $(this).parents('.reply-item').children('#content');
+		var content = $(this).parents('.reply-item').children('#content').val();
+		
+		selectedContent.attr('readonly',false);
+	
+		$.ajax({
+			type: 'put',
+			url: '/controller/replies/update/' + rno,
+			headers: {
+				'Content-Type': 'application/json',
+				'X-HTTP-Method-Override': 'put'
+			},
+			data: JSON.stringify({'userId':userId,'content':content}),
+			success: function(data){
+				if(data == 1){
+					alert('댓글'+rno+'번 수정 성공');
+					getAllreplies();
+				}else{
+					alert('댓글 수정 실패')
+				}
+			}
+			
+			
+		});//end ajax
+		
+	
+		
+	});//divison btnupdate end	
+	
+	division.on('click','.reply-item .btnDelete', function(){
+		var rno = $(this).parents('.reply-item').children('#rno').val();
+		alert(rno + ' 댓글 삭제?');
+		var result = confirm(rno+'번 댓글을 삭제 하시겠습니까?')
+		if(result == true){
+			$.ajax({
+				type: 'delete',
+				url: '/controller/replies/delete/'+rno,
+				headers: {
+					'Content-Type': 'apllication/json',
+					'X-HTTP-Method-Override': 'delete'
+				},
+				success: function(data){
+					if(data=='success'){
+						alert(rno+'번 댓글 삭제 성공');
+						getAllReplies();
+					}else{
+						alert('입력하신 글이 아닙니다');
+					}
+				}
+				
+				
+			});
+			
+			
+		} //result end
+		
+		
+	});	
+	
+	 	
+});	
+	
+	
+	
+	
+</script>
+
+
+
+
 </body>
 </html>

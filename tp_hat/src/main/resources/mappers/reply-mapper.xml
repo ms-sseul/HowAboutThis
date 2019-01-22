@@ -8,15 +8,17 @@
 	<!-- Reply SQL 문장 -->
 	<select id="selectAll" resultType="Reply">
 		SELECT * FROM ${tbl_reply}
-		WHERE ${reply.rrno} IS NOT NULL
-		AND ${reply.type} = #{type}
-		AND ${reply.pno} = #{parentNumber}
+		WHERE (${reply.pno} = #{pno} AND ${reply.type} = #{type})
 		ORDER BY ${reply.rno} DESC
 	</select>
 	
 	<select id="selectReplyByBno" resultType="Reply">
 		SELECT * FROM ${tbl_reply} WHERE ${reply.pno} = #{bno} ORDER BY ${reply.rno} DESC
 	</select>
+	<select id="selectPno" resultType="Reply">
+		SELECT * FROM ${tbl_reply} WHERE ${reply.pno} = #{parentNumber} AND ${reply.type} = #{type} ORDER BY ${reply.rno} DESC 
+	</select>
+	
 	<select id="selectrno" resultType="Reply">
 		SELECT 
 		*FROM ${tbl_reply}
@@ -27,8 +29,8 @@
 
 	<insert id="insert">
 		INSERT INTO ${tbl_reply} 
-		(${reply.pno} ,${reply.content}, ${reply.userId})
-		VALUES (#{parentNumber} ,#{content}, #{userId})
+		(${reply.pno} ,${reply.content}, ${reply.userId}, ${reply.type})
+		VALUES (#{parentNumber} ,#{content}, #{userId}, #{type})
 	</insert>
 	
 	<insert id="insertrrno">

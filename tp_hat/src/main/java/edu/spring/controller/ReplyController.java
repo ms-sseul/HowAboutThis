@@ -34,18 +34,49 @@ public class ReplyController {
 	public ResponseEntity<Integer> createReply(
 			@RequestBody Reply reply){
 		logger.info("createReply{()} 호출",reply.toString());
-		
+//		logger.info("reply 기존 setType ({})", reply);
+//		reply.setType(1);
+//		
+//		logger.info("reply 변경 후 setType ({})", reply);
+				
 		int result = replyService.insert(reply);
 		logger.info("insert 결과: {}",result);
 		
 		ResponseEntity<Integer> entity = null;
+		if(reply.getType() == 0) {
+			if(result == 1) {
+				entity = new ResponseEntity<Integer>(
+						result,HttpStatus.OK);
+			}else {
+				entity = new ResponseEntity<Integer>(result,
+						HttpStatus.BAD_REQUEST);
+			}
+		}
+		return entity;
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "projectPno")
+	public ResponseEntity<Integer> projectCreate(
+			@RequestBody Reply reply){
+		logger.info("createReply{()} 호출",reply.toString());
+		logger.info("reply 기존 setType ({})", reply);
+		reply.setType(1);
+		
+		logger.info("reply 변경 후 setType ({})", reply);
+		ResponseEntity<Integer> entity = null;
+		if(reply.getType() == 1) {
+		int result = replyService.insert(reply);
 		if(result == 1) {
 			entity = new ResponseEntity<Integer>(
-				result,HttpStatus.OK);
+					result,HttpStatus.OK);
 		}else {
 			entity = new ResponseEntity<Integer>(result,
 					HttpStatus.BAD_REQUEST);
 		}
+		logger.info("insert 결과: {}",result);		
+		}
+		
 		
 		
 		
@@ -100,8 +131,9 @@ public class ReplyController {
 			){
 		logger.info("readReplies(bno={})",bno);		
 		
-		List<Reply> list = replyService.select(bno);
-		logger.info("list값" + list.toString());
+		List<Reply> list = replyService.readPno(bno, 0);
+		
+		logger.info("list1값 = ({})", list);
 		ResponseEntity<List<Reply>> entity =
 				new ResponseEntity<List<Reply>>(list, HttpStatus.OK);
 		
@@ -110,17 +142,25 @@ public class ReplyController {
 		
 	}
 	
-	@RequestMapping(value="/allRno", method = RequestMethod.POST)
-	public ResponseEntity<List<Reply>> readRepliesRrno(@RequestBody Reply reply){
+
+	
+	@RequestMapping(value="allProject/{pno}", method = RequestMethod.GET)
+	public ResponseEntity<List<Reply>> readRepliesRrno(@PathVariable(name="pno") int pno){
 		
-		logger.info("readRepliesRrno(rno={})", reply.getParentNumber());
-		
-		List<Reply> list = replyService.selectrrno(reply.getParentNumber());
-		
+		logger.info("레스트컨트롤러 시작");
+		List<Reply> list = replyService.readPno(pno, 1);
+		logger.info("끝: list2값: ({})", list);
+				
 		ResponseEntity<List<Reply>> entity =
 				new ResponseEntity<List<Reply>>(list, HttpStatus.OK);
 		
-		return entity;
+		
+		return entity;	
+		
+		
+		
+
+		
 	}
 	
 	@RequestMapping(value = "/update/{rno}", method = RequestMethod.PUT)
