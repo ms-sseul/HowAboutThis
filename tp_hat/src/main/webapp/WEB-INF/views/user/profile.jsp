@@ -137,6 +137,15 @@
 <script>
 $(document).ready(function () {
 	
+	$('#money').change(function() {
+		var templet = /^[0-9]+$/
+		var money = $('#money').val();
+		if(!templet.test(money)) {	
+			alert('양수만 입력해 주세요');
+			$(this).val(0);
+		}
+	});
+	
 	var checkPwd = false;
 	var btnResult = $('#btnResult');
 	
