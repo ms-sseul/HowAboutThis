@@ -36,7 +36,7 @@
 							<label class="form-control-label" id="phoneResult"></label>
 						</div>
 						<hr class="my-4">
-						<button class="btn btn-lg btn-block" type="submit">회원가입</button>
+						<button class="btn btn-lg btn-block" id="btnResult" type="submit">회원가입</button>
 						<button class="btn btn-lg btn-block" onclick="location.href='login'" style="background-color: #78c2ad;">로그인</button>
 					</form>
 				</div>
@@ -135,6 +135,10 @@ $(document).ready(function () {
 		}
 	}
 	check(checkId, checkPwd, checkPhone);
+	
+	$('#btnResult').click(function() {
+		alert('인증 메일이 발송 되었습니다. 이메일을 확인해 주세요');
+	});
 	
 })
 </script>

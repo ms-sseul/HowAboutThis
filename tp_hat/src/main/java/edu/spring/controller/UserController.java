@@ -199,10 +199,8 @@ public class UserController {
 		String phone = result.getPhone();
 		int point = result.getPoint();
 		
-		model.addAttribute("userId", userId);
-		model.addAttribute("user_email", userEamil);
-		model.addAttribute("user_phone", phone);
-		model.addAttribute("point", point);
+		model.addAttribute("user", result);
+		
 	}
 	@RequestMapping(value = "profile", method = RequestMethod.POST)
 	public void profilePost(User user, HttpSession session) {

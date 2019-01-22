@@ -32,9 +32,9 @@
 					<form class="form-signin" action="/controller/user/login-post" method="post">
 					
 						<div>
-							<input type="text" class="form-control" id="userId" name="userId" placeholder="ID" required autofocus>
+							<input type="text" class="form-control" id="userId" name="userId" placeholder="ID" autofocus>
 							<label class="form-control-label"></label>
-							<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="Password" required>
+							<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="Password" >
 							<label class="form-control-label"></label>
 						</div>
 							<button class="btn btn-lg btn-block" id="btnResult" type="submit">로그인</button>
@@ -42,8 +42,8 @@
 							<input type="hidden" name="queryString" value="${targetUrl}" />
 						
 						<div class="text-right">
-						<button class="btn float-left" id="register-link" onclick="href='/controller/user/register'" >회원가입</button>
-						<button class="btn" id="findPwd">비밀번호 찾기</button>
+						<button type="button" class="btn float-left" id="register-link" onclick="location='/controller/user/register'" >회원가입</button>
+						<button type="button" class="btn" id="findPwd">비밀번호 찾기</button>
 						</div>
 					</form>
 				</div>
@@ -79,11 +79,11 @@
 				contentType : 'application/x-www-form-urlencoded',
 				success : function(res) {
 					if (res == 'success') {
-						alert('아이디 확인 완료');
+						// alert('아이디 확인 완료');
 						checkId = true;
 						check(checkId, checkPwd);
 					} else {
-						alert('존재하지 않는 아이디 입니다.');
+						// alert('존재하지 않는 아이디 입니다.');
 						checkId = false;
 						check(checkId, checkPwd);
 					}
@@ -104,11 +104,11 @@
 				contentType : 'application/x-www-form-urlencoded',
 				success : function(res) {
 					if (res == 'success') {
-						alert('비밀번호 확인 완료');
+						// alert('비밀번호 확인 완료');
 						checkPwd = true;
 						check(checkId, checkPwd);
 					} else {
-						alert('비밀번호가 다릅니다.');
+						// alert('비밀번호가 다릅니다.');
 						checkPwd = false;
 						check(checkId, checkPwd);
 					}
