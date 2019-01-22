@@ -71,26 +71,16 @@
 		<c:if test="${not empty loginId}">
 		<button class="btn float-left" id="btnWrite" onclick="location.href='insert'">글쓰기</button>
 		</c:if>
-		<%-- <form action="listSearch" method="get" class="form-inline float-right">			
-			<select name="searchType" class="custom-select">
-				<option value="1">글쓴이</option>
-				<option value="2">제목</option>
-				<option value="3">제목/내용</option>
-			</select>
-			<input type="text" class="form-control" placeholder="검색어를 입력해주세요" id="inputDefault"
-			 name="keyWord" style="margin-right: 0.5em; margin-left: 0.5em;" required>
-			<button class="btn" id="btnSearch" >검색</button>
-			<input type="hidden" name="queryString" value="/controller/board/list${pageMaker.makeQuery(pageMaker.criteria.page)}"/>
-		</form> --%>
 	</div>
-	<div class="option">
-		<select name="searchType" id="searchType">
+	<div class="option form-inline float-right">
+		<select name="searchType" id="searchType" class="custom-select">
 			<option value="1">글쓴이</option>
 			<option value="2">제목</option>
 			<option value="3">제목/내용</option>
 		</select>
-		<input type="text" id="keyWord" name="keyWord" placeholder="검색어를 입력해주세요" required/>
-			<input type="button" value="검색" id="btnSearch" />
+		<input type="text" class="form-control" id="keyWord" name="keyWord" placeholder="검색어를 입력해주세요" 
+			style="margin-right: 0.5em; margin-left: 0.5em;" required/>
+		<button class="btn" id="btnSearch" >검색</button>
 	</div>
 	
 	<!-- onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'" 

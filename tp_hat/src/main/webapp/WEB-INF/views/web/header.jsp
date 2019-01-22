@@ -31,7 +31,8 @@ body {
 }
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus,
-.nav-item {
+.nav-item:hover,
+.nav-item:focus {
   color: #ffffff;
   text-decoration: none;
 }
@@ -50,7 +51,8 @@ body {
 
 a:link, a:visited,
 a:hover, a:active { 
-	color: black; text-decoration: none; 
+	text-decoration: none;
+	color: black;  
 }
 </style>
 </head>
@@ -63,7 +65,7 @@ a:hover, a:active {
 		<span class="navbar-toggler-icon"></span></button>
 		
 			<div class="collapse navbar-collapse" id="navbarMint">
-        	<ul class="navbar-nav mr-auto"> 
+        	<ul class="navbar-nav mr-auto" style="font-size: large;"> 
 				<li class="nav-item">
 					<a class="nav-link" href="/controller/project/main">프로젝트 둘러보기</a>
 				</li>
@@ -86,7 +88,8 @@ a:hover, a:active {
 					<button class="btn my-2 my-sm-0" type="button" id="btn-login">로그인</button>
 			</c:if>
 			<c:if test="${not empty loginId}">
-				<a href="/controller/user/profile" style="text-decoration:none;">${loginId}</a>님, 안녕하세요!
+				<a href="/controller/user/profile" style="text-decoration:none; color: white;">
+				${loginId}</a>님, 안녕하세요!
 				<button class="btn my-2 my-sm-0" id="btn-logout">로그아웃</button>
 			</c:if>
 
