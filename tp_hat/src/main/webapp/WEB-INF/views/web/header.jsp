@@ -81,7 +81,7 @@ a:hover, a:active {
 			
 			<form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em" action="search" method="get">
 					<input class="form-control mr-sm-2" name = "keyword" type="text" placeholder="Search">
-					<button class="btn my-2 my-sm-0" name="btnSearch" type="submit">Search</button>
+					<button class="btn my-2 my-sm-0" type="submit">Search</button>
 			</form>
 
 			<c:if test="${empty loginId}">
