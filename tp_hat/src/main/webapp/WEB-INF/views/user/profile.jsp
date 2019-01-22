@@ -100,13 +100,12 @@
       <p>만든 프로젝트 </p>
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
-     <h3 class="message-h3">쪽지함</h3>
-      <a href="/controller/message/createMessage">쪽지 보내기</a>      
+     <h3 class="message-h3">받은쪽지함</h3>
       <div class="message-list-ul">
       	<!-- 메시지 창 -->
       	
       </div>
-		<a href="${messageUrl}">Click to enter</a>
+      <a href="/controller/message/createMessage">쪽지 보내기</a>    
     </div>
     
 	<div id="menu3" class="container tab-pane fade"><br>
@@ -181,11 +180,13 @@ $(document).ready(function () {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script id="message-template" type="text/x-handlebars-template">
 <div class="message-item">
-	<input type="text" id="mno" value="{{mno}}" />
-	<input type="text" id="content" value="{{content}}" />
-	<input type="text" id="sender" value="{{sender}}" />
-	<input type="text" id="regDate" value="{{regDate}}" />
+	<input type="hidden" id="mno" value="{{mno}}" />
+	<input type="text" id="title" value="{{title}}" readonly />
+	<input type="text" id="content" value="{{content}}" readonly />
+	<input type="text" id="sender" value="{{sender}}" readonly />
+	<input type="text" id="regDate" value="{{regDate}}" readonly />
 	<button class="btnDelete">삭제</button>
+	<button class="btnsender">쪽지보내기</button>
 </div>
 </script>
 
@@ -211,6 +212,7 @@ $(document).ready(function(){
 			
 			var message_item = {
 					mno : this.mno,
+					title : this.title,
 					content : this.content,
 					sender : this.sender,
 					regDate : dateString
@@ -253,7 +255,19 @@ $(document).ready(function(){
 		} // end if
 		
 	});
+	
+	division.on('click','.message-item .btnsender', function(){
+		var mno = $(this).prevAll('#mno').val();
+		var sender = $(this).prevAll('#sender').val();
+		var reciever = $('#loginId').val();
+		self.location = '/controller/message/createMessage?reciever='+sender;
+				
+		
+		
+	});
 
+	
+	
 	
 });//ready end
 

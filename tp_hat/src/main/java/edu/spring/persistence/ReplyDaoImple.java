@@ -47,10 +47,10 @@ public class ReplyDaoImple implements ReplyDao {
 	}
 
 	@Override
-	public int selectPno(int rno) {
+	public int selectrno(int rno) {
 		logger.info("selectPno(rno={}) 호출", rno);
 		
-		return session.selectOne(REPLY_MAPPER+".selectpno",rno);
+		return session.selectOne(REPLY_MAPPER+".selectrno",rno);
 	}
 
 	@Override

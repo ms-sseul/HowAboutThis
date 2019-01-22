@@ -2,6 +2,8 @@ package edu.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.spring.domain.Message;
 import edu.spring.domain.Reply;
+import edu.spring.persistence.ReplyDao;
 import edu.spring.service.ReplyService;
 
 @RestController
@@ -23,12 +27,12 @@ public class ReplyController {
 			LoggerFactory.getLogger(ReplyController.class);
 	
 	@Autowired private ReplyService replyService;
+	@Autowired private ReplyDao replyDao;
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Integer> createReply(
 			@RequestBody Reply reply){
-		
 		logger.info("createReply{()} 호출",reply.toString());
 		
 		int result = replyService.insert(reply);
@@ -71,6 +75,24 @@ public class ReplyController {
 		return entity;
 		
 	}
+	
+	@RequestMapping(value = "rno", method=RequestMethod.GET)
+	public ResponseEntity<Integer> readOne(@RequestBody Message message
+			,@PathVariable int rno){
+		logger.info("readOne = {}",message);
+		
+		int result = replyDao.selectrno(rno);
+		logger.info("result 결과 = {}",result);
+		
+		ResponseEntity<Integer> entity = null;
+		if(result == 1) {
+			entity = new ResponseEntity<Integer>(result,HttpStatus.OK);
+		}else {
+			entity = new ResponseEntity<Integer>(result,HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
   
 	@RequestMapping(value = "all/{bno}", method = RequestMethod.GET)
 	public ResponseEntity<List<Reply>> readReplies(
@@ -88,12 +110,12 @@ public class ReplyController {
 		
 	}
 	
-	@RequestMapping(value="/allRno/{rno}", method = RequestMethod.GET)
-	public ResponseEntity<List<Reply>> readRepliesRrno(@PathVariable(name = "rno") int rno){
+	@RequestMapping(value="/allRno", method = RequestMethod.POST)
+	public ResponseEntity<List<Reply>> readRepliesRrno(@RequestBody Reply reply){
 		
-		logger.info("readRepliesRrno(rno={})", rno);
+		logger.info("readRepliesRrno(rno={})", reply.getParentNumber());
 		
-		List<Reply> list = replyService.selectrrno(rno);
+		List<Reply> list = replyService.selectrrno(reply.getParentNumber());
 		
 		ResponseEntity<List<Reply>> entity =
 				new ResponseEntity<List<Reply>>(list, HttpStatus.OK);
@@ -104,11 +126,10 @@ public class ReplyController {
 	@RequestMapping(value = "/update/{rno}", method = RequestMethod.PUT)
 	public ResponseEntity<Integer> updateReply(
 			@PathVariable(name="rno") int rno,
-			@RequestBody Reply reply){
+			@RequestBody Reply reply, HttpSession session){
 		logger.info("updateReply(rno={}, reply={})",rno, reply);		
 		
 		reply.setRno(rno);
-		
 		int result = replyService.update(reply);
 		ResponseEntity<Integer> entity = null;
 		if(result == 1) {

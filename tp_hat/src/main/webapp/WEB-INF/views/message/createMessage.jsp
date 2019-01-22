@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 
-<a href="profile">마이페이지로 돌아가기</a>
+<a href="/controller/user/profile">마이페이지로 돌아가기</a>
 
 	<input type="hidden" id="loginId"
 		value="<%=(String) session.getAttribute("loginId")%>" />
@@ -23,23 +24,25 @@
 		<input type="text" id="sender"
 			name="sender" value="${loginId}" placeholder="${loginId}" readonly />
 		<br /> 
+		<c:if test="${empty param.reciever}">
 		<input name="reciever" id="reciever" type="text"
 			placeholder="보내는 사람 입력" required /> 
 			<br />
-		
-		<input type="submit" value="보내기" class="btn" />		
+		</c:if>
+		<c:if test="${not empty param.reciever}">
+		<input name="reciever" id="reciever" type="text" value="${param.reciever}"
+		 readonly="readonly" /> 
+			<br />
+		</c:if>
+		<input type="submit" value="보내기" class="btn" />
 
 	</form>
-
-<script>
-$(document).ready(function(){
-	if('${createMessage}' == 'success'){
-		alert('쪽지 보내기 성공');
-	}
-});
+	
+	
+	
 
 
-</script>
+
 
 
 

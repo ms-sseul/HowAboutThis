@@ -17,12 +17,13 @@
 	<select id="selectReplyByBno" resultType="Reply">
 		SELECT * FROM ${tbl_reply} WHERE ${reply.pno} = #{bno} ORDER BY ${reply.rno} DESC
 	</select>
-	<select id="selectAllrrno" resultType="Reply">
+	<select id="selectrno" resultType="Reply">
 		SELECT 
 		*FROM ${tbl_reply}
-		 WHERE ${reply.rrno} = #{rno}
-		ORDER BY ${reply.regDate} DESC
+		 WHERE ${reply.pno} = #{parentNumber}		 		
 	</select>
+	
+	
 
 	<insert id="insert">
 		INSERT INTO ${tbl_reply} 

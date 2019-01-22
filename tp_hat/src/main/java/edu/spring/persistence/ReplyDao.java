@@ -10,7 +10,7 @@ public interface ReplyDao {
 	List<Reply> read(int pno);
 	int update(Reply reply);
 	int delete(int rno);
-	int selectPno(int rno);
+	int selectrno(int rno);
 	
 	int createrrno(Reply reply);
 	int updaterrno(Reply reply);
