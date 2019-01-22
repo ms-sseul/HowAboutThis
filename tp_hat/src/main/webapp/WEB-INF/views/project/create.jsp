@@ -33,12 +33,12 @@ form {
 
 <h1 style="text-align: center; margin: 10px;">프로젝트 만들기</h1>
 
-<form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" 
+<form class="container mx-auto alert alert-dismissible alert-info" 
 	id = "projectForm" action="create" method="post">
 
   <div class="container">
   	<div class="row">
-  		<div class="col-lg-4 col-sm-6"><h4>프로젝트 제목</h4></div> 
+  		<div class="col-lg-4 col-sm-6"><h5>프로젝트 제목</h5></div> 
   		<div>
   		 <input style="border: #f3969a 3px;" type="text" name = "title" required="required"/>
   		</div>
@@ -46,7 +46,7 @@ form {
   	<hr/>
   	
   	<div class="row">
-  	<div class="col-lg-4 col-sm-6"><h4>목표 금액</h4></div> 
+  	<div class="col-lg-4 col-sm-6"><h5>목표 금액</h5></div> 
   		<div>
   		 <input style="border: #f3969a 3px;" type="number" name = "targetAmount" required="required"/>
   		 <span>원</span>
@@ -55,7 +55,7 @@ form {
   	<hr/>
   	
   	<div class="row">
-  	<div class="col-lg-4 col-sm-6"><h4>대표 이미지</h4></div> 
+  	<div class="col-lg-4 col-sm-6"><h5>대표 이미지</h5></div> 
   		<div>
 	  		<input name = "uploadFiles" type="file" multiple="multiple" formenctype="multipart/form-data" />
   		</div>
@@ -63,7 +63,7 @@ form {
   	<hr/>
   	
   	<div class="row">
-  	<div class="col-lg-4 col-sm-6"><h4>프로젝트 스토리</h4></div>
+  	<div class="col-lg-4 col-sm-6"><h5>프로젝트 스토리</h5></div>
   		<div>
   			<textarea name ="content" rows="5" cols="50"></textarea>
   		</div>
@@ -71,7 +71,7 @@ form {
     <hr/>
   
     <div class="row">
-  	<div class="col-lg-4 col-sm-6"><h4>카테고리</h4></div> 
+  	<div class="col-lg-4 col-sm-6"><h5>카테고리</h5></div> 
   		<div>
   			<select id = "stepSelect" name = "category" required="required">
   				<option>프로젝트 카테고리</option>
@@ -85,9 +85,16 @@ form {
   		</div>
   	</div>
   	<hr/>
+  	<div class="row">
+  		<div class="col-lg-4 col-sm-6"><h5>창작자 소개</h5></div>
+  			<div>
+  				<textarea name ="introduction" rows="3" cols="50"></textarea>
+  			</div>
+  	</div>
+    <hr/>
 	
 	<div class="row">  	
-  	<div class="col-lg-4 col-sm-6"><h4>프로젝트 종료일</h4></div> 
+  	<div class="col-lg-4 col-sm-6"><h5>프로젝트 종료일</h5></div> 
   		<div><input id= "targetTime" type="date" name = "targetDate" placeholder="yyyy-MM-dd"/></div>
   	</div>	
   	<hr/>
