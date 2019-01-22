@@ -16,12 +16,10 @@
 <body>
 
 <jsp:include page="../web/header.jsp" />
-<div class="container col-lg-10 col-sm-8">
-
-	<div class="table-responsive-lg" style="margin:4em;">
-		<table class="table table-hover" text-align="center">
+<div class="container">
+		<table class="table table-hover table-responsive-xl"  text-align="center" style="margin:5em 0 1em 0;">
 			<thead>
-				<tr class="info">
+				<tr>
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
@@ -47,10 +45,10 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	</div>
+	
 	
 	<div class="text-center">
-		<ul class="pagination justify-content-center" >
+		<ul class="pagination pagination-sm justify-content-center" >
 		<c:if test="${pageMaker.prev}">
 	    <li class="page-item" >
 	    	<a class="page-link" href="/controller/board/list${pageMaker.makeQuery(pageMaker.startPage - 1)}">Previous</a>

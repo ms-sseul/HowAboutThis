@@ -18,7 +18,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 <script>
 	$(document).ready(function() {
@@ -31,65 +30,70 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="container">
-	<div style="margin:4em 0 0 0;">
-	<!-- 프로젝트 이름 -->
-	<h1 class="mt-4" style="text-align: center;">${projectModel.title}</h1>
-	<p class="lead" style="text-align: right;">
-       by ${projectModel.userId}</p>
-	<hr>
-	<!-- Date/Time -->
-	<p style="text-align:right"> Posted on <fmt:formatDate value="${projectModel.regTime}" 
-		pattern="yy/MM/dd HH:mm:ss"></fmt:formatDate></p>
-	<hr>
- 	</div>
- 	
+	<div style="margin: 4em 0 0 0;">
+		<!-- 프로젝트 이름 -->
+		<h1 class="mt-4" style="text-align: center;">${projectModel.title}</h1>
+		<p class="lead" style="text-align: right;">
+			by <a href="#">${projectModel.userId}</a></p>
+		<hr>
+		<!-- Date/Time -->
+		<p style="text-align: right"> Posted on
+		<fmt:formatDate value="${projectModel.regTime}" pattern="yy/MM/dd HH:mm:ss"></fmt:formatDate></p>
+		<hr>
+	</div>
+
 	<div class="row">
 		<!-- 프로젝트 썸네일-->
 		<div class="col-12 col-md-8">
-			<img class="img-fluid rounded" src="${projectModel.image.image}" alt="">
+			<img class="img-fluid rounded" src="${projectModel.image.image}"
+				alt="">
 		</div>
 		<!-- 프로젝트 정보 -->
 		<div class="col-12 col-md-4">
 			<div class="card my-4">
 				<div class="card-body">
 					<label>남은 시간</label>
-					<c:if test= "${projectModel.restDay<0}">
+					<c:if test="${projectModel.restDay<0}">
 						<h3>D${projectModel.restDay}</h3>
 					</c:if>
-					<c:if test = "${projectModel.restDay==0}">
+					<c:if test="${projectModel.restDay==0}">
 						<h3>D-Day</h3>
 					</c:if>
 					<p class="progress">
-						<a class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="40" role="progressbar" 
-						aria-valuemin="0" aria-valuemax="100" style="width:${projectModel.percent*100}%; background-color:#78c2ad;"></a>
+						<a class="progress-bar progress-bar-striped progress-bar-animated"
+							aria-valuenow="40" role="progressbar" aria-valuemin="0"
+							aria-valuemax="100" style="width:${projectModel.percent*100}%;"></a>
 					</p>
 					<label>모인 금액</label>
-					<h3>
-						<fmt:formatNumber value="${projectModel.currentAmount}"></fmt:formatNumber>원
-					</h3>
+					<h3><fmt:formatNumber value="${projectModel.currentAmount}"></fmt:formatNumber>원</h3>
 				</div>
 				<div class="card-body">
 					<h3>펀딩 진행중</h3>
-					<p> 목표 금액인 <fmt:formatNumber value="${projectModel.targetAmount}"></fmt:formatNumber>
+					<p>
+						목표 금액인
+						<fmt:formatNumber value="${projectModel.targetAmount}"></fmt:formatNumber>
 						원이 모이면 펀딩에 성공합니다. 실패시 결제한 포인트는 환불처리 됩니다.
 					</p>
 				</div>
 				<div class="card-body btn-wrap funding">
 					<form action="rewards" method="get">
-						<input type="hidden" id="inPno" name="pno" value="${projectModel.pno}" />
+						<input type="hidden" id="inPno" name="pno"
+							value="${projectModel.pno}" />
 						<c:if test="${not empty loginId}">
 							<button type="submit" id="btn" class="btn" style="width: 100%">펀딩하기</button>
 						</c:if>
 						<c:if test="${empty loginId}">
-							<h4><a>펀딩은 로그인이 필요합니다.</a></h4>
+							<h4>
+								<a>펀딩은 로그인이 필요합니다.</a>
+							</h4>
 						</c:if>
 					</form>
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 	<!-- // end row1 -->
-		
+
 	<div class="row">
 		<!-- 프로젝트 내용(content) -->
 		<div class="col-12 col-md-8">
@@ -98,58 +102,62 @@
 					<img class="img-fluid rounded" src="${img.image}" alt=""><br/>
 				</c:if>
 			</c:forEach>
-			<p class="lead">${projectModel.content}</p>
+			<blockquote class="blockquote text-center">
+				<p class="lead mb-0">${projectModel.content}</p>
+			</blockquote>
 		</div>
-		
-		<div class="col-md-4">
-			<!-- 프로젝트 팀 정보 -->
-			<div class="card my-4">
-				<div class="card-body">
-					<label>창작자 소개</label>
-					<h3>${projectModel.userId}</h3>
-				</div>
-				<div class="card-body">
-					<p>${projectModel.introduction}</p>
-				</div>
-				<div class="card-body btn-wrap funding">
-					<button class="btn" id = "btnSendMessage" style="width: 100%">창작자에게 문의하기</button>
-	           </div>
+
+	<div class="col-md-4">
+		<!-- 프로젝트 팀 정보 -->
+		<div class="card my-4">
+			<div class="card-body">
+				<label>창작자 소개</label>
+				<h3>${projectModel.userId}</h3>
 			</div>
-			
-			<!-- 댓글달기 -->
-			<input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
+			<div class="card-body">
+				<p>${projectModel.introduction}</p>
+			</div>
+			<div class="card-body btn-wrap funding">
+				<button class="btn" onclick="" style="width: 100%">창작자에게 문의하기</button>
+           </div>
+		</div>
+
+		<!-- 댓글달기 -->
+			<input type="hidden" id="loginId"value="<%=(String) session.getAttribute("loginId")%>" />
 			<div class="card my-4">
 				<h5 class="card-header">프로젝트 문의</h5>
 				<div class="card-body">
 					<div>
-					<c:if test="${not empty loginId}">
-						<div class="form-group">
-							<textarea id="rtext" class="form-control" rows="3"></textarea>
-						</div>
-						<button type="submit" class="btn" id="btnResult" name="btnResult" style="width: 100%">댓글달기</button>
-					</c:if>	
-					<c:if test="${empty loginId}">
-						<textarea id="rtext" class="form-control" rows="3" placeholder="로그인이 필요합니다" readonly ></textarea>
-					</c:if>
+						<c:if test="${not empty loginId}">
+							<div class="form-group">
+								<textarea id="rtext" class="form-control" rows="3"></textarea>
+							</div>
+							<button type="submit" class="btn" id="btnResult"
+								name="btnResult" style="width: 100%">댓글달기</button>
+						</c:if>
+						<c:if test="${empty loginId}">
+							<textarea id="rtext" class="form-control" rows="3"
+								placeholder="로그인이 필요합니다" readonly></textarea>
+						</c:if>
 					</div>
 				</div>
-					<!-- 프로젝트 관련 댓글 -->
-				<div class="media mb-4">		
+				<!-- 프로젝트 관련 댓글 -->
+				<div class="media mb-4">
 					<div class="media-body">
-						<div class="mt-0" id="mt-0"> 
-								
-						</div>		
+						<div class="mt-0" id="mt-0">
+							<!-- 여기 댓글 들어감 -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div> <!-- .row -->
+</div>
 
 <div class="footer">
-	<footer class="py-3" style="background:#78c2ad;">
+	<footer class="py-3" style="background: #78c2ad;">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyrightⓒ2019 유니세프 All rights reserved.</p>
+			<p class="m-0 text-center text-white">Copyrightⓒ2019 유니세프 Allrights reserved.</p>
 		</div>
 	</footer>
 </div>
@@ -173,7 +181,7 @@ $(document).ready(function(){
 	var pno = ${projectModel.pno};
 	var division = $('#mt-0');
 	var loginId = $('#loginId').val();
-	var projectCreator = '${projectModel.userId}';
+	
 	var source = $('#reply-template').html();
 	
 	var template = Handlebars.compile(source);
@@ -241,7 +249,6 @@ $(document).ready(function(){
 		var content = $('#rtext').val();
 		var loginId = $('#loginId').val();
 		console.log(loginId);
-
 		if(loginId==null){
 			alert('로그인이 필요합니다.');
 			event.preventDefault();
@@ -328,24 +335,11 @@ $(document).ready(function(){
 			
 		} //result end
 		
-		
 	});	
-	console.log('projectCreator = '+projectCreator);
-	
-	$('#btnSendMessage').click(function() {
-		self.location = "/controller/message/createMessage?reciever="+projectCreator;
-	});
-	
 	 	
 });	
 	
-	
-	
-	
 </script>
-
-
-
 
 </body>
 </html>
