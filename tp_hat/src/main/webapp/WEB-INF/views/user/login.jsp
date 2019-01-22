@@ -27,9 +27,9 @@
 	<div class="row" style="margin: 4em 0 0 0;">
 		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 			<div class="card border-info card-signin my-5">
-				<div class="card-body" style="border: #f3969a 1px;">
+				<div class="card-body">
 					<h5 class="card-title text-center">로그인</h5> 
-					<form class="form-signin" action="/controller/user/login-post" method="post">
+					<form class="form-group" action="/controller/user/login-post" method="post">
 					
 						<div>
 							<input type="text" class="form-control" id="userId" name="userId" placeholder="ID" autofocus>
@@ -37,7 +37,7 @@
 							<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="Password" >
 							<label class="form-control-label"></label>
 						</div>
-							<button class="btn btn-lg btn-block" id="btnResult" type="submit">로그인</button>
+							<button class="btn btn-block" id="btnResult" type="submit">로그인</button>
 							<hr class="my-4">
 							<input type="hidden" name="queryString" value="${targetUrl}" />
 						

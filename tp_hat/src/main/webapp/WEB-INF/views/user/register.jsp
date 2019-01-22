@@ -21,7 +21,7 @@
 			<div class="card border-info card-signin my-5">
 				<div class="card-body" style="border: #78c2ad 1px">
 					<h5 class="card-title text-center">이거어때 회원가입</h5>
-					<form class="form-signin" action="register" method="post">
+					<form class="form-group" action="register" method="post">
 						<div>
 							<input type="text" class="form-control" name="userId" id="userId" placeholder="아이디 입력" required> 
 							<label class="form-control-label" id="idResult"></label> 

@@ -110,23 +110,24 @@
 	<div id="menu3" class="container tab-pane fade"><br>
 		<h3>기본 정보 설정</h3>
 		<div class="container">
-			<form class="form-signin" action="profile" method="post">
-			
-		      	<label class="form-control-label" id="idResult">아이디</label>
-		      	<input type="text" class="form-control" id="userId" name="userId" value="${loginId}" readonly>
-		      	
-				<label class="form-control-label" id="pwdResult">비밀번호</label> 
-		      	<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호" required />
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<form class="form-signin" action="profile" method="post">
 				
-				<label class="form-control-label" id="emailResult">이메일 </label> 
-				<input type="email" class="form-control" id="userEmail" name="userEmail" value="${user.userEmail}" placeholder="이메일" required/>
-
-				<label class="form-control-label" id="phoneResult">전화번호</label>
-				<input type="text" class="form-control" id="phone" name="phone" value="${user.phone}" placeholder="전화번호"required/>
-				
-				<label></label>
-				<button class="btn btn-lg btn-block" type="submit" name="btnResult" id="btnResult">수정</button>
-			</form>
+			      	<label class="form-control-label" id="idResult">아이디</label>
+			      	<input type="text" class="form-control" id="userId" name="userId" value="${loginId}" readonly>
+			      	
+					<label class="form-control-label" id="pwdResult">비밀번호</label> 
+			      	<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호" required />
+					
+					<label class="form-control-label" id="emailResult">이메일 </label> 
+					<input type="email" class="form-control" id="userEmail" name="userEmail" value="${user.userEmail}" placeholder="이메일" required/>
+	
+					<label class="form-control-label" id="phoneResult">전화번호</label>
+					<input type="text" class="form-control" id="phone" name="phone" value="${user.phone}" placeholder="전화번호"required/>
+					
+					<label></label>
+					<button class="btn btn-lg btn-block" type="submit" name="btnResult" id="btnResult">수정</button>
+				</form>
 		</div>
 </div>
 </div>
