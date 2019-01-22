@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>description</title>
+<title>프로젝트 상세보기</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="../resources/css/category.css">
@@ -32,15 +32,15 @@
 
 <div class="container">
 	<div style="margin:4em 0 0 0;">
-		<!-- 프로젝트 이름 -->
-		<h1 class="mt-4" style="text-align:center;">${projectModel.title}</h1>
-        <p class="lead" style="text-align:right;">by 
-        	<a href="#">${projectModel.userId}</a>
-		</p>
-		<hr>
-		<!-- Date/Time -->
-		<p style="text-align:right"> Posted on <fmt:formatDate value="${projectModel.regTime}" pattern="yy/MM/dd HH:mm:ss"></fmt:formatDate></p>
-		<hr>
+	<!-- 프로젝트 이름 -->
+	<h1 class="mt-4" style="text-align: center;">${projectModel.title}</h1>
+	<p class="lead" style="text-align: right;">
+       by ${projectModel.userId}</p>
+	<hr>
+	<!-- Date/Time -->
+	<p style="text-align:right"> Posted on <fmt:formatDate value="${projectModel.regTime}" 
+		pattern="yy/MM/dd HH:mm:ss"></fmt:formatDate></p>
+	<hr>
  	</div>
  	
 	<div class="row">
@@ -54,44 +54,49 @@
 				<div class="card-body">
 					<label>남은 시간</label>
 					<c:if test= "${projectModel.restDay<0}">
-					<h3>D${projectModel.restDay}</h3>
+						<h3>D${projectModel.restDay}</h3>
 					</c:if>
 					<c:if test = "${projectModel.restDay==0}">
-					<h3>D-Day</h3>
+						<h3>D-Day</h3>
 					</c:if>
 					<p class="progress">
 						<a class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="40" role="progressbar" 
 						aria-valuemin="0" aria-valuemax="100" style="width:${projectModel.percent*100}%; background-color:#78c2ad;"></a>
 					</p>
 					<label>모인 금액</label>
-					<h3><fmt:formatNumber value="${projectModel.currentAmount}"></fmt:formatNumber>원</h3>
+					<h3>
+						<fmt:formatNumber value="${projectModel.currentAmount}"></fmt:formatNumber>원
+					</h3>
 				</div>
 				<div class="card-body">
-					<h3>펀딩 진행중/펀딩성공</h3><br/>목표 금액인 <fmt:formatNumber value="${projectModel.targetAmount}"></fmt:formatNumber>원이 모여야만 결제됩니다. 
-					결제는 "마감일자"에 다함께 진행됩니다. <br/>
-	           </div>
-	           <div class="card-body btn-wrap funding">
-	           		<form action="rewards" method="get">
-	           			<input type="hidden" id = "inPno" name="pno" value="${projectModel.pno}"/>
-	           			<c:if test = "${not empty loginId}">
-							<button type="submit" id= "btn" class="btn" style="width: 100%" >펀딩하기</button>
-	           			</c:if>
-	           			<c:if test="${empty loginId}">
-	           				<a>펀딩하기는 로그인이 필요합니다.</a>
-	           			</c:if>
-	           		</form> 
-	           </div>
+					<h3>펀딩 진행중</h3>
+					<p> 목표 금액인 <fmt:formatNumber value="${projectModel.targetAmount}"></fmt:formatNumber>
+						원이 모이면 펀딩에 성공합니다. 실패시 결제한 포인트는 환불처리 됩니다.
+					</p>
+				</div>
+				<div class="card-body btn-wrap funding">
+					<form action="rewards" method="get">
+						<input type="hidden" id="inPno" name="pno" value="${projectModel.pno}" />
+						<c:if test="${not empty loginId}">
+							<button type="submit" id="btn" class="btn" style="width: 100%">펀딩하기</button>
+						</c:if>
+						<c:if test="${empty loginId}">
+							<h4><a>펀딩은 로그인이 필요합니다.</a></h4>
+						</c:if>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div> <!-- // end row1 -->
+	</div> 
+	<!-- // end row1 -->
 		
 	<div class="row">
 		<!-- 프로젝트 내용(content) -->
 		<div class="col-12 col-md-8">
 			<c:forEach items = "${images}" var ="img" varStatus="status">
-			<c:if test = "${status.index!=0}">
-				<img class="img-fluid rounded" src="${img.image}" alt=""><br/>
-			</c:if>
+				<c:if test = "${status.index!=0}">
+					<img class="img-fluid rounded" src="${img.image}" alt=""><br/>
+				</c:if>
 			</c:forEach>
 			<p class="lead">${projectModel.content}</p>
 		</div>
@@ -104,9 +109,9 @@
 					<h3>${projectModel.userId}</h3>
 				</div>
 				<div class="card-body">
-					설명블라블라</h5>
-	           </div>
-	           <div class="card-body btn-wrap funding">
+					<p>${projectModel.introduction}</p>
+				</div>
+				<div class="card-body btn-wrap funding">
 					<button class="btn" onclick="" style="width: 100%">창작자에게 문의하기</button>
 	           </div>
 			</div>
@@ -114,7 +119,7 @@
 			<!-- 댓글달기 -->
 			<input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
 			<div class="card my-4">
-				<h5 class="card-header">Leave a Comment:</h5>
+				<h5 class="card-header">프로젝트 문의</h5>
 				<div class="card-body">
 					<div>
 					<c:if test="${not empty loginId}">
@@ -129,16 +134,16 @@
 					</div>
 				</div>
 					<!-- 프로젝트 관련 댓글 -->
-	<div class="media mb-4">		
-		<div class="media-body">
-			<div class="mt-0" id="mt-0"> 
-				
-			</div>		
-		</div>
-	</div>
+				<div class="media mb-4">		
+					<div class="media-body">
+						<div class="mt-0" id="mt-0"> 
+								
+						</div>		
+					</div>
+				</div>
 			</div>
 		</div>
-</div>
+	</div>
 </div> <!-- .row -->
 
 <div class="footer">
@@ -151,14 +156,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script id="reply-template" type="text/x-handlebars-template">
-<li class="reply-item">
-	<input id="rno" value="{{rno}}" type="hidden" readonly />
-	<input id="content" value="{{content}}" type="text" readonly />
-	<input id="userId" value="{{userId}}" type="text" readonly />
-	<input id="regDate" value="{{regDate}}" type="text" readonly />
+<li class="reply-item form-group">
+	<input class="form-control" id="rno" value="{{rno}}" type="hidden" readonly />
+	<input class="form-control" id="userId" value="{{userId}}" type="text" readonly />
+	<input class="form-control" id="regDate" value="{{regDate}}" type="text" readonly />
+	<input class="form-control" id="content" value="{{content}}" type="text" readonly />
 	<div class="btnGroup-div{{rno}}">
-		<button class="btnUpdate">수정</button>
-		<button class="btnDelete">삭제</button>
+		<button class="btnUpdate btn">수정</button>
+		<button class="btnDelete btn">삭제</button>
 	</div>
 </li>
 </script>
@@ -281,7 +286,7 @@ $(document).ready(function(){
 			data: JSON.stringify({'userId':userId,'content':content}),
 			success: function(data){
 				if(data == 1){
-					alert('댓글'+rno+'번 수정 성공');
+					alert('댓글을 수정하시겠습니까?');
 					getAllreplies();
 				}else{
 					alert('댓글 수정 실패')
