@@ -5,12 +5,12 @@ public class Present {
 	private int pno;			// 선물 번호
 	private int step;			// 선물 단계
 	private String component;	// 구성품
-	private String amount;      // 가격
+	private int amount;      // 가격
 	
 	public Present() {}
 
 
-	public Present(int pno, int step, String component, String amount) {
+	public Present(int pno, int step, String component, int amount) {
 		this.pno = pno;
 		this.step = step;
 		this.component = component;
@@ -18,12 +18,12 @@ public class Present {
 	}
 
 
-	public String getAmount() {
+	public int getAmount() {
 		return amount;
 	}
 
 
-	public void setAmount(String amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 

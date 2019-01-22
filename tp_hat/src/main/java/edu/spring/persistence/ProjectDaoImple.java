@@ -52,7 +52,7 @@ public class ProjectDaoImple implements ProjectDao {
 	@Override
 	public List<Project> selectAllProject() {
 		logger.info("selectAllProject() call");
-		return session.selectList(PROJECT_MAPPER + ".selectALl");
+		return session.selectList(PROJECT_MAPPER + ".selectAll");
 	}
 
 	@Override

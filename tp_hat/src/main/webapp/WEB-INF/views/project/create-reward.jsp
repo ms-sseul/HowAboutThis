@@ -25,12 +25,13 @@ form {
 }
 </style>
 </head>
+
 <body>
 
 <h1>리워드</h1>
 
-<form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" id = "projectForm" action="create" method="post">
-  	
+<form class="col-sm-9 col-md-7 col-lg-5 mx-auto alert alert-dismissible alert-info" id = "projectForm" action="createReward" method="post">
+  	<input type="hidden" name = "pno" value="${pno}"/>
   	<div id="rew1" class="row">
   		<div class="col-lg-4 col-sm-6">리워드 </div>  		
   		<div id = "reward">
@@ -51,7 +52,7 @@ form {
   		<div id = "reward">
   			<span class="col-lg-4 col-sm-6">금액</span>
   			<input type="number" name="amount"/> 원
-  			<input style="width: 30px; text-align: center;" type="text" name="step" value="2" readonly/>단계
+  			<input style="width: 30px; text-align: center;" type="number" name="step" value="2" readonly/>단계
   			<br/>
   		<div>	
   			<span class="col-lg-4 col-sm-6">상세설명</span>
@@ -75,14 +76,14 @@ form {
   		<hr/>
   		</div>
   	</div>
-  	
+  	<input type="submit" value="만들기" />
+	
+</form>
   	<div id = "newReward"></div>
   		<div class="col-lg-4 col-sm-6">
 	  		<button id = "btnCreateNewReward">새 리워드 만들기</button>
 	  	</div>
 	<hr/>
-	
-</form>
 
 <script>
 $(document).ready(function() {
@@ -97,8 +98,8 @@ $(document).ready(function() {
 		if(id < 4){
 			$('#rew'+id).show();
 		}
-		
 	});
+	
 });
 </script>
 

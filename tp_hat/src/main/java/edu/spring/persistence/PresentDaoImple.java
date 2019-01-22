@@ -19,9 +19,17 @@ public class PresentDaoImple implements PresentDao {
 	@Autowired private SqlSession session;
 	
 	@Override
-	public int createPresent(Present present) {
+	public int createPresent(List<Present> presents) {
 		logger.info("createPresent() call");
-		return session.insert(PRESENT_MAPPER + ".insert", present);
+		int result = 0;
+		for(Present p : presents) {
+			result += session.insert(PRESENT_MAPPER + ".insert", p);
+		}
+		if(result == presents.size()) {
+			return 1;
+		} else {
+			return 0;			
+		}
 	}
 
 	@Override

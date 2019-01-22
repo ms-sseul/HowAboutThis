@@ -17,14 +17,18 @@ public class Project {
 	private int readCnt;		//조회수
 	private int replyCnt;		//댓글수
 	private int finished;	  // 종료여부
+	private String introduction; // 프로젝트 소개
 	
 	public Project() {}
 	
 			
 	
+	
+
 	public Project(int pno, String title, String content, int recommendation, int category, int currentAmount,
-			int targetAmount, String userId, Date targetTime, Date regTime, int readCnt, int replyCnt,
-			int finished) {
+			int targetAmount, String userId, Date targetTime, Date regTime, int readCnt, int replyCnt, int finished,
+			String introduction) {
+		super();
 		this.pno = pno;
 		this.title = title;
 		this.content = content;
@@ -38,7 +42,12 @@ public class Project {
 		this.readCnt = readCnt;
 		this.replyCnt = replyCnt;
 		this.finished = finished;
+		this.introduction = introduction;
 	}
+
+
+
+
 
 	public int getFinished() {
 		return finished;
@@ -46,6 +55,22 @@ public class Project {
 
 
 
+
+
+
+
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+
+
+
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
 
 
 

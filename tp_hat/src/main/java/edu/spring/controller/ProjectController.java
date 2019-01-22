@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,7 @@ import edu.spring.domain.Image;
 import edu.spring.domain.Present;
 import edu.spring.domain.Project;
 import edu.spring.domain.ProjectModel;
+import edu.spring.persistence.PresentDao;
 import edu.spring.persistence.ProjectDao;
 import edu.spring.persistence.UserDao;
 import edu.spring.service.ProjectService;
@@ -41,6 +43,7 @@ public class ProjectController {
 	@Autowired
 	private UserDao userDao;
 	@Autowired private ProjectDao projectDao;
+	@Autowired private PresentDao presentDao; 
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createProject() {
@@ -80,13 +83,14 @@ public class ProjectController {
 //		}
 		int result = projectService.insertProject(project, images);
 		int pno = projectDao.selectLastProject().getPno();
+		logger.info("pno = {}" , pno);
 		model.addAttribute("insertProjectResult", result);
 		model.addAttribute("pno", pno);
 		return "project/create-reward";
 	}
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String projectMain(Model model, HttpServletRequest req) {
+	public String projectMain(Model model, HttpServletRequest req, RedirectAttributes rttr) {
 		projectDao.updateFinishedProject();
 		// 메인 배너 이미지
 		List<Image> bannerImageList = new ArrayList<>();
@@ -129,7 +133,9 @@ public class ProjectController {
 		for(Project p :lastestProject) {
 			lastestImageList.add(projectService.selectProjectImage(p.getPno()));
 		}
-
+		if (rttr.getFlashAttributes()!=null) {
+			rttr.addFlashAttribute("createResult", "success");
+		}
 
 		for (int i = 0; i < 3; i++) {
 			lastestProjectModel.add(new ProjectModel(lastestImageList.get(i), lastestProject.get(i)));
@@ -165,7 +171,7 @@ public class ProjectController {
 		model.addAttribute("option", "not null");
 		if(category >=1 && category <=6) {
 			projects = projectService.selectProjectByCategory(category);
-		} else  {
+		}	else  {
 			projects = projectService.selectAllProject();
 		}
 		for(Project p : projects) {
@@ -176,6 +182,8 @@ public class ProjectController {
 		}
 		model.addAttribute("projectModels", projectModels);
 		switch (category) {
+		case 0:
+			model.addAttribute("categoryName", "전체 프로젝트");
 		case 1:
 			model.addAttribute("categoryName", "테크 & 가전");
 			break;
@@ -255,11 +263,16 @@ public class ProjectController {
 		
 		return "web/main";
 	}
-	@RequestMapping(value = "createRewards", method = RequestMethod.POST)
-	public String createRewards(int pno, Present[] presents) {
-		
-		
-		
-		return "web/main";
+	@RequestMapping(value = "createReward", method = RequestMethod.POST)
+	public String createRewards(Integer[] amount, Integer[] step, String[] component, int pno, RedirectAttributes rttr) {
+		List<Present> presents = new ArrayList<>();
+		for(int i = 0; i < step.length; i++) {
+			if(!component[i].equals("")) {
+				presents.add(new Present(pno, step[i], component[i], amount[i]));
+			}
+		}
+		presentDao.createPresent(presents);
+		rttr.addFlashAttribute("createResult", "success");
+		return "redirect:main";
 	}
 }

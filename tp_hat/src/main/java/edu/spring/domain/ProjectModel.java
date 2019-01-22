@@ -44,7 +44,7 @@ public class ProjectModel extends Project {
 				project.getRecommendation(), project.getCategory(), project.getCurrentAmount(), 
 				project.getTargetAmount(), project.getUserId(), project.getTargetTime(), 
 				project.getRegTime(), project.getReadCnt(), project.getReplyCnt(), 
-				project.getFinished());
+				project.getFinished(), project.getIntroduction());
 		this.image = image;
 		this.percent = Float.parseFloat(String.format("%.2f", Float.parseFloat(String.valueOf(project.getCurrentAmount())) / project.getTargetAmount()));
 //		this.restDay = -Period.between(LocalDate.now(), LocalDate.ofInstant(project.getTargetTime().toInstant(), ZoneId.systemDefault())).getDays();
