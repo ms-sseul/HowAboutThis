@@ -50,7 +50,7 @@ body {
 <!-- 상단메뉴바(고정) -->
 <div class="topnav">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="myTopnav">
-      <a class="navbar-brand" href="/controller">여기어때</a>
+      <a class="navbar-brand" href="/controller">이거어때</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
       	aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

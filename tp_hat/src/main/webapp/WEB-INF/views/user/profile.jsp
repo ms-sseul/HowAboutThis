@@ -9,6 +9,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>	
+<style>
+
+.clearfix {
+  overflow: auto;
+}
+.img {
+  float: left;
+}
+</style>
+
 <title>마이페이지</title>
 </head>
 <body>
@@ -17,13 +27,11 @@
 
 <div class="container">
 	<div style="margin:6em 0 1em 0;">
-	<div class="profile-background">
+	<div class="clearfix">
 		<div>
-			<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-			<h1>안녕하세요,</h1><h3>${userId}님</h3>
-		</div>	
-		<div>
-			<h6>${point}포인트 보유중</h6>
+			<img class="d-flex mr-3 rounded-circle img" src="../resources/images/category/all.jpg" style="width:150px;">
+			<h1>안녕하세요,</h1><h3>${user.userId}님!</h3>
+			<h6>${user.point} 포인트 보유중</h6>
 			<button type="button" class="btn" data-toggle="modal" data-target="#myModal">포인트 충전</button>
 		</div>
 		
@@ -40,8 +48,8 @@
 					<div class="modal-body">
 						<h5><span>충전할 금액</span></h5>
 							<form action="point-charge" method="post">
-							<span><input type="text" class="form-control" id="userId" name="userId" placeholder="${userId}님" readonly></span><br/>
-							<span><input type="text" class="form-control" id="phone" name="phone" placeholder="${user_phone}" readonly></span><br/>
+							<span><input type="text" class="form-control" id="userId" name="userId" placeholder="${user.userId}님" readonly></span><br/>
+							<span><input type="text" class="form-control" id="phone" name="phone" placeholder="${user.phone}" readonly></span><br/>
 							<span><input type="number" class="form-control" id="money" name="point" placeholder="금액을 입력해주세요" required></span><br/>
 							<span><button type="submit" class="btn" id="result">충전</button>
 							<button type="button" class="btn" data-dismiss="modal" style="background-color: #78c2ad;">취소</button></span> <br />
@@ -60,10 +68,10 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link show active" data-toggle="tab" href="#home">후원한 프로젝트</a>
+      <a class="nav-link show active" data-toggle="tab" href="#home">후원프로젝트</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link show " data-toggle="tab" href="#menu1">만든 프로젝트</a>
+      <a class="nav-link show " data-toggle="tab" href="#menu1">내프로젝트</a>
     </li>
     <li class="nav-item">
       <a class="nav-link show " data-toggle="tab" href="#menu2" id="menuclick">쪽지함</a>
@@ -100,29 +108,32 @@
       </div>
 		<a href="${messageUrl}">Click to enter</a>
     </div>
-    <div id="menu3" class="container tab-pane fade"><br>
-      <h3>개인정보 수정 페이지</h3>
-      	<form action="profile" method="post">
-      	아이디 <input type="text" id="userId" name="userId" value="${loginId}" readonly>
-      	<br/>
-      	비밀번호 <input type="password" id="userPwd" name="userPwd" placeholder="Password" required />
-		<br/>
-		<div id="pwdResult"></div>
-		<br/>
-		이메일 <input type="email" id="userEmail" name="userEmail" value="${user_email}" placeholder="Email" required/>
-		<br/>
-		<div id="emailResult"></div>
-		<br/>
-		전화번호 <input type="text" id="phone" name="phone" value="${user_phone}" placeholder="Phone Number"required/>
-		<br/>
-		<div id="phoneResult"></div>
-		<br/>
-		<!-- 개인정보 수정 (=DB 업데이트) 추가해주세요 -->
-		<input type="submit" name="btnResult" id="btnResult" value="수정완료" />
-      	</form>
-    </div>
-  </div>
+    
+	<div id="menu3" class="container tab-pane fade"><br>
+		<h3>기본 정보 설정</h3>
+		<div class="container">
+			<form class="form-signin" action="profile" method="post">
+			
+		      	<label class="form-control-label" id="idResult">아이디</label>
+		      	<input type="text" class="form-control" id="userId" name="userId" value="${loginId}" readonly>
+		      	
+				<label class="form-control-label" id="pwdResult">비밀번호</label> 
+		      	<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호" required />
+				
+				<label class="form-control-label" id="emailResult">이메일 </label> 
+				<input type="email" class="form-control" id="userEmail" name="userEmail" value="${user.userEmail}" placeholder="이메일" required/>
+
+				<label class="form-control-label" id="phoneResult">전화번호</label>
+				<input type="text" class="form-control" id="phone" name="phone" value="${user.phone}" placeholder="전화번호"required/>
+				
+				<label></label>
+				<button class="btn btn-lg btn-block" type="submit" name="btnResult" id="btnResult">수정</button>
+			</form>
+		</div>
 </div>
+</div>
+</div>
+
 
 <script>
 $(document).ready(function () {
@@ -247,11 +258,5 @@ $(document).ready(function(){
 });//ready end
 
 </script>
-
-
-
-
-
-
 </body>
 </html>
