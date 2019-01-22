@@ -69,7 +69,9 @@
 	</div>
 	
 	<div class="option form-group">
+		<c:if test="${not empty loginId}">
 		<button class="btn float-left" onclick="location.href='insert'">글쓰기</button>
+		</c:if>
 		<form action="listSearch" method="get" class="form-inline float-right">
 			<select name="searchType" class="custom-select">
 				<option value="1">글쓴이</option>
