@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +33,7 @@
 		<div>
 			<img class="d-flex mr-3 rounded-circle img" src="../resources/images/category/all.jpg" style="width:150px;">
 			<h1>안녕하세요,</h1><h3>${user.userId}님!</h3>
-			<h6>${user.point} 포인트 보유중</h6>
+			<h6><fmt:formatNumber value="${user.point}" groupingUsed="true" /> 포인트 보유중</h6>
 			<button type="button" class="btn" data-toggle="modal" data-target="#myModal">포인트 충전</button>
 		</div>
 		
@@ -92,12 +94,9 @@
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
       <h3>만든 프로젝트</h3>
-      <p>만든 프로젝트 </p>
-      <p>만든 프로젝트 </p>
-      <p>만든 프로젝트 </p>
-      <p>만든 프로젝트 </p>
-      <p>만든 프로젝트 </p>
-      <p>만든 프로젝트 </p>
+      <c:forEach items="${myProjects}" var="myProject">
+      <p><a href = "/controller/project/description?pno=${myProject.pno}">${myProject.title}</a></p>
+      </c:forEach>
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
      <h3 class="message-h3">받은쪽지함</h3>

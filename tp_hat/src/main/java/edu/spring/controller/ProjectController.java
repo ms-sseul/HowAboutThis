@@ -1,5 +1,6 @@
 package edu.spring.controller;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -48,10 +49,10 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
-	public String createPostProject(String targetDate, Project project, MultipartFile[] uploadFiles, Present present,
-			HttpServletRequest req) throws Exception {
+	public String createPostProject(String targetDate, Project project, MultipartFile[] uploadFiles,
+			HttpServletRequest req, Model model) throws Exception {
 		List<Image> images = new ArrayList<>();
-		List<Present> presents = new ArrayList<>();
+//		List<Present> presents = new ArrayList<>();
 
 		logger.info("createProject(POST) Call");
 
@@ -64,10 +65,10 @@ public class ProjectController {
 		project.setUserId((String) req.getSession().getAttribute("loginId"));
 		project.setTargetTime(date);
 
-		presents.add(present);
+//		presents.add(present);
 		// TODO : 파일 업로드
 //		if(uploadFiles.length!=0) {
-//		for(MultipartFile m : uploadFiles) {
+//			for(MultipartFile m : uploadFiles) {
 //				System.out.println("이름 : " + m.getName());
 //				String fileName = m.getOriginalFilename();
 //				String filePath = "C:/images/" + fileName;
@@ -77,8 +78,11 @@ public class ProjectController {
 //				m.transferTo(new File(filePath));	
 //			}
 //		}
-		projectService.insertProject(project, images, presents);
-		return "redirect:../web/main";
+		int result = projectService.insertProject(project, images);
+		int pno = projectDao.selectLastProject().getPno();
+		model.addAttribute("insertProjectResult", result);
+		model.addAttribute("pno", pno);
+		return "project/create-reward";
 	}
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
@@ -248,6 +252,13 @@ public class ProjectController {
 		}
 		model.addAttribute("projectModels", projectModels);
 
+		
+		return "web/main";
+	}
+	@RequestMapping(value = "createRewards", method = RequestMethod.POST)
+	public String createRewards(int pno, Present[] presents) {
+		
+		
 		
 		return "web/main";
 	}

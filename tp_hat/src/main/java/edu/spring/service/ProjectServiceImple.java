@@ -25,7 +25,7 @@ public class ProjectServiceImple implements ProjectService {
 	@Autowired private UserDao userDao;
 	
 	@Override
-	public int insertProject(Project project, List<Image> images, List<Present> presents) {
+	public int insertProject(Project project, List<Image> images) {
 		int result = projectDao.createProject(project);
 		logger.info("result = {}" , result);
 		project = projectDao.selectLastProject();
@@ -33,11 +33,6 @@ public class ProjectServiceImple implements ProjectService {
 		for(Image i : images) {
 			i.setPno(project.getPno());
 			result +=imageDao.createImage(i);
-			logger.info("result = {}" , result);
-		}
-		for(Present p : presents) {
-			p.setPno(project.getPno());
-			result += presentDao.createPresent(p);
 			logger.info("result = {}" , result);
 		}
 		return result;
@@ -131,6 +126,7 @@ public class ProjectServiceImple implements ProjectService {
 		
 		return result;
 	}
+
 	
 	
 	

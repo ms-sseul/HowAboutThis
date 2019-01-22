@@ -19,4 +19,5 @@ public interface ProjectDao {
 	List<Project> selectLastestProject();						// 최근 생성된 프로젝트 3개
 	List<Project> selectClosingTimeProject();					// 마감순 프로젝트 
 	int updateFinishedProject();								// 목표시간이 지난 프로젝트 종요여부 갱신
+	List<Project> showMyProject(String userId);					// 내가 만든 프로젝트 출력
 }

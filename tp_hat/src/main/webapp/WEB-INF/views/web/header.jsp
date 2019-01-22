@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../resources/css/header.css">
+  <!-- <link rel="stylesheet" href="../resources/css/header.css"> -->
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Noto+Sans+KR:300" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -51,7 +51,7 @@ body {
 <div class="topnav">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="myTopnav">
       <a class="navbar-brand" href="/controller">이거어때</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+      <button class="navbar-toggler" type="button" id = "btnToggle" data-toggle="collapse" data-target="#navbarNavDropdown" 
       	aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -68,12 +68,11 @@ body {
 			<a class="nav-link" href="/controller/board/list">커뮤니티</a>
 		  </li>
         </ul>
-        
         <ul class="navbar-nav">
           <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em" action="/controller/project/search" method="get">
-		      <input class="form-control mr-sm-2" name = "keyword" type="text" placeholder="Search">
-		      <button class="btn my-2 my-sm-0"  type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em" action="search" me>
+		      <input class="form-control mr-sm-2" id = "keyword" type="text" placeholder="Search">
+		      <button class="btn my-2 my-sm-0" name="btnSearch" type="submit">Search</button>
 		    </form>
           </li>
           <li class="nav-item"> 
@@ -94,6 +93,7 @@ body {
 
 <script>
 $(document).ready(function() {
+	var toggle = true;
 	$('#btn-logout').click(function() {
 		location = '/controller/user/logout';
 	});
@@ -103,7 +103,16 @@ $(document).ready(function() {
 		 console.log(encodeURIComponent(location.href));
 		location = '/controller/user/login?url=' + encodeURIComponent(location.href);
 	});
-
+	
+	 $('#btnToggle').click(function() {
+		if($(this).attr('aria-expanded')){
+			console.log('여기 들어옴');
+			$(this).prop('aria-expanded', 'false');
+		} else {
+			console.log('여기 들어오나?');
+			$(this).prop('aria-expanded', 'true');
+		}
+	});
 });
 </script>
 

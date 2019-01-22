@@ -20,48 +20,7 @@
 <div class="container col-lg-10 col-sm-8">
 
 	 <div class="table-responsive-lg" style="margin:4em;">
-	<!--	<table class="table" text-align="center">
-			<thead>
-				<tr><td>
-					<div>					
-						글번호: ${board.bno}
-						작성일: ${regDate}
-						작성자: ${board.userId} <br/>
-						제목: 
-					</div>
-					<hr/>
-				</td></tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<div class="jumbotron">
-							${board.content}
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<input type="text" id="rtext" placeholder="댓글 내용 입력" />
-							<button id="createReply">댓글 작성</button>
-						</div>
-					</td>
-					<td>
-						<hr/>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div id="replies">
-							<ul class="list-group">
-							</ul>
-							<textarea rows="5" cols="80" readonly>댓글리스트</textarea>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table> -->
+	
 	<div class="card mb-3">
 		<h3 class="card-header">[${board.bno}] ${board.title}</h3>
 		<div class="card-body">
@@ -174,6 +133,7 @@ $(document).ready(function(){
 				}else{				
 					console.log("loginId가 있다 : "+loginId);
 					$('#rtext').show();
+					$('#rtext').prop('readonly',false);
 					$('#createReply').show();
 				}
 				
@@ -286,7 +246,6 @@ $(document).ready(function(){
 			
 		}
 	}); 
-	getAllReplies();
 	 	
 });	
 	

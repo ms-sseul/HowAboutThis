@@ -123,4 +123,11 @@
 		WHERE current_date() > ${project.targetTime}
 	</update>
 	
+	<select id = "showMyProject" resultType="Project">
+		SELECT *
+		FROM ${tbl_project} 
+		WHERE ${project.userId} = #{userId}
+		ORDER BY ${project.pno} DESC
+	</select>
+	
 </mapper>

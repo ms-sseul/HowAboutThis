@@ -83,18 +83,17 @@ form {
   		</div>
   	</div>
   	<hr/>
-  	
-  	<div class="row">  	
+	
+	<div class="row">  	
   	<div class="col-lg-4 col-sm-6">프로젝트 종료일</div> 
   		<div><input id= "targetTime" type="date" name = "targetDate" placeholder="yyyy-MM-dd"/></div>
   	</div>	
-	<hr/>
-	
+  	<hr/>
   </div>
   
   	<div class="row">
   		<button style="margin: 5px;" id = "btnPrev">이전</button>
-  		<input class="save" style="margin: 5px;" type="submit" value="만들기"/>
+  		<input class="save" style="margin: 5px;" type="submit" value="다음"/>
   	</div>
  
 </form>
@@ -103,8 +102,15 @@ form {
 <div id = "reward">
   			<span>금액</span>
   			<input type="number" name="amount"/> 원
-  			<input id="test" type="text" name="step" value="1" readonly/>단계
-  			<br/>
+  			<span>단계</span>
+  			<select name = "step" required="required">
+  				<option value="1">1</option>
+  				<option value="2">2</option>
+  				<option value="3">3</option>
+  				<option value="4">4</option>
+  				<option value="5">5</option>
+  			</select>
+  			<br>
   			<span>상세설명</span>
   			<input type="text" name = "component" >
   		</div>
@@ -116,18 +122,17 @@ $(document).ready(function() {
 		self.location = "/controller/web/main";
 	});
 	$('#btnCreateNewReward').click(function() {
+		$('#rew').clone().appendTo(".rewardList");
 		
-		var red = $('#test').val();
-		red = (Number(red) + 1);
+		$('#test').empty();
 		
-		if($('#test').val() < 3) {
-			$('#test').val(red);
-			$('#rew').clone().appendTo(".rewardList");
+		var i = 1;
+		while(i <= 5) {
+			i++;
+			$('<option value="' + i + '">' + i + '</option>').appendTo('#test');
 		}
-				
 	});
 });
-
 </script>
 
 </body>

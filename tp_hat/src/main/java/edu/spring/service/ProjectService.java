@@ -8,7 +8,7 @@ import edu.spring.domain.Project;
 
 public interface ProjectService {
 
-	int insertProject(Project project, List<Image> images, List<Present> presents);
+	int insertProject(Project project, List<Image> images);
 	List<Project> selectAllProject();				// 전체 프로젝트 
 	List<Project> selectSearchProject(String keyword); // 검색어에 해당하는 프로젝트 출력
 	List<Project> selectProjectByCategory(int category);	// 카테고리 별 프로젝트 출력
