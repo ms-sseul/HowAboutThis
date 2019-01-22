@@ -63,7 +63,9 @@
 		</tbody>
 	</table>
 	<button class="btn" onclick="location.href='/controller/board/listSearch?page=${criteria.page}&perPageNum=${criteria.perPageNum}&keyWord=${keyWord}&searchType=${searchType}'" style="width:20%" align="right" >목록으로 돌아가기</button>
+	<c:if test="${board.userId==loginId}">
 	<a href="update?bno=${board.bno}">수정하기</a>
+	</c:if>
 </div>
 
 <input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
