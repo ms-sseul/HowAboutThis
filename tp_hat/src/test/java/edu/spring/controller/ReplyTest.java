@@ -37,10 +37,10 @@ public class ReplyTest {
 //		insertrrno();
 //		rrnoList();
 //		updaterrno();
-		deleterrno();
+//		deleterrno();
 	}
 
-	private void insertTest() {
+	/*private void insertTest() {
 		Reply r = new Reply();
 		r.setParentNumber(24);
 		r.setContent("짜증이 밀려온다");
@@ -124,7 +124,7 @@ public class ReplyTest {
 		
 		logger.info("deleterrno 결과 = {}",result);		
 		
-	}
+	}*/
 	
 	
 	

@@ -297,7 +297,7 @@ $(document).ready(function(){
 	
 	division.on('click','.reply-item .btnDelete', function(){
 		var rno = $(this).parents('.reply-item').children('#rno').val();
-		alert(rno + ' 댓글 삭제?');
+		
 		var result = confirm(rno+'번 댓글을 삭제 하시겠습니까?')
 		if(result == true){
 			$.ajax({
