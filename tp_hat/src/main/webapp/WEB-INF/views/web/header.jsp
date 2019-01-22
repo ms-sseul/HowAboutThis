@@ -68,6 +68,7 @@ body {
 			<a class="nav-link" href="/controller/board/list">커뮤니티</a>
 		  </li>
         </ul>
+        
         <ul class="navbar-nav">
           <li class="nav-item">
             <form class="form-inline my-2 my-lg-0" style="margin-right: 0.5em" action="/controller/project/search" method="get">
