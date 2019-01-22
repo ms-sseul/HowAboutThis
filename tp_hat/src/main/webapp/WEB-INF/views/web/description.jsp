@@ -112,7 +112,7 @@
 					<p>${projectModel.introduction}</p>
 				</div>
 				<div class="card-body btn-wrap funding">
-					<button class="btn" onclick="" style="width: 100%">창작자에게 문의하기</button>
+					<button class="btn" id = "btnSendMessage" style="width: 100%">창작자에게 문의하기</button>
 	           </div>
 			</div>
 			
@@ -173,7 +173,7 @@ $(document).ready(function(){
 	var pno = ${projectModel.pno};
 	var division = $('#mt-0');
 	var loginId = $('#loginId').val();
-	
+	var projectCreator = '${projectModel.userId}';
 	var source = $('#reply-template').html();
 	
 	var template = Handlebars.compile(source);
@@ -241,6 +241,7 @@ $(document).ready(function(){
 		var content = $('#rtext').val();
 		var loginId = $('#loginId').val();
 		console.log(loginId);
+
 		if(loginId==null){
 			alert('로그인이 필요합니다.');
 			event.preventDefault();
@@ -329,6 +330,11 @@ $(document).ready(function(){
 		
 		
 	});	
+	console.log('projectCreator = '+projectCreator);
+	
+	$('#btnSendMessage').click(function() {
+		self.location = "/controller/message/createMessage?reciever="+projectCreator;
+	});
 	
 	 	
 });	
