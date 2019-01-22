@@ -115,15 +115,15 @@
 				return totalAmount;
 			}
 
-			$('#btnSupport').click(function() {
+			$('#btnSupport').click(function(event) {
 				var result = confirm('후원을 진행 하시겠습니까?');
 					
 				if(result){
 					if(userPoint > supportAmount){
 						document.$('#supportForm').submit();
 					}else {
+						event.preventDefault();
 						alert('포인트가 부족합니다. 포인트를 충전해 주세요.');
-						location();
 					}
 				} 
 			});	
