@@ -84,8 +84,13 @@
 		<div class="card-footer form-group" style="margin-bottom: 0;">
 			<input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
 			<div class="form-inline" style="width: 100%">
-				<input type="text" id="rtext" placeholder="로그인을 하셔야 댓글 등록이 가능합니다" class="form-control" style="margin-right: 0.5em;" readonly>
-				<button class="btn" id="createReply">댓글 등록</button>
+				<c:if test="${not empty loginId}">
+					<input type="text" id="rtext" placeholder="댓글 입력" class="form-control" style="margin-right: 0.5em;"/>
+					<button class="btn" id="createReply">댓글 등록</button>
+				</c:if>
+				<c:if test = "${empty loginId}">
+					<input type="text" id="rtext" placeholder="로그인이 필요합니다." class="form-control" style="margin-right: 0.5em;" readonly/>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -161,14 +166,15 @@ $(document).ready(function(){
 				
 				console.log("loginId : "+loginId);
 				if(loginId == "null"){
-					console.log("loginId가 들어왔다 :"+loginId);					
+					console.log("loginId가 없음"+loginId);					
 					$('#createReply').hide();
+					$('#rtext').prop('placeholder','로그인이 필요합니다.');
+					$('#rtext').prop('readonly',true);
 					
 				}else{				
 					console.log("loginId가 있다 : "+loginId);
 					$('#rtext').show();
 					$('#createReply').show();
-					$('#rtext').prop('readonly',false);	
 				}
 				
 			});
@@ -180,9 +186,13 @@ $(document).ready(function(){
 	
 	getAllReplies();
 	
-	$('#createReply').click(function(){
+	$('#createReply').click(function(event){
 		var content = $('#rtext').val();
 		var loginId = $('#loginId').val();
+		if(loginId==null){
+			alert('로그인이 필요합니다.');
+			event.preventDefault();
+		}
 		console.log(loginId);
 		console.log(bno);
 		console.log(content);
@@ -276,6 +286,7 @@ $(document).ready(function(){
 			
 		}
 	}); 
+	getAllReplies();
 	 	
 });	
 	
