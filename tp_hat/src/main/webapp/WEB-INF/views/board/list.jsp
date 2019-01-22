@@ -69,7 +69,9 @@
 	</div>
 	
 	<div class="option form-group">
-		<button class="btn float-left" onclick="location.href='insert'">글쓰기</button>
+		<c:if test="${not empty loginId}">
+		<button class="btn float-left" id="btnWrite" onclick="location.href='insert'">글쓰기</button>
+		</c:if>
 		<%-- <form action="listSearch" method="get" class="form-inline float-right">			
 			<select name="searchType" class="custom-select">
 				<option value="1">글쓴이</option>
@@ -90,7 +92,6 @@
 		</select>
 		<input type="text" id="keyWord" name="keyWord" placeholder="검색어를 입력해주세요" required/>
 			<input type="button" value="검색" id="btnSearch" />
-			<input type="button" onclick="location.href='insert'" value="글쓰기" />
 	</div>
 	
 	<!-- onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'" 
