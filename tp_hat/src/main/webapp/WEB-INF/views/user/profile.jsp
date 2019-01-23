@@ -157,12 +157,14 @@ $(document).ready(function () {
 		var result = pw.test(userPwd);
 		console.log("pw = " + result);
 		if(result == false){
-			$('#pwdResult').html('아이디는 8자리~24자리 이하로 입력');
-			$('#pwdResult').css('color', 'red');
+			$('#emailResult').html('비밀번호는 8자리~24자리 이하로 입력');
+			$('#emailResult').css('color', 'red');
 			checkPwd = false;
 			btnResult.attr("disabled", "disabled");
 			check(checkPwd);
 		} else {
+			$('#emailResult').html('이메일');
+			$('#emailResult').css('color', 'black');
 			checkPwd = true;
 			check(checkPwd);
 		}

@@ -82,6 +82,7 @@ $(document).ready(function () {
 					btnResult.attr("disabled", "disabled");
 					check(checkId, checkPwd, checkPhone);
 				} else {
+					$('#idResult').html('');
 					alert("사용가능한 아이디 입니다.");
 					checkId = true;
 					check(checkId, checkPwd, checkPhone);
@@ -103,6 +104,7 @@ $(document).ready(function () {
 			btnResult.attr("disabled", "disabled");
 			check(checkId, checkPwd, checkPhone);
 		} else {
+			$('#pwdResult').html('');
 			checkPwd = true;
 			check(checkId, checkPwd, checkPhone);
 		}
@@ -121,6 +123,7 @@ $(document).ready(function () {
 			btnResult.attr("disabled", "disabled");
 			check(checkId, checkPwd, checkPhone);
 		} else {
+			$('#phoneResult').html('');
 			checkPhone = true;
 			check(checkId, checkPwd, checkPhone);
 		}
