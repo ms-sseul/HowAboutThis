@@ -281,7 +281,7 @@ public class UserController {
 			sendMail.setSubject("이거어때 서비스 비밀번호 찾기 인증이메일!");
 			sendMail.setText(new StringBuffer().append("<h1>메일 인증</h1>")
 					.append("<h2>변경된 임시 비밀번호는 : " + key + " 입니다.</h2>")
-					.append("<a href='https://localhost:8443/controller/user/pwd-emailConfirm?userId=").append(user.getUserId())
+					.append("<a href='https://192.168.11.17:8443/controller/user/pwd-emailConfirm?userId=").append(user.getUserId())
 					.append("' target='_blenk'>이메일 인증 확인</a>").toString());
 			sendMail.setFrom("myulchi0522@gmail.com", "김상현");
 			sendMail.setTo(user.getUserEmail());

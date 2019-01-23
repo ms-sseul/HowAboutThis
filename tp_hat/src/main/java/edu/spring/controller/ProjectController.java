@@ -165,7 +165,7 @@ public class ProjectController {
 		List<ProjectModel> projectModels = new ArrayList<>();
 		List<Image> bannerImageList = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
-			bannerImageList.add(new Image(i+1, 1, IMAGE_ARRAY[i]));
+			bannerImageList.add(new Image(3, 1, IMAGE_ARRAY[i]));
 		}
 		model.addAttribute("bannerImageList", bannerImageList);
 		model.addAttribute("option", "not null");
