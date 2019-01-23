@@ -69,11 +69,9 @@
 <div class="container">
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
+    
     <li class="nav-item">
-      <a class="nav-link show active" data-toggle="tab" href="#home">후원프로젝트</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link show " data-toggle="tab" href="#menu1">내프로젝트</a>
+      <a class="nav-link show active" data-toggle="tab" href="#menu1">내프로젝트</a>
     </li>
     <li class="nav-item">
       <a class="nav-link show " data-toggle="tab" href="#menu2" id="menuclick">쪽지함</a>
@@ -82,16 +80,9 @@
       <a class="nav-link show " data-toggle="tab" href="#menu3">개인정보</a>
     </li>
   </ul>
-
+</div>
   <!-- Tab panes -->
   <div class="tab-content">
-    <div id="home" class="container tab-pane active"><br>
-      <h3>후원한 프로젝트</h3>
-      <p>후원한 프로젝트 1</p>
-      <p>후원한 프로젝트 2</p>
-      <p>후원한 프로젝트 3</p>
-      <p>후원한 프로젝트 4</p>
-    </div>
     <div id="menu1" class="container tab-pane fade"><br>
       <h3>만든 프로젝트</h3>
       <c:forEach items="${myProjects}" var="myProject">
