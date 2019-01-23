@@ -246,6 +246,7 @@ $(document).ready(function(){
 			location = '/controller/board/delete?bno='+${board.bno};
 		} else {
 			
+			
 		}
 	}); 
 	 	
