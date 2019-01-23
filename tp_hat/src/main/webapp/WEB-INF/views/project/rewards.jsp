@@ -41,7 +41,7 @@
 											</label>
 											<p class="">${reward.amount}원을후원합니다.</p>
 											<p class="">${reward.step}단계:${reward.component}</p>
-											<p class="title">수량</p>
+											<p class="title">수량을 입력해 주세요</p>
 											<!-- 모바일에서 안보임, 수정해야함
 											<select class="form-control" id="exampleSelect1">
 										        <option>1</option>
@@ -50,7 +50,7 @@
 										        <option>4</option>
 										        <option>5</option>
 										    </select> -->
-											<input id="count" class="count" type="number" value="0" />
+											<input id="count" class="count" type="number" value="0" placeholder="갯수를 입력해 주세요"/>
 										</div>
 									</dl>
 								</li>
@@ -128,9 +128,12 @@
 			var result = confirm('후원을 진행 하시겠습니까?');
 				
 			if(result){
-				if(userPoint > supportAmount){
+				if(supportAmount ==0){
+					event.preventDefault();
+					alert('후원 금액에 해당하는 리워드와 갯수를 입력해 주세요');
+				}else if(userPoint > supportAmount){
 					document.$('#supportForm').submit();
-				}else {
+				} else{
 					event.preventDefault();
 					alert('포인트가 부족합니다. 포인트를 충전해 주세요.');
 				}

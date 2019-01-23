@@ -121,8 +121,9 @@
 			<c:if test="${not empty loginId}">
 				<button class="btn" style="width: 100%" id="btnSendMessage">창작자에게 문의하기</button>
 			</c:if>
-			<c:if test="${empty loginId}"></c:if>
+			<c:if test="${empty loginId}">
 				<h4><a>문의는 로그인이 필요합니다.</a></h4>
+			</c:if>
            </div>
 		</div>
 
