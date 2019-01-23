@@ -118,7 +118,11 @@
 				<p>${projectModel.introduction}</p>
 			</div>
 			<div class="card-body btn-wrap funding">
-				<button class="btn" onclick="" style="width: 100%">창작자에게 문의하기</button>
+			<c:if test="${not empty loginId}">
+				<button class="btn" style="width: 100%" id="btnSendMessage">창작자에게 문의하기</button>
+			</c:if>
+			<c:if test="${empty loginId}"></c:if>
+				<h4><a>문의는 로그인이 필요합니다.</a></h4>
            </div>
 		</div>
 
@@ -181,6 +185,7 @@ $(document).ready(function(){
 	var pno = ${projectModel.pno};
 	var division = $('#mt-0');
 	var loginId = $('#loginId').val();
+	var projectCreator = '${projectModel.userId}';
 	
 	var source = $('#reply-template').html();
 	
@@ -269,7 +274,6 @@ $(document).ready(function(){
 				'userId': loginId
 			}),
 			success: function(result){
-				alert('댓글 추가 결과: '+result);
 				$('#rtext').val('');
 				getAllReplies();
 			}			
@@ -294,10 +298,8 @@ $(document).ready(function(){
 			data: JSON.stringify({'userId':userId,'content':content}),
 			success: function(data){
 				if(data == 1){
-					alert('댓글을 수정하시겠습니까?');
 					getAllreplies();
 				}else{
-					alert('댓글 수정 실패')
 				}
 			}
 			
@@ -336,7 +338,11 @@ $(document).ready(function(){
 		} //result end
 		
 	});	
-	 	
+	$('#btnSendMessage').click(function() {
+		self.location = "/controller/message/createMessage?reciever="+projectCreator;
+	});
+	
+	
 });	
 	
 </script>

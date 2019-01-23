@@ -37,7 +37,6 @@
 						</div>
 						<hr class="my-4">
 						<button class="btn btn-lg btn-block" id="btnResult" type="submit">회원가입</button>
-						<button class="btn btn-lg btn-block" onclick="location.href='login'" style="background-color: #78c2ad;">로그인</button>
 					</form>
 				</div>
 			</div>
