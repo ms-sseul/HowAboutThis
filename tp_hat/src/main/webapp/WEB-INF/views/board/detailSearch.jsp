@@ -56,8 +56,8 @@
 			</div>
 		</div>
 
-		<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}
-		&keyWord=${keyWord}&searchType=${searchType}'"> 목록으로 돌아가기</button>
+		<button class="btn" 
+		onclick="location.href='/controller/board/listSearch?page=${criteria.page}&perPageNum=${criteria.perPageNum}&keyWord=${keyWord}&searchType=${searchType}'">목록으로 돌아가기</button>
 		<c:if test="${board.userId==loginId}">
 			<button class="btn float-right" id="btnBoardUpdate"
 				onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
