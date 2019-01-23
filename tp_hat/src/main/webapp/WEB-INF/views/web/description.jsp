@@ -169,16 +169,17 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script id="reply-template" type="text/x-handlebars-template">
-<li class="reply-item form-group">
+<li class="reply-item list-group-item form-inline align-items-center ">
 	<input class="form-control" id="rno" value="{{rno}}" type="hidden" readonly />
 	<input class="form-control" id="userId" value="{{userId}}" type="text" readonly />
 	<input class="form-control" id="regDate" value="{{regDate}}" type="text" readonly />
 	<input class="form-control" id="content" value="{{content}}" type="text" readonly />
 	<div class="btnGroup-div{{rno}}">
 		<button class="btnUpdate btn">수정</button>
-		<button class="btnDelete btn">삭제</button>
+		<button class="btnDelete btn" id="btnCan">삭제</button>
 	</div>
 </li>
+
 </script>
 
 <script>
@@ -286,30 +287,28 @@ $(document).ready(function(){
 		var rno = $(this).parents('.reply-item').children('#rno').val();
 		var selectedContent = $(this).parents('.reply-item').children('#content');
 		var content = $(this).parents('.reply-item').children('#content').val();
-		
-		selectedContent.attr('readonly',false);
-	
-		$.ajax({
-			type: 'put',
-			url: '/controller/replies/update/' + rno,
-			headers: {
-				'Content-Type': 'application/json',
-				'X-HTTP-Method-Override': 'put'
-			},
-			data: JSON.stringify({'userId':userId,'content':content}),
-			success: function(data){
-				if(data == 1){
-					getAllreplies();
-				}else{
+		if(selectedContent.attr('readonly')){			
+			selectedContent.attr('readonly',false);
+		} else {
+			$.ajax({
+				type: 'put',
+				url: '/controller/replies/update/' + rno,
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'put'
+				},
+				data: JSON.stringify({'userId':userId,'content':content}),
+				success: function(data){
+					if(data == 1){
+						getAllReplies();
+						selectedContent.attr('readonly', true);
+					}else{
+						alert('댓글 수정 실패');
+					}
 				}
-			}
-			
-			
-		});//end ajax
-		
-	
-		
-	});//divison btnupdate end	
+			});
+		}
+		});//end ajax		
 	
 	division.on('click','.reply-item .btnDelete', function(){
 		var rno = $(this).parents('.reply-item').children('#rno').val();

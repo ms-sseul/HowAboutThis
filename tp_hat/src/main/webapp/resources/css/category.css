@@ -26,6 +26,11 @@
   color: #ffffff;
 }
 
+#btnCan {
+  background-color: #78c2ad;
+  color: #ffffff;
+}
+
 a.progress-bar{
 	background-color:#78c2ad; !important;
 	animation: progressAnimation 6s;
@@ -34,4 +39,38 @@ a.progress-bar{
 @keyframes progressAnimation {
   0% { width: 5%; background-color: #78c2ad;}
   100% { width: ${projectModel.percent*100}; }
+}
+
+input#userId {
+	width: 45%;
+}
+
+input#regDate {
+	width: 45%;
+}
+
+input#content {
+	width: 91%
+}
+
+div#btn {
+	width: 50%;
+}
+
+div#btnCan {
+	width: 50%;
+}
+
+@media ( max-width: 480px ) {
+	input#userId {
+		width: 40%;
+	}
+
+	input#regDate {
+		width: 40%;
+	}
+
+	input#content {
+		width: 80%
+	}
 }

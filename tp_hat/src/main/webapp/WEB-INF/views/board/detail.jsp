@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,63 +16,68 @@
 <body>
 
 <jsp:include page="../web/header.jsp" />
-<div class="container col-lg-10 col-sm-8">
 
-	 <div class="table-responsive-lg" style="margin:4em;">
-	
-	<div class="card mb-3">
-		<h3 class="card-header">[${board.bno}] ${board.title}</h3>
-		<div class="card-body">
-			<fmt:formatDate value="${board.regDate}" pattern="yyyy/MM/dd HH:mm:ss" var="regDate" />
-			<h5 class="card-title">작성자: ${board.userId}</h5>
-		</div>
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item">
-				<div class="jumbotron" style="margin-bottom: 0">
-					<h6 class="text-muted" style="text-align:right">작성시간: ${regDate}</h6>
-				${board.content}
+<div class="container">
+	<div class="table table-hover table-responsive-xl" style="margin: 5em 0 0 0;">
+
+		<div class="card mb-3">
+			<h3 class="card-header">[${board.bno}] ${board.title}</h3>
+			<div class="card-body">
+				<fmt:formatDate value="${board.regDate}" pattern="yyyy/MM/dd HH:mm:ss" var="regDate" />
+				<h5 class="card-title">작성자: ${board.userId}</h5>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<div class="jumbotron" style="margin-bottom: 0">
+						<h6 class="text-muted" style="text-align: right">
+						작성시간: ${regDate}</h6>${board.content}
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div id="replies">
+						<ul class="list-group"></ul>
+					</div>
+				</li>
+			</ul>
+			<div class="card-footer form-group" style="margin-bottom: 0;">
+				<input type="hidden" id="loginId"
+					value="<%=(String) session.getAttribute("loginId")%>" />
+				<div class="form-inline" style="width: 100%">
+					<c:if test="${not empty loginId}">
+						<input type="text" id="rtext" placeholder="댓글 내용을 입력해주세요" class="form-control" style="margin-right: 0.5em;" />
+						<button class="btn" id="createReply">댓글 등록</button>
+					</c:if>
+					<c:if test="${empty loginId}">
+						<input type="text" id="rtext" placeholder="로그인이 필요합니다." class="form-control" style="margin-right: 0.5em;" readonly />
+					</c:if>
 				</div>
-			</li>
-			<li class="list-group-item">
-				<div id="replies">
-					<ul class="list-group"></ul>
-				</div>
-			</li>
-		</ul>
-		<div class="card-footer form-group" style="margin-bottom: 0;">
-			<input type="hidden" id="loginId" value="<%=(String)session.getAttribute("loginId")%>" />
-			<div class="form-inline" style="width: 100%">
-				<c:if test="${not empty loginId}">
-					<input type="text" id="rtext" placeholder="댓글 입력" class="form-control" style="margin-right: 0.5em;"/>
-					<button class="btn" id="createReply">댓글 등록</button>
-				</c:if>
-				<c:if test = "${empty loginId}">
-					<input type="text" id="rtext" placeholder="로그인이 필요합니다." class="form-control" style="margin-right: 0.5em;" readonly/>
-				</c:if>
 			</div>
 		</div>
+
+		<button class="btn"
+			onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'">목록으로
+			돌아가기</button>
+		<c:if test="${board.userId==loginId}">
+			<button class="btn float-right" id="btnBoardUpdate"
+				onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
+			<button class="btn float-right" id="btnBoardDelete"
+				style="margin-right: 0.5em;">삭제하기</button>
+		</c:if>
 	</div>
-	
-	<button class="btn" onclick="location.href='/controller/board/list?page=${criteria.page}&perPageNum=${criteria.perPageNum}'">목록으로 돌아가기</button>
-	<c:if test="${board.userId==loginId}">
-	<button class="btn float-right" id = "btnBoardUpdate" onclick="location.href='/controller/board/update?bno=${board.bno}'">수정하기</button>
-	<button class="btn float-right" id = "btnBoardDelete" style="margin-right: 0.5em;">삭제하기</button>
-	</c:if>
-</div>
 </div>
 
 <input type="hidden" id="bno" value="${board.bno}" />
 <input type ="hidden" id="pagenum"  value="page=${criteria.page}&perPageNum=${criteria.perPageNum}&bno=${board.bno}"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
 <script id="reply-template" type="text/x-handlebars-template">
-<li class="reply-item list-group-item d-flex justify-content-between align-items-center">
-	<input id="rno" value="{{rno}}" type="hidden" readonly />
-	<input id="content" value="{{content}}" type="text" readonly />
-	<input id="userId" value="{{userId}}" type="text" readonly />
-	<input id="regDate" value="{{regDate}}" type="text" readonly />
+<li class="reply-item list-group-item form-inline align-items-center ">
+	<input class="form-control" id="rno" value="{{rno}}" type="hidden" readonly />
+	<input class="form-control" id="userId" value="{{userId}}" type="text" readonly />
+	<input class="form-control" id="regDate" value="{{regDate}}" type="text" readonly />
+	<input class="form-control" id="content" value="{{content}}" type="text" readonly />
 	<div class="btnGroup-div{{rno}}">
-		<button class="btnUpdate">수정</button>
-		<button class="btnDelete">삭제</button>
+		<button class="btnUpdate btn" id="btn">수정</button>
+		<button class="btnDelete btn" id="btnCan">삭제</button>
 	</div>
 </li>
 
@@ -169,7 +173,6 @@ $(document).ready(function(){
 				'userId': loginId
 			}),
 			success: function(result){
-				alert('댓글 추가 결과: '+result);
 				$('#rtext').val('');
 				getAllReplies();
 			}			
@@ -181,36 +184,35 @@ $(document).ready(function(){
 		var rno = $(this).parents('.reply-item').children('#rno').val();
 		var selectedContent = $(this).parents('.reply-item').children('#content');
 		var content = $(this).parents('.reply-item').children('#content').val();
-		
-		selectedContent.attr('readonly',false);
-	
-		$.ajax({
-			type: 'put',
-			url: '/controller/replies/update/' + rno,
-			headers: {
-				'Content-Type': 'application/json',
-				'X-HTTP-Method-Override': 'put'
-			},
-			data: JSON.stringify({'userId':userId,'content':content}),
-			success: function(data){
-				if(data == 1){
-					alert('댓글'+rno+'번 수정 성공');
-					getAllreplies();
-				}else{
-					alert('댓글 수정 실패')
+		if(selectedContent.attr('readonly')){			
+			selectedContent.attr('readonly',false);
+		} else {
+			$.ajax({
+				type: 'put',
+				url: '/controller/replies/update/' + rno,
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'put'
+				},
+				data: JSON.stringify({'userId':userId,'content':content}),
+				success: function(data){
+					if(data == 1){
+						getAllReplies();
+						selectedContent.attr('readonly', true);
+					}else{
+						alert('댓글 수정 실패');
+					}
 				}
-			}
-			
-			
+			});
+		}
 		});//end ajax
 		
 	
 		
-	});//divison btnupdate end	
+/* 	});//divison btnupdate end	 */
 	
 	division.on('click','.reply-item .btnDelete', function(){
 		var rno = $(this).parents('.reply-item').children('#rno').val();
-		alert(rno + ' 댓글 삭제?');
 		var result = confirm(rno+'번 댓글을 삭제 하시겠습니까?')
 		if(result == true){
 			$.ajax({

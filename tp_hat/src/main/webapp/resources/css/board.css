@@ -9,9 +9,36 @@ input:focus {
   color: #ffffff;
 }
 
+#btnCan {
+  background-color: #78c2ad;
+  color: #ffffff;
+}
 
 .page-link {
   background-color: #78c2ad;
   color: #ffffff;
 }
 
+h5 {
+	margin-bottom: 0px;
+}
+
+input#userId {
+	width: 10%;
+}
+
+input#regDate {
+	width: 20%;
+}
+
+input#content {
+	width: 50%
+}
+
+div#btn {
+	width: 10%;
+}
+
+div#btnCan {
+	width: 10%;
+}

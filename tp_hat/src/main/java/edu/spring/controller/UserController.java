@@ -102,7 +102,7 @@ public class UserController {
 		
 		session.invalidate();
 		
-		return "redirect:/"; // 메인 페이지로 이동
+		return "redirect:/project/main"; // 메인 페이지로 이동
 	}
 	
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)

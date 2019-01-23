@@ -8,6 +8,25 @@ a:hover, a:active {
 	color: black; !important;
 }
 
+.align {
+	padding: 0px;
+	margin: 3%;
+	}
+#roundBtnCon {
+	width: 50%;
+}
+	
+@media ( max-width: 480px ) {
+	.align {
+		padding: 0px;
+		margin: 0;
+		}
+	#roundBtnCon {
+			width: 100%;
+		}
+}
+	
+
 .round-button{ 
   width: 50px; 
   height: 50px; 
@@ -22,11 +41,6 @@ a:hover, a:active {
   overflow: none; 
   text-align: center;
    
-}
-
-.align {
-	padding: 40px;
-	margin: 0 auto;
 }
 
 .btn {
@@ -44,8 +58,7 @@ a:hover, a:active {
 }
 
 .carousel-item {
-  height: 50vh;
-  min-height: 300px;
+  width: 100vmin;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
